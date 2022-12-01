@@ -148,4 +148,41 @@ input[type="number"] {
     justify-content: flex-start !important;
     padding: 1rem;
   }
+  
+  .overviewText{
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+  }
+
+  .homePageSelector{
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .topTableContainer-HomePage{
+    flex-wrap: wrap;
+  }
+
+  .topTableContainer-HomePage table{
+    margin: 0 0 1rem 0 !important;
+  }
+
+  .lastContainerHolder{
+    flex-wrap: wrap;
+  }
+
+  .tableAndBannerHolder{
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+  }
+
+  .bannerContainer{
+    min-width: 60% !important;
+  }
+
+  .orderSummaryContainer{
+    width: 100% !important;
+    margin: 2rem 0;
+  }
 }

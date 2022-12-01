@@ -217,7 +217,7 @@ const HomePage = ({ toggle }) => {
         </div>
         <hr />
       </nav>
-      <div className="d-flex justify-content-between align-items-center px-2 pb-2 pt-4">
+      <div className="overviewText d-flex justify-content-between align-items-center px-2 pb-2 pt-4">
         <div
           className="d-flex justify-content-between align-items-center px-5"
           style={{ width: "24rem" }}
@@ -229,7 +229,7 @@ const HomePage = ({ toggle }) => {
             View all
           </p>
         </div>
-        <div>
+        <div className="homePageSelector">
           <div className="d-flex px-4">
             <div className="p2-selection mx-2">
               <select
@@ -251,7 +251,7 @@ const HomePage = ({ toggle }) => {
       ) : (
         <div>
           <div
-            className="container-lg d-flex justify-content-between px-5 py-1"
+            className="topTableContainer-HomePage container-lg d-flex justify-content-between px-5 py-1"
             style={{ width: "100%" }}
           >
             <table
@@ -330,8 +330,11 @@ const HomePage = ({ toggle }) => {
               </div>
             </div>
           </div>
-          <div className="container-lg d-flex flex-wrap justify-content-between px-5 py-4">
-            <div className="container-md p-0 me-3" style={{ width: "63%" }}>
+          <div className="lastContainerHolder container-lg d-flex justify-content-between px-5 py-4">
+            <div
+              className="tableAndBannerHolder container-md p-0 me-3"
+              style={{ width: "63%" }}
+            >
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <h5>Banners</h5>
                 {/* <button type="file" className="btn btn py-0">
@@ -361,7 +364,7 @@ const HomePage = ({ toggle }) => {
                         <label
                           htmlFor="file"
                           className="btn btn py-0"
-                          style={{ opacity: ".7" }}
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
                         >
                           + Add new
                         </label>
@@ -374,10 +377,10 @@ const HomePage = ({ toggle }) => {
                 style={{
                   backgroundColor: "white",
                   borderRadius: ".5rem",
-                  overflow: "auto",
+                  overflowX: "auto",
                   boxShadow: "0 0 15px #546b912b",
                 }}
-                className="container-sm d-flex w-100 justify-content-between py-2"
+                className="container-sm d-flex justify-content-between py-2"
               >
                 {avatarPreview ? (
                   <div
@@ -396,7 +399,7 @@ const HomePage = ({ toggle }) => {
 
                 {banners &&
                   banners?.map((banner, index) => (
-                    <div>
+                    <div className="bannerContainer">
                       <MdDelete
                         style={{
                           color: "#dc3545",
@@ -429,68 +432,74 @@ const HomePage = ({ toggle }) => {
               >
                 <div className="d-flex justify-content-between align-items-center container-md p-0 my-2">
                   <h5>Notifications</h5>
-                  <button type="button" className="btn btn py-0" style={{opacity:".7"}}>
+                  <button
+                    type="button"
+                    className="btn btn py-0"
+                    style={{ fontSize: ".8rem", opacity: ".7" }}
+                  >
                     Push new notification
                   </button>
                 </div>
-                <table
-                  className="table table-borderless"
-                  style={{
-                    overflow: "hidden",
-                    width: "100%",
-                    borderRadius: ".5rem",
-                    backgroundColor: "white",
-                    boxShadow: "0 0 15px #546b912b",
-                  }}
-                >
-                  <thead style={{ backgroundColor: "#eaeaea" }}>
-                    <tr>
-                      <th scope="col">S.no</th>
-                      <th scope="col">Title</th>
-                      <th scope="col">Message</th>
-                      <th scope="col">Sent to</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>MEGA OFFER</td>
-                      <td className="text-wrap w-50">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit.
-                      </td>
-                      <td>Vendor</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>MEGA OFFER</td>
-                      <td className="text-wrap w-50">
-                        Lorem ipsum dolor, sit amet.
-                      </td>
-                      <td>Clients</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>MEGA OFFER</td>
-                      <td className="text-wrap w-50">
-                        Lorem ipsum dolor, sit amet.
-                      </td>
-                      <td>Clients</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td>MEGA OFFER</td>
-                      <td className="text-wrap w-50">
-                        Lorem ipsum dolor, sit amet.
-                      </td>
-                      <td>Clients</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div className="s2-table subTableForAll">
+                  <table
+                    className="table table-borderless"
+                    style={{
+                      overflow: "hidden",
+                      width: "100%",
+                      borderRadius: ".5rem",
+                      backgroundColor: "white",
+                      boxShadow: "0 0 15px #546b912b",
+                    }}
+                  >
+                    <thead style={{ backgroundColor: "#eaeaea" }}>
+                      <tr>
+                        <th scope="col">S.no</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Sent to</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>MEGA OFFER</td>
+                        <td className="text-wrap w-50">
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit.
+                        </td>
+                        <td>Vendor</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>MEGA OFFER</td>
+                        <td className="text-wrap w-50">
+                          Lorem ipsum dolor, sit amet.
+                        </td>
+                        <td>Clients</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>MEGA OFFER</td>
+                        <td className="text-wrap w-50">
+                          Lorem ipsum dolor, sit amet.
+                        </td>
+                        <td>Clients</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>MEGA OFFER</td>
+                        <td className="text-wrap w-50">
+                          Lorem ipsum dolor, sit amet.
+                        </td>
+                        <td>Clients</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
             <div
-              className="container d-flex flex-column justify-content-start py-0 px-2"
+              className="orderSummaryContainer container d-flex flex-column justify-content-start py-0 px-2"
               style={{ width: "35%" }}
             >
               <div>
