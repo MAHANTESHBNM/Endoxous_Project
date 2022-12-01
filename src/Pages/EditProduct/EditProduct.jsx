@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const EditProduct = () => {
+const EditProduct = ({ toggle }) => {
   return (
     <div className="section2">
       <nav
@@ -10,6 +10,7 @@ const EditProduct = () => {
       >
         <div className="container-fluid px-5">
           <button
+            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"

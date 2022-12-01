@@ -1,4 +1,4 @@
-import React, { useEffect, useState,Fragment } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import "./Page8.css";
 // import logo from "../../Assets/Images/logo3.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,15 +7,17 @@ import { clearErrors, getAllUsers } from "../../redux/actions/userAction.js";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import { toast } from "react-toastify";
 import DateFormatter from "../../utils/DateFormatter";
-import Loader from "../../Components/SideBar/Loader/Loader"; 
+import Loader from "../../Components/SideBar/Loader/Loader";
 
-function MyCustomers() {
+const MyCustomers = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
 
   const { error, loading, users } = useSelector((state) => state.allUsers);
-  const { error: nurseriesError, nurseries } = useSelector((state) => state.allNurseries);
+  const { error: nurseriesError, nurseries } = useSelector(
+    (state) => state.allNurseries
+  );
   console.log(users && users, "====== users");
   const usersOnly = users && users.filter((user) => user.role !== "admin");
 
@@ -31,16 +33,16 @@ function MyCustomers() {
     dispatch(getAllUsers());
   }, [dispatch, error, keyword]);
 
-  const customerDetailsHandler=(id)=>{
-    navigate(`/customer/${id}`)
-  }
+  const customerDetailsHandler = (id) => {
+    navigate(`/customer/${id}`);
+  };
 
   const AllUsers = users && users.filter((user) => user);
 
   const nurseryDropDownHandler = (e) => {
     const nursery = e.target.value;
     const nuserysOrders =
-    users && users.filter((user) => user.deliveredBy === nursery); 
+      users && users.filter((user) => user.deliveredBy === nursery);
     setFilteredUsers(nuserysOrders);
     setState(true);
 
@@ -71,18 +73,15 @@ function MyCustomers() {
   const date = new Date();
   const monthend = getMonthEndDate(1, date).toJSON().slice(0, 10);
 
-
   // Filtering
   const todayUsers =
-  users &&
-  users.filter((user) => user.joinedOn.slice(0, 10) === currentDate);
+    users && users.filter((user) => user.joinedOn.slice(0, 10) === currentDate);
 
   const weekUsers =
-  users && users.filter((user) => user.joinedOn.slice(0, 10) >= weekend);
+    users && users.filter((user) => user.joinedOn.slice(0, 10) >= weekend);
 
   const monthUsers =
-  users &&
-  users.filter((user) => user.joinedOn.slice(0, 10) >= monthend);
+    users && users.filter((user) => user.joinedOn.slice(0, 10) >= monthend);
 
   const userSelect = (e) => {
     let item = parseInt(e.target.value);
@@ -104,33 +103,6 @@ function MyCustomers() {
   return (
     <div>
       <div className="mainsection">
-        {/* <div className="section1">
-          <div className="logo">
-            <img className="logo" src={logo} />
-          </div>
-          <div>
-            <ul className="navbar-nav justify-content-end flex-grow-1 ">
-              <li className="nav-item m-2">
-                <button className="s1-btn btn  px-4 ">Home</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className="s1-btn btn  px-4 ">Orders</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className="s1-btn btn  px-4 ">All Nurseries</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className="s1-btn btn px-4 ">Payments</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className="s1-btn btn  px-4 ">Nurseries</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className=" s1-btn btn  px-4 ">Logout</button>
-              </li>
-            </ul>
-          </div>
-        </div> */}
         <div className="section2 ">
           <nav
             className="s2-navabar navbar navbar-expand-lg "
@@ -138,6 +110,7 @@ function MyCustomers() {
           >
             <div className="container-fluid px-5">
               <button
+                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -231,126 +204,131 @@ function MyCustomers() {
                   </tr>
                 </thead>
                 <tbody className="table-group-divider  my-5">
-                  {state==false ? (<Fragment>
-                    {usersOnly &&
-                    usersOnly
-                      .filter((val) => {
-                        if (keyword === "") {
-                          return val;
-                        } else if (
-                          val.fullName
-                            .toLowerCase()
-                            .includes(keyword.toLowerCase())
-                        ) {
-                          return val;
-                        }
-                      })
-                      .map((user, index) => (
-                        <tr>
-                         
-                          <th scope="row" onClick={()=>customerDetailsHandler(user._id)} style={{cursor:"pointer"}}>
-                            {index + 1}#{user._id}
-                          </th>
-                          <td>
-                            {" "}
-                            <DateFormatter date={user?.joinedOn} />{" "}
-                          </td>
-                          <td>
-                            {" "}
-                            {user?.phone ? user?.phone : "not specified"}
-                          </td>
-                          <td> 1 </td>
-                          <td>COD</td>
-                          <td>
-                            <div>
-                              <input
-                                className="form-check-input s2-radio"
-                                type="radio"
-                                name="radioNoLabel"
-                                id="radioNoLabel1"
-                                value="Pending"
-                                aria-label="..."
-                              />{" "}
-                              Pending
-                            </div>
-                          </td>
-                          <td>Rs 320</td>
-                          <td>
-                            <select
-                              className="form-select-sm px-3"
-                              aria-label="Default select example"
-                            >
-                              <option selected>Select Nursery </option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </select>
-                          </td>
-                        </tr>
-                      ))}
-                  </Fragment>) : (
+                  {state == false ? (
+                    <Fragment>
+                      {usersOnly &&
+                        usersOnly
+                          .filter((val) => {
+                            if (keyword === "") {
+                              return val;
+                            } else if (
+                              val.fullName
+                                .toLowerCase()
+                                .includes(keyword.toLowerCase())
+                            ) {
+                              return val;
+                            }
+                          })
+                          .map((user, index) => (
+                            <tr>
+                              <th
+                                scope="row"
+                                onClick={() => customerDetailsHandler(user._id)}
+                                style={{ cursor: "pointer" }}
+                              >
+                                {index + 1}#{user._id}
+                              </th>
+                              <td>
+                                {" "}
+                                <DateFormatter date={user?.joinedOn} />{" "}
+                              </td>
+                              <td>
+                                {" "}
+                                {user?.phone ? user?.phone : "not specified"}
+                              </td>
+                              <td> 1 </td>
+                              <td>COD</td>
+                              <td>
+                                <div>
+                                  <input
+                                    className="form-check-input s2-radio"
+                                    type="radio"
+                                    name="radioNoLabel"
+                                    id="radioNoLabel1"
+                                    value="Pending"
+                                    aria-label="..."
+                                  />{" "}
+                                  Pending
+                                </div>
+                              </td>
+                              <td>Rs 320</td>
+                              <td>
+                                <select
+                                  className="form-select-sm px-3"
+                                  aria-label="Default select example"
+                                >
+                                  <option selected>Select Nursery </option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                                </select>
+                              </td>
+                            </tr>
+                          ))}
+                    </Fragment>
+                  ) : (
                     <Fragment>
                       {filteredUsers &&
                         filteredUsers
-                      .filter((val) => {
-                        if (keyword === "") {
-                          return val;
-                        } else if (
-                          val.fullName
-                            .toLowerCase()
-                            .includes(keyword.toLowerCase())
-                        ) {
-                          return val;
-                        }
-                      })
-                      .map((user, index) => (
-                        <tr>
-                         
-                          <th scope="row" onClick={()=>customerDetailsHandler(user._id)} style={{cursor:"pointer"}}>
-                            {index + 1}#{user._id}
-                          </th>
-                          <td>
-                            {" "}
-                            <DateFormatter date={user?.joinedOn} />{" "}
-                          </td>
-                          <td>
-                            {" "}
-                            {user?.phone ? user?.phone : "not specified"}
-                          </td>
-                          <td> 1 </td>
-                          <td>COD</td>
-                          <td>
-                            <div>
-                              <input
-                                className="form-check-input s2-radio"
-                                type="radio"
-                                name="radioNoLabel"
-                                id="radioNoLabel1"
-                                value="Pending"
-                                aria-label="..."
-                              />{" "}
-                              Pending
-                            </div>
-                          </td>
-                          <td>Rs 320</td>
-                          <td>
-                            <select
-                              className="form-select-sm px-3"
-                              aria-label="Default select example"
-                            >
-                              <option selected>Select Nursery </option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                            </select>
-                          </td>
-                        </tr>
-                      ))}
+                          .filter((val) => {
+                            if (keyword === "") {
+                              return val;
+                            } else if (
+                              val.fullName
+                                .toLowerCase()
+                                .includes(keyword.toLowerCase())
+                            ) {
+                              return val;
+                            }
+                          })
+                          .map((user, index) => (
+                            <tr>
+                              <th
+                                scope="row"
+                                onClick={() => customerDetailsHandler(user._id)}
+                                style={{ cursor: "pointer" }}
+                              >
+                                {index + 1}#{user._id}
+                              </th>
+                              <td>
+                                {" "}
+                                <DateFormatter date={user?.joinedOn} />{" "}
+                              </td>
+                              <td>
+                                {" "}
+                                {user?.phone ? user?.phone : "not specified"}
+                              </td>
+                              <td> 1 </td>
+                              <td>COD</td>
+                              <td>
+                                <div>
+                                  <input
+                                    className="form-check-input s2-radio"
+                                    type="radio"
+                                    name="radioNoLabel"
+                                    id="radioNoLabel1"
+                                    value="Pending"
+                                    aria-label="..."
+                                  />{" "}
+                                  Pending
+                                </div>
+                              </td>
+                              <td>Rs 320</td>
+                              <td>
+                                <select
+                                  className="form-select-sm px-3"
+                                  aria-label="Default select example"
+                                >
+                                  <option selected>Select Nursery </option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                                </select>
+                              </td>
+                            </tr>
+                          ))}
                     </Fragment>
                   )}
-                  
-
-                  
                 </tbody>
               </table>
             </div>
@@ -359,8 +337,6 @@ function MyCustomers() {
       </div>
     </div>
   );
-}
+};
 
 export default MyCustomers;
-
-

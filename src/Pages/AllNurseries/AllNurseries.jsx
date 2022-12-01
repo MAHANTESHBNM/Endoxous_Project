@@ -10,7 +10,7 @@ import {
 import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-function AllNurseries() {
+const AllNurseries = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
@@ -42,6 +42,7 @@ function AllNurseries() {
           >
             <div className="container-fluid px-5">
               <button
+                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -193,6 +194,6 @@ function AllNurseries() {
       </div>
     </div>
   );
-}
+};
 
 export default AllNurseries;

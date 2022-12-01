@@ -9,11 +9,11 @@ import { clearErrors, getAllOrders } from "../../redux/actions/orderAction";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
-function AllOrders() {
+const AllOrders = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -143,26 +143,26 @@ function AllOrders() {
   // Custom Date
   const [showDatePicker, setShowDatePicker] = useState(false);
   //   const [selectedDate, setSelectedDate] = useState(new Date())
-  // const [selectedDate, setSelectedDate] = useState(new Date()); 
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState(''); 
+  // const [selectedDate, setSelectedDate] = useState(new Date());
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   console.log(startDate);
   console.log(endDate);
 
-  const [customDate, setCustomDate] = useState(
-    startDate, endDate
-  );
-  
+  const [customDate, setCustomDate] = useState(startDate, endDate);
+
   useEffect(() => {
     setCustomDate(startDate);
     const customOrders =
       orders &&
-      orders.filter((order) => (order.createdAt.slice(0, 10) >= startDate && order.createdAt.slice(0, 10) <= endDate ));
+      orders.filter(
+        (order) =>
+          order.createdAt.slice(0, 10) >= startDate &&
+          order.createdAt.slice(0, 10) <= endDate
+      );
     setFilterOrders(customOrders);
   }, [startDate, orders, customDate, endDate]);
-
-  
 
   // Filtering
   const todayOrders =
@@ -211,6 +211,7 @@ function AllOrders() {
           >
             <div className="container-fluid px-5">
               <button
+                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -291,8 +292,19 @@ function AllOrders() {
                   <h1>{showDatePicker}</h1>
                   {showDatePicker && (
                     <div>
-                      From : <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} className='mx-1'/>
-                      To : <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)}/>
+                      From :{" "}
+                      <input
+                        type="date"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                        className="mx-1"
+                      />
+                      To :{" "}
+                      <input
+                        type="date"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                      />
                     </div>
                     // <DatePicker
                     //   selected={selectedDate}
@@ -339,10 +351,10 @@ function AllOrders() {
               Cancelled
             </button>
           </div>
-          
+
           <div className="tableForAll s2-table m-5 ">
             <div className="s2-table subTableForAll">
-              {loading ? ( 
+              {loading ? (
                 <Loader />
               ) : (
                 <table
@@ -561,6 +573,6 @@ function AllOrders() {
       </div>
     </div>
   );
-}
+};
 
 export default AllOrders;

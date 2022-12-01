@@ -9,7 +9,7 @@ import "./Page6.css";
 // import logo from "../../Assets/Images/logo3.png";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-function OrderReports() {
+const OrderReports = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -116,6 +116,7 @@ function OrderReports() {
           >
             <div className="container-fluid px-5">
               <button
+                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -232,6 +233,6 @@ function OrderReports() {
       </div>
     </div>
   );
-}
+};
 
 export default OrderReports;

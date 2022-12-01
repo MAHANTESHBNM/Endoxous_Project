@@ -8,7 +8,7 @@ import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import { getAllOrders } from "../../redux/actions/orderAction";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-function SalesReport() {
+const SalesReport = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function SalesReport() {
     orders,
     loading: ordresLoading,
   } = useSelector((state) => state.allOrders);
-  
+
   const { error, loading, dateSales, totalSales, salesReport } = useSelector(
     (state) => state.salePerDay
   );
@@ -120,6 +120,7 @@ function SalesReport() {
           >
             <div className="container-fluid px-5">
               <button
+                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -183,44 +184,44 @@ function SalesReport() {
             <div className="s2-table py-4">
               {loading ? (
                 <Loader />
-              ):(
+              ) : (
                 <table className="table table-borderless table-sm ">
-                <thead className="s2-table-nava">
-                  <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Orders</th>
-                    <th scope="col">Sales</th>
-                    <th scope="col">Nursery Name</th>
-                  </tr>
-                </thead>
-                <tbody className="table-group-divider my-5">
-                  {state == false ? (
-                    <Fragment>
-                      {salesReport &&
-                        salesReport.map((sale, index) => (
-                          <tr>
-                            <th scope="row">{sale.date}</th>
-                            <td>{sale.count}</td>
-                            <td>{sale.total}</td>
-                            <td>Area/Locality</td>
-                          </tr>
-                        ))}
-                    </Fragment>
-                  ) : (
-                    <Fragment>
-                      {filteredOrders &&
-                        filteredOrders.map((sale, index) => (
-                          <tr>
-                            <th scope="row">{sale.date}</th>
-                            <td>{sale.count}</td>
-                            <td>{sale.total}</td>
-                            <td>Area/Locality</td>
-                          </tr>
-                        ))}
-                    </Fragment>
-                  )}
-                </tbody>
-              </table>
+                  <thead className="s2-table-nava">
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Orders</th>
+                      <th scope="col">Sales</th>
+                      <th scope="col">Nursery Name</th>
+                    </tr>
+                  </thead>
+                  <tbody className="table-group-divider my-5">
+                    {state == false ? (
+                      <Fragment>
+                        {salesReport &&
+                          salesReport.map((sale, index) => (
+                            <tr>
+                              <th scope="row">{sale.date}</th>
+                              <td>{sale.count}</td>
+                              <td>{sale.total}</td>
+                              <td>Area/Locality</td>
+                            </tr>
+                          ))}
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        {filteredOrders &&
+                          filteredOrders.map((sale, index) => (
+                            <tr>
+                              <th scope="row">{sale.date}</th>
+                              <td>{sale.count}</td>
+                              <td>{sale.total}</td>
+                              <td>Area/Locality</td>
+                            </tr>
+                          ))}
+                      </Fragment>
+                    )}
+                  </tbody>
+                </table>
               )}
             </div>
           </div>
@@ -228,6 +229,6 @@ function SalesReport() {
       </div>
     </div>
   );
-}
+};
 
 export default SalesReport;
