@@ -255,12 +255,13 @@ const HomePage = ({ toggle }) => {
             style={{ width: "100%" }}
           >
             <table
-              className="table table-borderless me-5"
+              className="table table-borderless me-4"
               style={{
                 width: "29rem",
                 height: "14rem",
                 borderRadius: ".5rem",
                 backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
               }}
             >
               <thead>
@@ -293,7 +294,7 @@ const HomePage = ({ toggle }) => {
               className="container-sm px-4 py-2"
               style={{
                 width: "100%",
-
+                boxShadow: "0 0 15px #546b912b",
                 backgroundColor: "white",
                 borderRadius: ".5rem",
                 height: "14rem",
@@ -374,6 +375,7 @@ const HomePage = ({ toggle }) => {
                   backgroundColor: "white",
                   borderRadius: ".5rem",
                   overflow: "auto",
+                  boxShadow: "0 0 15px #546b912b",
                 }}
                 className="container-sm d-flex w-100 justify-content-between py-2"
               >
@@ -425,9 +427,9 @@ const HomePage = ({ toggle }) => {
                 className="container-md px-0 py-2 mt-3"
                 style={{ width: "100%" }}
               >
-                <div className="d-flex justify-content-between align-items-center container-md p-0">
-                  <h4>Notifications</h4>
-                  <button type="button" className="btn btn py-0">
+                <div className="d-flex justify-content-between align-items-center container-md p-0 my-2">
+                  <h5>Notifications</h5>
+                  <button type="button" className="btn btn py-0" style={{opacity:".7"}}>
                     Push new notification
                   </button>
                 </div>
@@ -438,6 +440,7 @@ const HomePage = ({ toggle }) => {
                     width: "100%",
                     borderRadius: ".5rem",
                     backgroundColor: "white",
+                    boxShadow: "0 0 15px #546b912b",
                   }}
                 >
                   <thead style={{ backgroundColor: "#eaeaea" }}>
@@ -500,6 +503,7 @@ const HomePage = ({ toggle }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
+                  boxShadow: "0 0 15px #546b912b",
                 }}
                 className="container-sm d-flex justify-content-between mt-1"
               >
@@ -513,6 +517,7 @@ const HomePage = ({ toggle }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
+                  boxShadow: "0 0 15px #546b912b",
                 }}
                 className="container-sm d-flex justify-content-between mt-4"
               >
@@ -527,6 +532,7 @@ const HomePage = ({ toggle }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
+                  boxShadow: "0 0 15px #546b912b",
                 }}
                 className="container-sm d-flex justify-content-between mt-4"
               >
@@ -540,6 +546,7 @@ const HomePage = ({ toggle }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
+                  boxShadow: "0 0 15px #546b912b",
                 }}
                 className="container-sm d-flex justify-content-between mt-4"
               >
