@@ -1,6 +1,23 @@
+@font-face {
+  font-family: Galano;
+  src: url(./Assets/Fonts/GalanoGrotesque/GalanoGrotesqueMedium.otf);
+}
+
+/* @font-face {
+  font-family: GalanoBold;
+  src: url(./Assets/Fonts/GalanoGrotesque/GalanoGrotesqueAltBold.otf);
+} */
+
 .App {
   width: 100%;
   min-height: 100%;
+}
+
+.navbar-brand{
+  font-weight: 600;
+  font-family: Galano;
+  font-size: 1.2rem;
+  opacity: .9;
 }
 
 /* Chrome, Safari, Edge, Opera */

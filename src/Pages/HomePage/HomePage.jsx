@@ -41,7 +41,7 @@ const HomePage = ({ toggle }) => {
   const { error: ordersError, orders } = useSelector(
     (state) => state.allOrders
   );
-  
+
   const { error: nurseriesError, nurseries } = useSelector(
     (state) => state.allNurseries
   );
@@ -142,7 +142,7 @@ const HomePage = ({ toggle }) => {
     dispatch(deleteBanner(id));
   };
   const [saleDate, setSalesDate] = useState(1);
-  
+
   const [sales, setSales] = useState(orders);
   const [totalSales, setTotalSales] = useState();
 
@@ -150,32 +150,31 @@ const HomePage = ({ toggle }) => {
     setTotalSales(sales.reduce((acc, item) => acc + item.totalPrice, 0));
   }, [sales]);
 
-  
- 
-   // Today
-   let currentDate = new Date().toJSON().slice(0, 10)
-   console.log(currentDate,'current Date'); 
- 
-   // Yesterday 
-   const getYesterdayDate=()=> {
-     const now = new Date();
-     return new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000).toJSON().slice(0,10);
-   }
-   const yesterday= getYesterdayDate()
-   console.log(yesterday,'Yesterday');
- 
- 
-  const todayOrders =
-    orders && orders.filter((order) => (order.createdAt).slice(0, 10) === currentDate);
-    console.log(todayOrders); 
-    console.log(currentDate);
+  // Today
+  let currentDate = new Date().toJSON().slice(0, 10);
+  console.log(currentDate, "current Date");
 
- 
+  // Yesterday
+  const getYesterdayDate = () => {
+    const now = new Date();
+    return new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000)
+      .toJSON()
+      .slice(0, 10);
+  };
+  const yesterday = getYesterdayDate();
+  console.log(yesterday, "Yesterday");
+
+  const todayOrders =
+    orders &&
+    orders.filter((order) => order.createdAt.slice(0, 10) === currentDate);
+  console.log(todayOrders);
+  console.log(currentDate);
 
   const yesterdayOrders =
-    orders &&orders.filter((order) => order.createdAt.slice(0, 10) === yesterday);
+    orders &&
+    orders.filter((order) => order.createdAt.slice(0, 10) === yesterday);
   console.log(todayOrders);
-  
+
   console.log(currentDate);
 
   const daySelect = (e) => {
@@ -208,7 +207,6 @@ const HomePage = ({ toggle }) => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-
           <NavLink className="fw-bold navbar-brand" to="/">
             Home
           </NavLink>
@@ -219,20 +217,24 @@ const HomePage = ({ toggle }) => {
         </div>
         <hr />
       </nav>
-      <div className="d-flex justify-content-between align-items-center px-2 py-1">
+      <div className="d-flex justify-content-between align-items-center px-2 pb-2 pt-4">
         <div
-          className="d-flex justify-content-between px-5 pt-2"
+          className="d-flex justify-content-between align-items-center px-5"
           style={{ width: "24rem" }}
         >
-          <p>Overview</p>
-          <p>View all</p>
+          <p className="m-0" style={{ fontSize: "1.2rem" }}>
+            Overview
+          </p>
+          <p className="m-0" style={{ fontSize: ".8rem", opacity: ".8" }}>
+            View all
+          </p>
         </div>
         <div>
-          <div className="d-flex px-4 ">
+          <div className="d-flex px-4">
             <div className="p2-selection mx-2">
               <select
                 selected={saleDate}
-                className="form-select "
+                className="form-select-sm"
                 aria-label="Default select example"
                 onChange={daySelect}
               >
@@ -243,13 +245,13 @@ const HomePage = ({ toggle }) => {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
       {loading ? (
         <Loader />
       ) : (
         <div>
           <div
-            className="container-lg d-flex justify-content-between px-5 py-2"
+            className="container-lg d-flex justify-content-between px-5 py-1"
             style={{ width: "100%" }}
           >
             <table
@@ -262,19 +264,25 @@ const HomePage = ({ toggle }) => {
               }}
             >
               <thead>
-                <tr>
+                <tr className="py-5">
                   <th scope="col"></th>
-                  <th scope="col">TOP NURSERIES</th>
-                  <th scope="col">SALES</th>
+                  <th scope="col" style={{ opacity: ".9", fontWeight: "500" }}>
+                    TOP NURSERIES
+                  </th>
+                  <th scope="col" style={{ opacity: ".9", fontWeight: "500" }}>
+                    SALES
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr style={{ color: "#000", opacity: ".5" }}>
                   {top5Nuseries &&
                     top5Nuseries.map((nursery, index) => (
                       <>
-                        <th scope="row">{index + 1}.</th>
-                        <td>{nursery.name}</td>
+                        <td scope="row"></td>
+                        <td>
+                          {index + 1}. {nursery.name}
+                        </td>
                         <td>60,000</td>
                       </>
                     ))}
@@ -282,9 +290,10 @@ const HomePage = ({ toggle }) => {
               </tbody>
             </table>
             <div
-              className="container-sm p-2"
+              className="container-sm px-4 py-2"
               style={{
                 width: "100%",
+
                 backgroundColor: "white",
                 borderRadius: ".5rem",
                 height: "14rem",
@@ -293,10 +302,14 @@ const HomePage = ({ toggle }) => {
               }}
             >
               <div>
-                <p style={{ fontWeight: 500 }}>TOTAL SALES</p>
-                <h2 style={{ fontWeight: 700, fontSize: "2rem" }}>
+                <p
+                  style={{ opacity: ".9", fontWeight: "500", fontWeight: 500 }}
+                >
+                  TOTAL SALES
+                </p>
+                <h4 style={{ fontWeight: 700, fontSize: "1.3rem" }}>
                   Rs {Math.round(totalSales)}
-                </h2>
+                </h4>
               </div>
               <div
                 style={{
@@ -305,23 +318,27 @@ const HomePage = ({ toggle }) => {
                   alignItems: "flex-end",
                 }}
               >
-                <p style={{ fontWeight: 500 }}>Orders</p>
-                <h2 style={{ fontWeight: 700, fontSize: "2rem" }}>
-                  {sales && sales.length}
-                </h2>
+                <p
+                  style={{ fontWeight: 500, fontSize: ".8rem", opacity: ".8" }}
+                >
+                  Lifetime
+                </p>
+                <h4 style={{ fontWeight: 700, fontSize: "1.3rem" }}>
+                  {sales && sales.length} Orders
+                </h4>
               </div>
             </div>
           </div>
-          <div className="container-lg d-flex flex-wrap justify-content-between px-5 py-2">
-            <div className="container-md p-0" style={{ width: "60%" }}>
-              <div className="d-flex justify-content-between align-items-center">
-                <h4>Banners</h4>
+          <div className="container-lg d-flex flex-wrap justify-content-between px-5 py-4">
+            <div className="container-md p-0 me-3" style={{ width: "63%" }}>
+              <div className="d-flex justify-content-between align-items-center mb-2">
+                <h5>Banners</h5>
                 {/* <button type="file" className="btn btn py-0">
               + Add new
             </button> */}
                 <form
                   action=""
-                  className="createproductForm"
+                  className="createproductForm me-3"
                   encType="multipart/form-data"
                   onSubmit={createBannerSubmitHandler}
                 >
@@ -334,22 +351,22 @@ const HomePage = ({ toggle }) => {
                       accept="image/*"
                       onChange={bannerDataChange}
                     />
-                    {avatar !=="" ? (
+                    {avatar !== "" ? (
                       <Fragment>
                         <button type="submit">Save</button>
-                        
                       </Fragment>
                     ) : (
                       <Fragment>
-                        <label htmlFor="file" className="btn btn py-0">
-                      + Add new
-                    </label>
+                        <label
+                          htmlFor="file"
+                          className="btn btn py-0"
+                          style={{ opacity: ".7" }}
+                        >
+                          + Add new
+                        </label>
                       </Fragment>
-                      
                     )}
-
                   </div>
-                 
                 </form>
               </div>
               <div
@@ -470,10 +487,10 @@ const HomePage = ({ toggle }) => {
               </div>
             </div>
             <div
-              className="container d-flex flex-column justify-content-center px-2"
-              style={{ width: "40%" }}
+              className="container d-flex flex-column justify-content-start py-0 px-2"
+              style={{ width: "35%" }}
             >
-              <div className="pt-1">
+              <div>
                 <h4>Orders</h4>
               </div>
 
