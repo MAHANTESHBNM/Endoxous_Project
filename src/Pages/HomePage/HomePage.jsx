@@ -282,7 +282,7 @@ const HomePage = ({ toggle }) => {
                       <>
                         <td scope="row"></td>
                         <td>
-                          {index + 1}. {nursery.name}
+                          {index + 1}. &nbsp; &nbsp; {nursery.name}
                         </td>
                         <td>60,000</td>
                       </>

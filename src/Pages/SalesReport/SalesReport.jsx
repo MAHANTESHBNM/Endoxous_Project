@@ -142,12 +142,14 @@ const SalesReport = ({ toggle }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between  align-items-center px-2 py-1">
-            <div className="p-5">
-              <p>TOTAL SALES</p>
-              <h4>Rs {totalSalesAmount && totalSalesAmount}</h4>
+          <div className="d-flex justify-content-between align-items-end flex-wrap px-2 py-1">
+            <div className="px-5 pt-4">
+              <p style={{ color: "#9f9f9f", fontSize: ".8rem" }}>TOTAL SALES</p>
+              <h4 style={{ fontWeight: "600" }}>
+                Rs {totalSalesAmount && totalSalesAmount}
+              </h4>
             </div>
-            <div>
+            <div className="mb-2">
               <div className="d-flex px-4 ">
                 <div className="p2-selection mx-2"></div>
                 <div className="p2-selection mx-2 ">
@@ -180,12 +182,20 @@ const SalesReport = ({ toggle }) => {
               </div>
             </div>
           </div>
-          <div className="s2-table px-5 m-3 ">
-            <div className="s2-table py-4">
+          <div className="s2-table tableForAll m-5 ">
+            <div className="s2-table subTableForAll">
               {loading ? (
                 <Loader />
               ) : (
-                <table className="table table-borderless table-sm ">
+                <table
+                  className="table table-borderless "
+                  style={{
+                    overflow: "hidden",
+                    width: "100%",
+                    borderRadius: ".5rem",
+                    backgroundColor: "white",
+                  }}
+                >
                   <thead className="s2-table-nava">
                     <tr>
                       <th scope="col">Date</th>

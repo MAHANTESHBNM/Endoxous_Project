@@ -67,6 +67,7 @@ const AllNurseries = ({ toggle }) => {
           <div className="d-flex justify-content-between align-items-center px-2 py-1 filterInputInAllOrders">
             <div className="px-5 py-4 filterInput">
               <input
+                style={{ borderRadius: ".2rem" }}
                 className="form-control px-4"
                 type="text"
                 value={keyword}
@@ -99,7 +100,9 @@ const AllNurseries = ({ toggle }) => {
                     backgroundColor: "white",
                   }}
                 >
-                  <thead style={{ backgroundColor: "#eaeaea" }}>
+                  <thead
+                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                  >
                     <tr>
                       <th scope="col">Order ID</th>
                       <th scope="col">Nursery Name</th>
@@ -126,7 +129,15 @@ const AllNurseries = ({ toggle }) => {
                         })
                         .map((nursery, index) => (
                           <tr>
-                            <th scope="row">#{nursery._id}</th>
+                            <th
+                              scope="row"
+                              style={{
+                                color: "#0aa350",
+                                fontWeight: "500",
+                              }}
+                            >
+                              #{nursery._id}
+                            </th>
                             <td>{nursery?.name}</td>
                             <td>{nursery.address} </td>
                             <td> 1 </td>
