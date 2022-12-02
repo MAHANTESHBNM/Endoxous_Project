@@ -13,11 +13,11 @@
   min-height: 100%;
 }
 
-.navbar-brand{
+.navbar-brand {
   font-weight: 600;
   font-family: Galano;
   font-size: 1.2rem;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -57,6 +57,7 @@ input[type="number"] {
 
   .hideButton {
     display: initial !important;
+    font-size: 1.7rem;
   }
 
   .section2-btn {
@@ -147,5 +148,42 @@ input[type="number"] {
     display: flex;
     justify-content: flex-start !important;
     padding: 1rem;
+  }
+
+  .overviewText {
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+  }
+
+  .homePageSelector {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .topTableContainer-HomePage {
+    flex-wrap: wrap;
+  }
+
+  .topTableContainer-HomePage table {
+    margin: 0 0 1rem 0 !important;
+  }
+
+  .lastContainerHolder {
+    flex-wrap: wrap;
+  }
+
+  .tableAndBannerHolder {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+  }
+
+  .bannerContainer {
+    min-width: 60% !important;
+  }
+
+  .orderSummaryContainer {
+    width: 100% !important;
+    margin: 2rem 0;
   }
 }

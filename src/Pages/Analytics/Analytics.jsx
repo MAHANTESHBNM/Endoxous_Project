@@ -35,7 +35,7 @@ ChartJS.register(
   ArcElement
 );
 
-const Analytics = () => {
+const Analytics = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -241,6 +241,7 @@ const Analytics = () => {
       >
         <div className="container-fluid px-5">
           <button
+            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"

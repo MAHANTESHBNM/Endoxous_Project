@@ -13,7 +13,7 @@ import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
 import { BsGrid, BsList } from "react-icons/bs";
 
-const AllProducts = () => {
+const AllProducts = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const id = useParams();
@@ -118,6 +118,7 @@ const AllProducts = () => {
       >
         <div className="container-fluid px-5">
           <button
+            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -423,12 +424,14 @@ const AllProducts = () => {
                                   <div className="d-flex p-2 justify-content-between align-items-center">
                                     <h5>In Stock: {product.stock}</h5>
                                     <button
-                              type="button"
-                              className="btn  btn-danger btn-md"
-                              onClick={()=> dispatch(deleteProduct(product._id))}
-                            >
-                              Delete
-                            </button>
+                                      type="button"
+                                      className="btn  btn-danger btn-md"
+                                      onClick={() =>
+                                        dispatch(deleteProduct(product._id))
+                                      }
+                                    >
+                                      Delete
+                                    </button>
                                     <button
                                       type="button"
                                       className="btn bg-success btn-success btn-md"

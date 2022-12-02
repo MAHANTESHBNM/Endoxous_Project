@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 import "./AddProduct.css";
 
-const AddProducts = () => {
+const AddProducts = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const AddProducts = () => {
   // tags
   const [hashTags, setHashTags] = useState([]);
   const [tag, setTag] = useState("");
-console.log(discount,"===============discount");
+  console.log(discount, "===============discount");
   useEffect(() => {
     if (error) {
       toast.error(error.message);
@@ -60,7 +60,7 @@ console.log(discount,"===============discount");
     myForm.set("mrp", mrp);
     myForm.set("stock", stock);
     myForm.set("inventory", inventory);
-    myForm.set("hashTags", hashTags); 
+    myForm.set("hashTags", hashTags);
     myForm.set("unit", unit);
     myForm.set("discount", Math.round(offerPercentage));
 
@@ -81,7 +81,6 @@ console.log(discount,"===============discount");
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.readyState === 2) {
-
           setImagesPreviw((old) => [...old, reader.result]);
           setImages((old) => [...old, reader.result]);
           setImagesPreviw((previousImages) => previousImages.concat(images));
@@ -144,6 +143,7 @@ console.log(discount,"===============discount");
       >
         <div className="container-fluid px-5">
           <button
+            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -167,240 +167,241 @@ console.log(discount,"===============discount");
       </nav>
 
       {loading ? (
-        <Loader/>
-      ):(
+        <Loader />
+      ) : (
         <div
-        className="conatiner-sm d-flex justify-content-center flex-column align-items-center section bg-light h-100"
-        style={{ height: "100vh" }}>
-        <h2 className="mb-5 mt-5">Add New Product</h2>
-        <form
-          action=""
-          className="createproductForm"
-          encType="multipart/form-data"
-          onSubmit={createProductSubmitHandler}
+          className="conatiner-sm d-flex justify-content-center flex-column align-items-center section bg-light h-100"
+          style={{ height: "100vh" }}
         >
-          <div className="bg-white p-4 rounded">
-            <div className="mb-2">
-              <label htmlFor="exampleInputNumber" className="form-label">
-                Product Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputNumber"
-                aria-describedby="numberHelp"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required=" "
-              />
-            </div>
-
-            <div className="mb-2">
-              <label htmlFor="exampleInputNumber" className="form-label">
-                Description
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputNumber"
-                aria-describedby="numberHelp"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                requiredrequired=" "
-              />
-            </div>
-
-            <div className="mb-2">
-              <label htmlFor="exampleInputNumber" className="form-label">
-                Product Category
-              </label>{" "}
-              <br />
-              <select
-                className="bg-white p-2 rounded"
-                onChange={(e) => setCategory(e.target.value)}
-                value={category}
-              >
-                <option value="">Choose Category</option>
-
-                {categoryList &&
-                  createCategoryList(categoryList).map((option) => (
-                    <option key={option.value} value={option.name}>
-                      {option.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
-
-            <div className="d-flex flex-row gap-2">
+          <h2 className="mb-5 mt-5">Add New Product</h2>
+          <form
+            action=""
+            className="createproductForm"
+            encType="multipart/form-data"
+            onSubmit={createProductSubmitHandler}
+          >
+            <div className="bg-white p-4 rounded">
               <div className="mb-2">
                 <label htmlFor="exampleInputNumber" className="form-label">
-                  MRP
+                  Product Name
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   id="exampleInputNumber"
                   aria-describedby="numberHelp"
-                  value={mrp}
-                  onChange={(e) => setMrp(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   required=" "
                 />
               </div>
+
               <div className="mb-2">
                 <label htmlFor="exampleInputNumber" className="form-label">
-                  PRICE
+                  Description
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   id="exampleInputNumber"
                   aria-describedby="numberHelp"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                  required=" "
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  requiredrequired=" "
                 />
+              </div>
+
+              <div className="mb-2">
+                <label htmlFor="exampleInputNumber" className="form-label">
+                  Product Category
+                </label>{" "}
+                <br />
+                <select
+                  className="bg-white p-2 rounded"
+                  onChange={(e) => setCategory(e.target.value)}
+                  value={category}
+                >
+                  <option value="">Choose Category</option>
+
+                  {categoryList &&
+                    createCategoryList(categoryList).map((option) => (
+                      <option key={option.value} value={option.name}>
+                        {option.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+
+              <div className="d-flex flex-row gap-2">
+                <div className="mb-2">
+                  <label htmlFor="exampleInputNumber" className="form-label">
+                    MRP
+                  </label>
                   <input
-                  htmlFor="exampleInputNumber"
-                  className="form-label bg-success mt-1 px-1 text-white rounded w-50"
-                  onChange={(e)=>setDiscount(e.target.value)}
-                  value={`${Math.floor(offerPercentage)} % OFF`} 
-                 />
+                    type="number"
+                    className="form-control"
+                    id="exampleInputNumber"
+                    aria-describedby="numberHelp"
+                    value={mrp}
+                    onChange={(e) => setMrp(e.target.value)}
+                    required=" "
+                  />
+                </div>
+                <div className="mb-2">
+                  <label htmlFor="exampleInputNumber" className="form-label">
+                    PRICE
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="exampleInputNumber"
+                    aria-describedby="numberHelp"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    required=" "
+                  />
+                  <input
+                    htmlFor="exampleInputNumber"
+                    className="form-label bg-success mt-1 px-1 text-white rounded w-50"
+                    onChange={(e) => setDiscount(e.target.value)}
+                    value={`${Math.floor(offerPercentage)} % OFF`}
+                  />
+                </div>
+              </div>
+
+              <div className="d-flex flex-row gap-2">
+                <div className="mb-2">
+                  <label htmlFor="exampleInputNumber" className="form-label">
+                    Product Stock
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    id="exampleInputNumber"
+                    aria-describedby="numberHelp"
+                    value={stock}
+                    onChange={(e) => setStock(e.target.value)}
+                    required=" "
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="d-flex flex-row gap-2">
+            <div className="bg-white p-4 rounded mt-3 d-flex">
+              Product Images
+              <div className="multipleImages" id="createProductFormFile">
+                <label htmlFor="images" className="imageLabel">
+                  +
+                  <input
+                    type="file"
+                    className="imageInput"
+                    id="images"
+                    aria-describedby="numberHelp"
+                    name="images"
+                    accept="image/webp"
+                    onChange={createProductImagesChange}
+                    multiple
+                    required=" "
+                  />
+                </label>
+              </div>
+              <div id="createProductFormImage" className="images">
+                {imagesPreviw.map((image, index) => (
+                  <div className="image">
+                    <img
+                      key={index}
+                      src={image}
+                      alt="Avatar Preview"
+                      height="200"
+                      width="160"
+                      className="imagePreview"
+                    />
+                    <button
+                      className="label label-danger"
+                      onClick={() => {
+                        let items = images.filter((e) => e !== image);
+                        setImages(items);
+                        setImagesPreviw(items);
+                      }}
+                    >
+                      X
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white p-4 rounded mt-3">
               <div className="mb-2">
+                <h6>Product Unit</h6>
                 <label htmlFor="exampleInputNumber" className="form-label">
-                  Product Stock
+                  Quantity
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
-                  id="exampleInputNumber"
+                  id="exampleInputNumber1"
                   aria-describedby="numberHelp"
-                  value={stock}
-                  onChange={(e) => setStock(e.target.value)}
+                  value={unit}
+                  onChange={(e) => setUnit(e.target.value)}
                   required=" "
                 />
               </div>
             </div>
-          </div>
 
-          <div className="bg-white p-4 rounded mt-3 d-flex">
-            Product Images
-            <div className="multipleImages" id="createProductFormFile">
-              <label htmlFor="images" className="imageLabel">
-                +
+            <div className="bg-white p-4 rounded mt-3">
+              <div className="mb-2">
+                <h6>Tags to Products</h6>
+
                 <input
-                  type="file"
-                  className="imageInput"
-                  id="images"
+                  type="text"
+                  className="form-control"
+                  id="exampleInputNumber1"
                   aria-describedby="numberHelp"
-                  name="images"
-                  accept="image/webp"
-                  onChange={createProductImagesChange}
-                  multiple
-                  required=" "
+                  value={tag || ""}
+                  onChange={handleTagInput}
                 />
-              </label>
-            </div>
-            <div id="createProductFormImage" className="images">
-              {imagesPreviw.map((image, index) => (
-                <div className="image">
-                  <img
-                    key={index}
-                    src={image}
-                    alt="Avatar Preview"
-                    height="200"
-                    width="160"
-                    className="imagePreview"
-                  />
-                  <button
-                    className="label label-danger"
-                    onClick={() => {
-                      let items = images.filter((e) => e !== image);
-                      setImages(items);
-                      setImagesPreviw(items);
-                    }}
-                  >
-                    X
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
+              </div>
+              <div className="gap-2 d-flex">
+                <button
+                  onClick={addTag}
+                  type="button"
+                  className="btn btn-secondary rounded-pill"
+                >
+                  Add Tag
+                </button>
+                {hashTags && (
+                  <>
+                    {hashTags?.map((tag, index) => (
+                      <button
+                        key={index}
+                        onClick={() => removeTag(tag)}
+                        type="button"
+                        className="btn btn-danger rounded-pill"
+                      >
+                        {tag} <span className="ml-1">X</span>
+                      </button>
+                    ))}
 
-          <div className="bg-white p-4 rounded mt-3">
-            <div className="mb-2">
-              <h6>Product Unit</h6>
-              <label htmlFor="exampleInputNumber" className="form-label">
-                Quantity
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputNumber1"
-                aria-describedby="numberHelp"
-                value={unit}
-                onChange={(e) => setUnit(e.target.value)}
-                required=" "
-              />
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded mt-3">
-            <div className="mb-2">
-              <h6>Tags to Products</h6>
-
-              <input
-                type="text"
-                className="form-control"
-                id="exampleInputNumber1"
-                aria-describedby="numberHelp"
-                value={tag || ""}
-                onChange={handleTagInput}
-              />
-            </div>
-            <div className="gap-2 d-flex">
-              <button
-                onClick={addTag}
-                type="button"
-                className="btn btn-secondary rounded-pill"
-              >
-                Add Tag
-              </button>
-              {hashTags && (
-                <>
-                  {hashTags?.map((tag, index) => (
                     <button
-                      key={index}
-                      onClick={() => removeTag(tag)}
+                      onClick={() => clearTags()}
                       type="button"
-                      className="btn btn-danger rounded-pill"
+                      className="btn btn-danger rounded-pill ml-1"
                     >
-                      {tag} <span className="ml-1">X</span>
+                      Clear All Tags <span className="ml-1">X</span>
                     </button>
-                  ))}
-
-                  <button
-                    onClick={() => clearTags()}
-                    type="button"
-                    className="btn btn-danger rounded-pill ml-1"
-                  >
-                    Clear All Tags <span className="ml-1">X</span>
-                  </button>
-                </>
-              )}
+                  </>
+                )}
+              </div>
             </div>
-          </div>
 
-          <button type="submit" className="btn btn-success w-100 mt-3 mb-5"> 
-            <Link to="" style={{ color: "white", textDecoration: "none" }}>
-              Add Products
-            </Link>
-          </button>
-        </form>
-      </div>
+            <button type="submit" className="btn btn-success w-100 mt-3 mb-5">
+              <Link to="" style={{ color: "white", textDecoration: "none" }}>
+                Add Products
+              </Link>
+            </button>
+          </form>
+        </div>
       )}
     </div>
   );

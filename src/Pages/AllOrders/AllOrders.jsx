@@ -9,11 +9,11 @@ import { clearErrors, getAllOrders } from "../../redux/actions/orderAction";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
-function AllOrders() {
+const AllOrders = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -143,26 +143,26 @@ function AllOrders() {
   // Custom Date
   const [showDatePicker, setShowDatePicker] = useState(false);
   //   const [selectedDate, setSelectedDate] = useState(new Date())
-  // const [selectedDate, setSelectedDate] = useState(new Date()); 
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState(''); 
+  // const [selectedDate, setSelectedDate] = useState(new Date());
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   console.log(startDate);
   console.log(endDate);
 
-  const [customDate, setCustomDate] = useState(
-    startDate, endDate
-  );
-  
+  const [customDate, setCustomDate] = useState(startDate, endDate);
+
   useEffect(() => {
     setCustomDate(startDate);
     const customOrders =
       orders &&
-      orders.filter((order) => (order.createdAt.slice(0, 10) >= startDate && order.createdAt.slice(0, 10) <= endDate ));
+      orders.filter(
+        (order) =>
+          order.createdAt.slice(0, 10) >= startDate &&
+          order.createdAt.slice(0, 10) <= endDate
+      );
     setFilterOrders(customOrders);
   }, [startDate, orders, customDate, endDate]);
-
-  
 
   // Filtering
   const todayOrders =
@@ -211,6 +211,7 @@ function AllOrders() {
           >
             <div className="container-fluid px-5">
               <button
+                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -233,9 +234,13 @@ function AllOrders() {
             <hr />
           </nav>
           <div className="d-flex justify-content-between align-items-center px-2 py-1 filterInputInAllOrders">
-            <div className="p-5 filterInput" onClick={(e) => setState(false)}>
+            <div
+              className="px-5 pt-4 pb-3 filterInput"
+              onClick={(e) => setState(false)}
+            >
               {/* <form className="searchBox" onSubmit={searchSubmitHandler}> */}
               <input
+                style={{ borderRadius: ".2rem" }}
                 className="form-control px-4"
                 type="text"
                 value={keyword}
@@ -291,16 +296,20 @@ function AllOrders() {
                   <h1>{showDatePicker}</h1>
                   {showDatePicker && (
                     <div>
-                      From : <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} className='mx-1'/>
-                      To : <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)}/>
+                      From :{" "}
+                      <input
+                        type="date"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                        className="mx-1"
+                      />
+                      To :{" "}
+                      <input
+                        type="date"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                      />
                     </div>
-                    // <DatePicker
-                    //   selected={selectedDate}
-                    //   onChange={(date) => getCustomOrders(date)}
-                    //   // onChange={(date)=> (setSelectedDate(date)
-                    //   //   )}
-                    //   dateFormat="dd-MM-yyyy"
-                    // />
                   )}
                 </div>
               </div>
@@ -339,10 +348,10 @@ function AllOrders() {
               Cancelled
             </button>
           </div>
-          
-          <div className="tableForAll s2-table m-5 ">
+
+          <div className="tableForAll s2-table">
             <div className="s2-table subTableForAll">
-              {loading ? ( 
+              {loading ? (
                 <Loader />
               ) : (
                 <table
@@ -354,10 +363,12 @@ function AllOrders() {
                     backgroundColor: "white",
                   }}
                 >
-                  <thead style={{ backgroundColor: "#eaeaea" }}>
+                  <thead
+                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                  >
                     <tr>
                       <th scope="col">Order ID</th>
-                      <th scope="col">Date and Time</th>
+                      <th scope="col">Date & Time</th>
                       <th scope="col">Customer</th>
                       <th scope="col">Items</th>
                       <th scope="col">Payment</th>
@@ -390,6 +401,8 @@ function AllOrders() {
                                   scope="row"
                                   style={{
                                     cursor: "pointer",
+                                    color: "#0aa350",
+                                    fontWeight: "500",
                                   }}
                                 >
                                   {order?._id}
@@ -404,7 +417,26 @@ function AllOrders() {
                                     : order.user?.phone}
                                 </td>
                                 <td>{order.orderItems?.length}</td>
-                                <td>{order.paymentInfo?.method}</td>
+                                <td>
+                                  <div
+                                    className="d-flex justify-content-center"
+                                    style={
+                                      order.paymentInfo?.method === "online"
+                                        ? {
+                                            backgroundColor: "#eff5f1",
+                                            color: "#137e62",
+                                            borderRadius: ".2rem",
+                                          }
+                                        : {
+                                            backgroundColor: "#ffe5d4",
+                                            color: "#ff6a02",
+                                            borderRadius: ".2rem",
+                                          }
+                                    }
+                                  >
+                                    {order.paymentInfo?.method}
+                                  </div>
+                                </td>
                                 <td>
                                   <div>
                                     <input
@@ -480,6 +512,8 @@ function AllOrders() {
                                   scope="row"
                                   style={{
                                     cursor: "pointer",
+                                    color: "#0aa350",
+                                    fontWeight: "500",
                                   }}
                                 >
                                   {order?._id}
@@ -561,6 +595,6 @@ function AllOrders() {
       </div>
     </div>
   );
-}
+};
 
 export default AllOrders;
