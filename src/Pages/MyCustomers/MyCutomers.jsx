@@ -132,17 +132,18 @@ const MyCustomers = ({ toggle }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between  align-items-center px-2 py-1">
-            <div className="p-5">
+          <div className="d-flex justify-content-between align-items-center flex-wrap px-2 py-1">
+            <div className="px-5 pt-4 pb-3 filterInput">
               <input
-                className="form-control px-5"
+                style={{ borderRadius: ".2rem" }}
+                className="form-control px-4"
                 type="text"
                 placeholder="Search Phone Number..."
                 aria-label="readonly input example"
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
-            <div>
+            <div className="px-4">
               <div className="d-flex px-4 ">
                 <div className="p2-selection mx-2">
                   <select
@@ -182,16 +183,26 @@ const MyCustomers = ({ toggle }) => {
             </div>
           </div>
           <div className="section2-btn d-flex  px-5 ">
-            <button className="s2-btn">All</button>
-            <button className="s2-btn">Pending</button>
-            <button className="s2-btn">Shipped</button>
-            <button className="s2-btn">Delivered</button>
-            <button className="s2-btn">Cancelled</button>
+            <button className="s2-btn py-2 px-3 my-2">All</button>
+            <button className="s2-btn py-2 px-3 my-2">Pending</button>
+            <button className="s2-btn py-2 px-3 my-2">Shipped</button>
+            <button className="s2-btn py-2 px-3 my-2">Delivered</button>
+            <button className="s2-btn py-2 px-3 my-2">Cancelled</button>
           </div>
-          <div className="s2-table px-5 m-3 ">
-            <div className="s2-table py-4">
-              <table className="table table-borderless table-sm ">
-                <thead className="s2-table-nava">
+          <div className="s2-table tableForAll">
+            <div className="s2-table subTableForAll">
+              <table
+                className="table table-borderless"
+                style={{
+                  overflow: "hidden",
+                  width: "100%",
+                  borderRadius: ".5rem",
+                  backgroundColor: "white",
+                }}
+              >
+                <thead
+                  style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                >
                   <tr>
                     <th scope="col">Customer ID</th>
                     <th scope="col">Date & Time</th>
@@ -224,7 +235,11 @@ const MyCustomers = ({ toggle }) => {
                               <th
                                 scope="row"
                                 onClick={() => customerDetailsHandler(user._id)}
-                                style={{ cursor: "pointer" }}
+                                style={{
+                                  cursor: "pointer",
+                                  color: "#0aa350",
+                                  fontWeight: "500",
+                                }}
                               >
                                 {index + 1}#{user._id}
                               </th>
@@ -237,7 +252,9 @@ const MyCustomers = ({ toggle }) => {
                                 {user?.phone ? user?.phone : "not specified"}
                               </td>
                               <td> 1 </td>
-                              <td>COD</td>
+                              <td>
+                                <div>COD</div>
+                              </td>
                               <td>
                                 <div>
                                   <input

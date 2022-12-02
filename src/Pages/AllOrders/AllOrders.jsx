@@ -234,9 +234,13 @@ const AllOrders = ({ toggle }) => {
             <hr />
           </nav>
           <div className="d-flex justify-content-between align-items-center px-2 py-1 filterInputInAllOrders">
-            <div className="p-5 filterInput" onClick={(e) => setState(false)}>
+            <div
+              className="px-5 pt-4 pb-3 filterInput"
+              onClick={(e) => setState(false)}
+            >
               {/* <form className="searchBox" onSubmit={searchSubmitHandler}> */}
               <input
+                style={{ borderRadius: ".2rem" }}
                 className="form-control px-4"
                 type="text"
                 value={keyword}
@@ -306,13 +310,6 @@ const AllOrders = ({ toggle }) => {
                         onChange={(e) => setEndDate(e.target.value)}
                       />
                     </div>
-                    // <DatePicker
-                    //   selected={selectedDate}
-                    //   onChange={(date) => getCustomOrders(date)}
-                    //   // onChange={(date)=> (setSelectedDate(date)
-                    //   //   )}
-                    //   dateFormat="dd-MM-yyyy"
-                    // />
                   )}
                 </div>
               </div>
@@ -352,7 +349,7 @@ const AllOrders = ({ toggle }) => {
             </button>
           </div>
 
-          <div className="tableForAll s2-table m-5 ">
+          <div className="tableForAll s2-table">
             <div className="s2-table subTableForAll">
               {loading ? (
                 <Loader />
@@ -366,10 +363,12 @@ const AllOrders = ({ toggle }) => {
                     backgroundColor: "white",
                   }}
                 >
-                  <thead style={{ backgroundColor: "#eaeaea" }}>
+                  <thead
+                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                  >
                     <tr>
                       <th scope="col">Order ID</th>
-                      <th scope="col">Date and Time</th>
+                      <th scope="col">Date & Time</th>
                       <th scope="col">Customer</th>
                       <th scope="col">Items</th>
                       <th scope="col">Payment</th>
@@ -402,6 +401,8 @@ const AllOrders = ({ toggle }) => {
                                   scope="row"
                                   style={{
                                     cursor: "pointer",
+                                    color: "#0aa350",
+                                    fontWeight: "500",
                                   }}
                                 >
                                   {order?._id}
@@ -416,7 +417,26 @@ const AllOrders = ({ toggle }) => {
                                     : order.user?.phone}
                                 </td>
                                 <td>{order.orderItems?.length}</td>
-                                <td>{order.paymentInfo?.method}</td>
+                                <td>
+                                  <div
+                                    className="d-flex justify-content-center"
+                                    style={
+                                      order.paymentInfo?.method === "online"
+                                        ? {
+                                            backgroundColor: "#eff5f1",
+                                            color: "#137e62",
+                                            borderRadius: ".2rem",
+                                          }
+                                        : {
+                                            backgroundColor: "#ffe5d4",
+                                            color: "#ff6a02",
+                                            borderRadius: ".2rem",
+                                          }
+                                    }
+                                  >
+                                    {order.paymentInfo?.method}
+                                  </div>
+                                </td>
                                 <td>
                                   <div>
                                     <input
@@ -492,6 +512,8 @@ const AllOrders = ({ toggle }) => {
                                   scope="row"
                                   style={{
                                     cursor: "pointer",
+                                    color: "#0aa350",
+                                    fontWeight: "500",
                                   }}
                                 >
                                   {order?._id}

@@ -45,13 +45,25 @@
 }
 
 .btn-AllNurseries {
-  background-color: rgb(15, 57, 15);
+  background: rgb(60, 104, 87);
+  background: linear-gradient(
+    90deg,
+    rgba(60, 104, 87, 1) 0%,
+    rgba(0, 81, 41, 1) 100%
+  );
   color: #fff;
+  border-radius: 0.2rem;
 }
 
 .btn-AllNurseries:hover {
-  background-color: rgb(15, 57, 15);
+  background: rgb(60, 104, 87);
+  background: linear-gradient(
+    90deg,
+    rgba(60, 104, 87, 1) 0%,
+    rgba(0, 81, 41, 1) 100%
+  );
   color: #fff;
+  border-radius: 0.2rem;
 }
 
 /* .p2-selection{

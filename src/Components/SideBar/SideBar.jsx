@@ -19,7 +19,7 @@ const SideBar = ({ show, toggle }) => {
     <div>
       {(show || !(window.innerWidth < 992)) && (
         <div style={{ zIndex: "1" }} className="section1">
-          <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
+          <div style={{ position: "absolute", top: "1rem", left: "3rem" }}>
             <BsFillArrowLeftCircleFill
               className="hideButton"
               style={{ display: "none" }}

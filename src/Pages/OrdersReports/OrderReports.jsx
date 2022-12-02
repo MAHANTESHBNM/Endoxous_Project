@@ -138,12 +138,14 @@ const OrderReports = ({ toggle }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between align-items-center flex-wrap px-2 py-1">
+          <div className="d-flex justify-content-between align-items-end flex-wrap px-2 py-1">
             <div className="pt-4 px-5">
-              <p>AVG ORDERS PER DAY</p>
-              <h4>{avg}</h4>
+              <p style={{ color: "#9f9f9f", fontSize: ".8rem" }}>
+                AVG ORDERS PER DAY
+              </p>
+              <h4 style={{ fontWeight: "600" }}>{avg}</h4>
             </div>
-            <div>
+            <div className="mb-2">
               <div className="d-flex px-4 ">
                 <div className="p2-selection mx-2 ">
                   <select
@@ -216,7 +218,9 @@ const OrderReports = ({ toggle }) => {
                         {filteredOrders &&
                           filteredOrders.map((sale, index) => (
                             <tr>
-                              <th scope="row">{sale.date}</th>
+                              <th scope="row" style={{ fontWeight: "500" }}>
+                                {sale.date}
+                              </th>
                               <td>{sale.count}</td>
                               <td>{sale.total}</td>
                               <td>Area/Locality</td>

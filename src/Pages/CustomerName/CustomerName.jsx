@@ -106,38 +106,38 @@ const CustomerName = ({ toggle }) => {
       </nav>
       <div className="d-flex">
         <div className="d-flex flex-wrap px-4" style={{ width: "60%" }}>
-          <div className="section2-btn">
+          <div className="section2-btn py-4">
             <button
-              className="s2-btn fs-6"
-              style={{ padding: "0 .7rem" }}
+              className="s2-btn py-2 my-2"
+              style={{ padding: ".8rem" }}
               onClick={() => showAll()}
               autoFocus
             >
               All
             </button>
             <button
-              className="s2-btn fs-6"
-              style={{ padding: "0 .7rem" }}
+              className="s2-btn py-2 px-2 my-2"
+              style={{ padding: "0.7rem" }}
               onClick={() => showPending()}
             >
               Pending
             </button>
             <button
-              className="s2-btn fs-6"
+              className="s2-btn py-2 px-2 my-2"
               style={{ padding: "0 .7rem" }}
               onClick={() => showShippied()}
             >
               Shipped
             </button>
             <button
-              className="s2-btn fs-6"
+              className="s2-btn py-2 px-2 my-2"
               style={{ padding: "0 .7rem" }}
               onClick={() => showDelivered()}
             >
               Delivered
             </button>
             <button
-              className="s2-btn fs-6"
+              className="s2-btn py-2 px-2 my-2"
               style={{ padding: "0 .7rem" }}
               onClick={() => showCancelled()}
             >
