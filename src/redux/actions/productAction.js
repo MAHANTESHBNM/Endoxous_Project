@@ -30,6 +30,9 @@ import {
   DELETE_REVIEW_SUCCESS,
   DELETE_REVIEW_FAIL,
   CLEAR_ERRORS,
+  ADD_FAQ_REQUEST,
+  ADD_FAQ_SUCCESS,
+  ADD_FAQ_FAIL,
 } from "../../constants/productConstants";
 
 export const getProducts = (
@@ -225,6 +228,29 @@ export const deleteReviews = (reviewId,productId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_REVIEW_FAIL,
+      payload: error.response.data,
+    });
+  }
+};
+
+//New Review
+export const addNewFAQ = (id,faqData) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_FAQ_REQUEST });
+
+    const config = {
+      headers : {"Content-Type" : "application/json"}
+    }
+
+    const { data } = await axios.post(`/admin/faqs/new/${id}`,faqData,config);
+
+    dispatch({
+      type: ADD_FAQ_SUCCESS,
+      payload: data
+    });
+  } catch (error) {
+    dispatch({
+      type: ADD_FAQ_FAIL,
       payload: error.response.data,
     });
   }

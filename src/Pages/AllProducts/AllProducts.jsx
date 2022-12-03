@@ -13,7 +13,7 @@ import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
 import { BsGrid, BsList } from "react-icons/bs";
 
-const AllProducts = ({ toggle }) => {
+const AllProducts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const id = useParams();
@@ -118,7 +118,6 @@ const AllProducts = ({ toggle }) => {
       >
         <div className="container-fluid px-5">
           <button
-            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -391,7 +390,7 @@ const AllProducts = ({ toggle }) => {
                                       />
                                     </div>
                                   </div>
-                                  <div className="col-md-8">
+                                  <div className="col-md-8 ">
                                     <div className="card-body">
                                       <h5 className="card-title text-capitalize">
                                         {product.name}
@@ -401,10 +400,15 @@ const AllProducts = ({ toggle }) => {
                                           per piece
                                         </small>
                                       </p>
+                                      <p className="card-text ">
+                                        <small className="text-muted ">
+                                          {product._id}
+                                        </small>
+                                      </p>
                                       <span className="card-text fs-5">
                                         Rs {product.mrp}
                                       </span>
-
+                                      
                                       <span
                                         className="form-check form-switch d-inline me-2"
                                         style={{

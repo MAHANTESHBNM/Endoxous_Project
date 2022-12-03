@@ -25,47 +25,36 @@ const HomePage = ({ toggle }) => {
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("");
 
+  // -------------------------------- Selctors --------------------------------
   const { error, loading, banners } = useSelector((state) => state.banners);
-  const {
-    error: addBannerError,
-    loading: addBannerLoading,
-    message,
-    success,
-  } = useSelector((state) => state.addBanner);
-  const {
-    error: deleteBannerError,
-    loading: deleteBannerLoging,
-    message: deleteMessge,
-    isDeleted,
-  } = useSelector((state) => state.deleteBanner);
-  const { error: ordersError, orders } = useSelector(
-    (state) => state.allOrders
-  );
 
-  const { error: nurseriesError, nurseries } = useSelector(
-    (state) => state.allNurseries
-  );
+  const {error: addBannerError,message,success, 
+    } = useSelector((state) => state.addBanner);
 
-  console.log(nurseries && nurseries, "========= nurseries");
+  const {error: deleteBannerError, message: deleteMessge,isDeleted,
+    } = useSelector((state) => state.deleteBanner);
+
+  const { error: ordersError, orders } = useSelector((state) => state.allOrders);
+  
+  const { error: nurseriesError, nurseries } = useSelector((state) => state.allNurseries);
+  
+  // ----------------------------------------------------------------//
 
   const pendingOrders =
     orders && orders.filter((order) => order.orderStatus === "pending");
 
   const pendingOrdersWorth =
-    pendingOrders &&
-    pendingOrders.reduce((acc, item) => acc + item.totalPrice, 0);
+    pendingOrders &&pendingOrders.reduce((acc, item) => acc + item.totalPrice, 0);
 
-  const ordersToShip =
-    orders &&
-    orders.filter(
-      (order) =>
-        order.orderStatus !== "Shipped" &&
-        order.orderStatus !== "Cancelled" &&
-        order.orderStatus !== "Delivered"
-    );
+  const ordersToShip =orders &&orders.filter((order) =>
+    order.orderStatus !== "Shipped" &&
+    order.orderStatus !== "Cancelled" &&
+    order.orderStatus !== "Delivered"
+  );
+
   const top5Nuseries = nurseries && nurseries.slice(0, 5);
 
-  const [filteredOrders, setFilterOrders] = useState([]);
+  // -------------------------------- UseEffect --------------------------------
 
   useEffect(() => {
     if (error) {
@@ -141,8 +130,7 @@ const HomePage = ({ toggle }) => {
   const bannerDeleteHandler = (id) => {
     dispatch(deleteBanner(id));
   };
-  const [saleDate, setSalesDate] = useState(1);
-
+  
   const [sales, setSales] = useState(orders);
   const [totalSales, setTotalSales] = useState();
 
@@ -150,32 +138,24 @@ const HomePage = ({ toggle }) => {
     setTotalSales(sales.reduce((acc, item) => acc + item.totalPrice, 0));
   }, [sales]);
 
-  // Today
-  let currentDate = new Date().toJSON().slice(0, 10);
-  console.log(currentDate, "current Date");
+  // -------------------------------- Calculating Date --------------------------------
 
-  // Yesterday
-  const getYesterdayDate = () => {
-    const now = new Date();
-    return new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000)
-      .toJSON()
-      .slice(0, 10);
-  };
-  const yesterday = getYesterdayDate();
-  console.log(yesterday, "Yesterday");
-
+   // Today
+   let currentDate = new Date().toJSON().slice(0, 10)
+ 
+   // Yesterday 
+   const getYesterdayDate=()=> {
+     const now = new Date();
+     return new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000).toJSON().slice(0,10);
+   }
+   const yesterday= getYesterdayDate()
+ 
+// -------------------------------- Filtering --------------------------------
   const todayOrders =
-    orders &&
-    orders.filter((order) => order.createdAt.slice(0, 10) === currentDate);
-  console.log(todayOrders);
-  console.log(currentDate);
+    orders && orders.filter((order) => (order.createdAt).slice(0, 10) === currentDate);
 
   const yesterdayOrders =
-    orders &&
-    orders.filter((order) => order.createdAt.slice(0, 10) === yesterday);
-  console.log(todayOrders);
-
-  console.log(currentDate);
+    orders &&orders.filter((order) => order.createdAt.slice(0, 10) === yesterday);
 
   const daySelect = (e) => {
     let item = parseInt(e.target.value);
@@ -207,6 +187,7 @@ const HomePage = ({ toggle }) => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+
           <NavLink className="fw-bold navbar-brand" to="/">
             Home
           </NavLink>
@@ -217,24 +198,20 @@ const HomePage = ({ toggle }) => {
         </div>
         <hr />
       </nav>
-      <div className="overviewText d-flex justify-content-between align-items-center px-2 pb-2 pt-4">
+      <div className="d-flex justify-content-between align-items-center px-2 py-1">
         <div
-          className="d-flex justify-content-between align-items-center px-5"
+          className="d-flex justify-content-between px-5 pt-2"
           style={{ width: "24rem" }}
         >
-          <p className="m-0" style={{ fontSize: "1.2rem" }}>
-            Overview
-          </p>
-          <p className="m-0" style={{ fontSize: ".8rem", opacity: ".8" }}>
-            View all
-          </p>
+          <p>Overview</p>
+          <p>View all</p>
         </div>
-        <div className="homePageSelector">
-          <div className="d-flex px-4">
+        <div>
+          <div className="d-flex px-4 ">
             <div className="p2-selection mx-2">
               <select
-                selected={saleDate}
-                className="form-select-sm"
+                // selected={saleDate}
+                className="form-select "
                 aria-label="Default select example"
                 onChange={daySelect}
               >
@@ -245,45 +222,38 @@ const HomePage = ({ toggle }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div>{" "}
       {loading ? (
         <Loader />
       ) : (
         <div>
           <div
-            className="topTableContainer-HomePage container-lg d-flex justify-content-between px-5 py-1"
+            className="container-lg d-flex justify-content-between px-5 py-2"
             style={{ width: "100%" }}
           >
             <table
-              className="table table-borderless me-4"
+              className="table table-borderless me-5"
               style={{
                 width: "29rem",
                 height: "14rem",
                 borderRadius: ".5rem",
                 backgroundColor: "white",
-                boxShadow: "0 0 15px #546b912b",
               }}
             >
               <thead>
-                <tr className="py-5">
+                <tr>
                   <th scope="col"></th>
-                  <th scope="col" style={{ opacity: ".9", fontWeight: "500" }}>
-                    TOP NURSERIES
-                  </th>
-                  <th scope="col" style={{ opacity: ".9", fontWeight: "500" }}>
-                    SALES
-                  </th>
+                  <th scope="col">TOP NURSERIES</th>
+                  <th scope="col">SALES</th>
                 </tr>
               </thead>
               <tbody>
-                <tr style={{ color: "#000", opacity: ".5" }}>
+                <tr>
                   {top5Nuseries &&
                     top5Nuseries.map((nursery, index) => (
                       <>
-                        <td scope="row"></td>
-                        <td>
-                          {index + 1}. &nbsp; &nbsp; {nursery.name}
-                        </td>
+                        <th scope="row" key={index}>{index + 1}.</th>
+                        <td>{nursery.name}</td>
                         <td>60,000</td>
                       </>
                     ))}
@@ -291,10 +261,9 @@ const HomePage = ({ toggle }) => {
               </tbody>
             </table>
             <div
-              className="container-sm px-4 py-2"
+              className="container-sm p-2"
               style={{
                 width: "100%",
-                boxShadow: "0 0 15px #546b912b",
                 backgroundColor: "white",
                 borderRadius: ".5rem",
                 height: "14rem",
@@ -303,14 +272,10 @@ const HomePage = ({ toggle }) => {
               }}
             >
               <div>
-                <p
-                  style={{ opacity: ".9", fontWeight: "500", fontWeight: 500 }}
-                >
-                  TOTAL SALES
-                </p>
-                <h4 style={{ fontWeight: 700, fontSize: "1.3rem" }}>
+                <p style={{ fontWeight: 500 }}>TOTAL SALES</p>
+                <h2 style={{ fontWeight: 700, fontSize: "2rem" }}>
                   Rs {Math.round(totalSales)}
-                </h4>
+                </h2>
               </div>
               <div
                 style={{
@@ -319,30 +284,23 @@ const HomePage = ({ toggle }) => {
                   alignItems: "flex-end",
                 }}
               >
-                <p
-                  style={{ fontWeight: 500, fontSize: ".8rem", opacity: ".8" }}
-                >
-                  Lifetime
-                </p>
-                <h4 style={{ fontWeight: 700, fontSize: "1.3rem" }}>
-                  {sales && sales.length} Orders
-                </h4>
+                <p style={{ fontWeight: 500 }}>Orders</p>
+                <h2 style={{ fontWeight: 700, fontSize: "2rem" }}>
+                  {sales && sales.length}
+                </h2>
               </div>
             </div>
           </div>
-          <div className="lastContainerHolder container-lg d-flex justify-content-between px-5 py-4">
-            <div
-              className="tableAndBannerHolder container-md p-0 me-3"
-              style={{ width: "63%" }}
-            >
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <h5>Banners</h5>
+          <div className="container-lg d-flex flex-wrap justify-content-between px-5 py-2">
+            <div className="container-md p-0" style={{ width: "60%" }}>
+              <div className="d-flex justify-content-between align-items-center">
+                <h4>Banners</h4>
                 {/* <button type="file" className="btn btn py-0">
               + Add new
             </button> */}
                 <form
                   action=""
-                  className="createproductForm me-3"
+                  className="createproductForm"
                   encType="multipart/form-data"
                   onSubmit={createBannerSubmitHandler}
                 >
@@ -355,32 +313,31 @@ const HomePage = ({ toggle }) => {
                       accept="image/*"
                       onChange={bannerDataChange}
                     />
-                    {avatar !== "" ? (
+                    {avatar !=="" ? (
                       <Fragment>
                         <button type="submit">Save</button>
+                        
                       </Fragment>
                     ) : (
                       <Fragment>
-                        <label
-                          htmlFor="file"
-                          className="btn btn py-0"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          + Add new
-                        </label>
+                        <label htmlFor="file" className="btn btn py-0">
+                      + Add new
+                    </label>
                       </Fragment>
+                      
                     )}
+
                   </div>
+                 
                 </form>
               </div>
               <div
                 style={{
                   backgroundColor: "white",
                   borderRadius: ".5rem",
-                  overflowX: "auto",
-                  boxShadow: "0 0 15px #546b912b",
+                  overflow: "auto",
                 }}
-                className="container-sm d-flex justify-content-between py-2"
+                className="container-sm d-flex w-100 justify-content-between py-2"
               >
                 {avatarPreview ? (
                   <div
@@ -399,7 +356,7 @@ const HomePage = ({ toggle }) => {
 
                 {banners &&
                   banners?.map((banner, index) => (
-                    <div className="bannerContainer">
+                    <div key={index}>
                       <MdDelete
                         style={{
                           color: "#dc3545",
@@ -430,79 +387,72 @@ const HomePage = ({ toggle }) => {
                 className="container-md px-0 py-2 mt-3"
                 style={{ width: "100%" }}
               >
-                <div className="d-flex justify-content-between align-items-center container-md p-0 my-2">
-                  <h5>Notifications</h5>
-                  <button
-                    type="button"
-                    className="btn btn py-0"
-                    style={{ fontSize: ".8rem", opacity: ".7" }}
-                  >
+                <div className="d-flex justify-content-between align-items-center container-md p-0">
+                  <h4>Notifications</h4>
+                  <button type="button" className="btn btn py-0">
                     Push new notification
                   </button>
                 </div>
-                <div className="s2-table subTableForAll">
-                  <table
-                    className="table table-borderless"
-                    style={{
-                      overflow: "hidden",
-                      width: "100%",
-                      borderRadius: ".5rem",
-                      backgroundColor: "white",
-                      boxShadow: "0 0 15px #546b912b",
-                    }}
-                  >
-                    <thead style={{ backgroundColor: "#eaeaea" }}>
-                      <tr>
-                        <th scope="col">S.no</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Message</th>
-                        <th scope="col">Sent to</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>MEGA OFFER</td>
-                        <td className="text-wrap w-50">
-                          Lorem ipsum dolor, sit amet consectetur adipisicing
-                          elit.
-                        </td>
-                        <td>Vendor</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>MEGA OFFER</td>
-                        <td className="text-wrap w-50">
-                          Lorem ipsum dolor, sit amet.
-                        </td>
-                        <td>Clients</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>MEGA OFFER</td>
-                        <td className="text-wrap w-50">
-                          Lorem ipsum dolor, sit amet.
-                        </td>
-                        <td>Clients</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>MEGA OFFER</td>
-                        <td className="text-wrap w-50">
-                          Lorem ipsum dolor, sit amet.
-                        </td>
-                        <td>Clients</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <table
+                  className="table table-borderless"
+                  style={{
+                    overflow: "hidden",
+                    width: "100%",
+                    borderRadius: ".5rem",
+                    backgroundColor: "white",
+                  }}
+                >
+                  <thead style={{ backgroundColor: "#eaeaea" }}>
+                    <tr>
+                      <th scope="col">S.no</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Message</th>
+                      <th scope="col">Sent to</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>MEGA OFFER</td>
+                      <td className="text-wrap w-50">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit.
+                      </td>
+                      <td>Vendor</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>MEGA OFFER</td>
+                      <td className="text-wrap w-50">
+                        Lorem ipsum dolor, sit amet.
+                      </td>
+                      <td>Clients</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>MEGA OFFER</td>
+                      <td className="text-wrap w-50">
+                        Lorem ipsum dolor, sit amet.
+                      </td>
+                      <td>Clients</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">4</th>
+                      <td>MEGA OFFER</td>
+                      <td className="text-wrap w-50">
+                        Lorem ipsum dolor, sit amet.
+                      </td>
+                      <td>Clients</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
             <div
-              className="orderSummaryContainer container d-flex flex-column justify-content-start py-0 px-2"
-              style={{ width: "35%" }}
+              className="container d-flex flex-column justify-content-center px-2"
+              style={{ width: "40%" }}
             >
-              <div>
+              <div className="pt-1">
                 <h4>Orders</h4>
               </div>
 
@@ -512,7 +462,6 @@ const HomePage = ({ toggle }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
-                  boxShadow: "0 0 15px #546b912b",
                 }}
                 className="container-sm d-flex justify-content-between mt-1"
               >
@@ -526,7 +475,6 @@ const HomePage = ({ toggle }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
-                  boxShadow: "0 0 15px #546b912b",
                 }}
                 className="container-sm d-flex justify-content-between mt-4"
               >
@@ -541,7 +489,6 @@ const HomePage = ({ toggle }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
-                  boxShadow: "0 0 15px #546b912b",
                 }}
                 className="container-sm d-flex justify-content-between mt-4"
               >
@@ -555,7 +502,6 @@ const HomePage = ({ toggle }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
-                  boxShadow: "0 0 15px #546b912b",
                 }}
                 className="container-sm d-flex justify-content-between mt-4"
               >

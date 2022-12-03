@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Page4.css";
-// import logo from "../../Assets/Images/logo3.png";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   clearErrors,
   getAllNurseries,
@@ -10,9 +9,8 @@ import {
 import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const AllNurseries = ({ toggle }) => {
+function AllNurseries() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
 
   const { error, loading, nurseries } = useSelector(
@@ -42,7 +40,6 @@ const AllNurseries = ({ toggle }) => {
           >
             <div className="container-fluid px-5">
               <button
-                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -67,7 +64,6 @@ const AllNurseries = ({ toggle }) => {
           <div className="d-flex justify-content-between align-items-center px-2 py-1 filterInputInAllOrders">
             <div className="px-5 py-4 filterInput">
               <input
-                style={{ borderRadius: ".2rem" }}
                 className="form-control px-4"
                 type="text"
                 value={keyword}
@@ -100,9 +96,7 @@ const AllNurseries = ({ toggle }) => {
                     backgroundColor: "white",
                   }}
                 >
-                  <thead
-                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
-                  >
+                  <thead style={{ backgroundColor: "#eaeaea" }}>
                     <tr>
                       <th scope="col">Order ID</th>
                       <th scope="col">Nursery Name</th>
@@ -129,15 +123,7 @@ const AllNurseries = ({ toggle }) => {
                         })
                         .map((nursery, index) => (
                           <tr>
-                            <th
-                              scope="row"
-                              style={{
-                                color: "#0aa350",
-                                fontWeight: "500",
-                              }}
-                            >
-                              #{nursery._id}
-                            </th>
+                            <th scope="row">#{nursery._id}</th>
                             <td>{nursery?.name}</td>
                             <td>{nursery.address} </td>
                             <td> 1 </td>
@@ -155,47 +141,6 @@ const AllNurseries = ({ toggle }) => {
                             <td>Rs 36,320</td>
                           </tr>
                         ))}
-
-                    {/* <tr>
-                    <th scope="row">#12345</th>
-                    <td>Date</td>
-                    <td>CustomerName </td>
-                    <td> 2 </td>
-                    <td>OnlinePayment</td>
-                    <td>Pending</td>
-                    <td>Rs 320</td>
-                    <td>
-                      <select
-                        className="form-select-sm  px-3"
-                        aria-label="Default select example"
-                      >
-                        <option selected>Select Nursery </option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row ">#12345</th>
-                    <td>05.10.22, 06:01 PM</td>
-                    <td>CustomerName </td>
-                    <td> 1 </td>
-                    <td>COD</td>
-                    <td>Pending</td>
-                    <td>Rs 320</td>
-                    <td>
-                      <select
-                        className="form-select-sm  px-3"
-                        aria-label="Default select example"
-                      >
-                        <option selected>Select Nursery </option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </td>
-                  </tr> */}
                   </tbody>
                 </table>
               )}
@@ -205,6 +150,6 @@ const AllNurseries = ({ toggle }) => {
       </div>
     </div>
   );
-};
+}
 
 export default AllNurseries;

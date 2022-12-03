@@ -12,7 +12,7 @@ import { DELETE_COUPON_RESET } from "../../constants/couponConstants";
 import DateFormatter from "../../utils/DateFormatter";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const CouponList = ({ toggle }) => {
+const CouponList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const CouponList = ({ toggle }) => {
     error: deleteError,
     isDeleted,
     message,
-    loading: deleteLoading,
+    loading:deleteLoading
   } = useSelector((state) => state.deleteCoupon);
 
   useEffect(() => {
@@ -60,7 +60,6 @@ const CouponList = ({ toggle }) => {
           >
             <div className="container-fluid px-5">
               <button
-                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -95,45 +94,45 @@ const CouponList = ({ toggle }) => {
 
           <div className="s2-table px-5 m-3 ">
             <div className="s2-table py-4">
-              {loading || deleteLoading ? (
-                <Loader />
-              ) : (
+              {loading || deleteLoading ? ( 
+                <Loader/>
+              ):(
                 <table className="table table-borderless table-sm ">
-                  <thead className="s2-table-nava">
-                    <tr>
-                      <th scope="col">Coupon Name</th>
-                      <th scope="col">Coupon Code</th>
-                      <th scope="col">Limit</th>
-                      <th scope="col">Discount</th>
-                      <th scope="col">Expiration Date</th>
-                      <th scope="col">Message</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody className="table-group-divider my-5">
-                    {coupons &&
-                      coupons.map((coupon, key) => (
-                        <tr key={key}>
-                          <th scope="row">{coupon?.couponName}</th>
-                          <td>{coupon?.couponCode}</td>
-                          <td>{coupon?.limit}</td>
-                          <td>{coupon?.discount}</td>
-                          <td>
-                            <DateFormatter date={coupon?.expirationTime} />{" "}
-                          </td>
-                          <td>{coupon?.message}</td>
-                          <td>
-                            <button
-                              class="btn btn-danger"
-                              onClick={() => deleteHandler(coupon?._id)}
-                            >
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
+                <thead className="s2-table-nava">
+                  <tr>
+                    <th scope="col">Coupon Name</th>
+                    <th scope="col">Coupon Code</th>
+                    <th scope="col">Limit</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Expiration Date</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="table-group-divider my-5">
+                  {coupons &&
+                    coupons.map((coupon, key) => (
+                      <tr key={key}>
+                        <th scope="row">{coupon?.couponName}</th>
+                        <td>{coupon?.couponCode}</td>
+                        <td>{coupon?.limit}</td>
+                        <td>{coupon?.discount}</td>
+                        <td>
+                          <DateFormatter date={coupon?.expirationTime} />{" "}
+                        </td>
+                        <td>{coupon?.message}</td>
+                        <td>
+                          <button
+                            class="btn btn-danger"
+                            onClick={() => deleteHandler(coupon?._id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
               )}
             </div>
           </div>

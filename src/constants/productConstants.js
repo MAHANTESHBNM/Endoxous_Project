@@ -39,5 +39,9 @@ export const DELETE_REVIEW_SUCCESS = "DELETE_REVIEW_SUCCESS" ;
 export const DELETE_REVIEW_RESET = "DELETE_REVIEW_RESET" ;
 export const DELETE_REVIEW_FAIL =    "DELETE_REVIEW_FAIL" ;
 
+export const ADD_FAQ_REQUEST = "ADD_FAQ_REQUEST" ;
+export const ADD_FAQ_SUCCESS = "ADD_FAQ_SUCCESS" ;
+export const ADD_FAQ_RESET = "ADD_FAQ_RESET" ;
+export const ADD_FAQ_FAIL =    "ADD_FAQ_FAIL" ;
 
 export const CLEAR_ERRORS= "CLEAR_ERRORS" ;

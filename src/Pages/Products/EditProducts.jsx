@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, Link, useNavigate, useParams } from "react-router-dom";
+import { NavLink,useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
@@ -12,7 +12,7 @@ import { getAllCategories } from "../../redux/actions/categoryAction";
 import "./AddProduct.css";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const EditProducts = ({ toggle }) => {
+const EditProducts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -23,12 +23,9 @@ const EditProducts = ({ toggle }) => {
     isUpdated,
   } = useSelector((state) => state.product);
 
-  const {
-    product,
-    error,
-    success,
-    loading: detailError,
-  } = useSelector((state) => state.productDetails);
+  const { product, error,loading:detailError } = useSelector(
+    (state) => state.productDetails
+  );
   const { categoryList } = useSelector((state) => state.allCategories);
 
   const [name, setName] = useState("");
@@ -41,7 +38,6 @@ const EditProducts = ({ toggle }) => {
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreviw, setImagesPreviw] = useState([]);
-  const [inventory, setInventory] = useState(0);
   const [unit, setUnit] = useState("");
   // tags
   const [hashTags, setHashTags] = useState([]);
@@ -60,13 +56,12 @@ const EditProducts = ({ toggle }) => {
       setPrice(product.price);
       setMrp(product.mrp);
       setOldImages(product.images);
-
       setStock(product.stock);
       setTag(product.hashTags);
       setUnit(product.unit);
     }
 
-    if (error) {
+    if (error) { 
       toast.error(error.message);
       dispatch(clearErrors());
     }
@@ -95,7 +90,6 @@ const EditProducts = ({ toggle }) => {
     myForm.set("price", price);
     myForm.set("mrp", mrp);
     myForm.set("stock", stock);
-    myForm.set("inventory", inventory);
     myForm.set("hashTags", hashTags);
     myForm.set("unit", unit);
     myForm.set("discount", discount);
@@ -105,8 +99,6 @@ const EditProducts = ({ toggle }) => {
     });
     dispatch(updateProduct(id, myForm));
   };
-
-  console.log(oldImages, "========old");
 
   const updateProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
@@ -181,7 +173,6 @@ const EditProducts = ({ toggle }) => {
       >
         <div className="container-fluid px-5">
           <button
-            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"

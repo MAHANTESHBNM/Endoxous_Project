@@ -32,6 +32,10 @@ import {
   DELETE_REVIEW_FAIL,
   DELETE_REVIEW_RESET,
   CLEAR_ERRORS,
+  ADD_FAQ_REQUEST,
+  ADD_FAQ_SUCCESS,
+  ADD_FAQ_FAIL,
+  ADD_FAQ_RESET,
 } from "../../constants/productConstants";
 
 export const productsReducer = (state = { products: [] }, action) => {
@@ -273,6 +277,43 @@ export const reviewReducer = (state = {}, action) => {
       return {
         ...state,
         isDeleted: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+// Creating FAQ
+export const newFAQReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ADD_FAQ_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ADD_FAQ_SUCCESS:
+      return {
+        loading: false,
+        success: action.payload.success,
+        message:action.payload.message
+      };
+    case ADD_FAQ_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case ADD_FAQ_RESET:
+      return {
+        ...state,
+        success: false,
+        message:false
       };
     case CLEAR_ERRORS:
       return {
