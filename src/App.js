@@ -24,7 +24,7 @@ import CustomerName from "./Pages/CustomerName/CustomerName";
 import PageNotFound from "./Components/SideBar/PageNotFound";
 import Coupon from "./Pages/Coupon/Coupon";
 import CouponList from "./Pages/Coupon/CouponList";
-import FAQs from "./Pages/FAQs/FAQs";
+import FAQs from "./Pages/FAQs/FAQs"; 
 
 
 function App() {
