@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 import "./AddProduct.css";
 
-const AddProducts = ({ toggle }) => {
+const AddProducts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,7 +33,6 @@ const AddProducts = ({ toggle }) => {
   // tags
   const [hashTags, setHashTags] = useState([]);
   const [tag, setTag] = useState("");
-  console.log(discount, "===============discount");
   useEffect(() => {
     if (error) {
       toast.error(error.message);
@@ -59,7 +58,6 @@ const AddProducts = ({ toggle }) => {
     myForm.set("price", price);
     myForm.set("mrp", mrp);
     myForm.set("stock", stock);
-    myForm.set("inventory", inventory);
     myForm.set("hashTags", hashTags);
     myForm.set("unit", unit);
     myForm.set("discount", Math.round(offerPercentage));
@@ -70,13 +68,10 @@ const AddProducts = ({ toggle }) => {
     dispatch(CreateProduct(myForm));
   };
 
-  console.log(images);
-
   const createProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
     setImages([]);
     setImagesPreviw([]);
-    console.log(files);
     files.forEach((file) => {
       const reader = new FileReader();
       reader.onload = () => {
@@ -143,7 +138,6 @@ const AddProducts = ({ toggle }) => {
       >
         <div className="container-fluid px-5">
           <button
-            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"

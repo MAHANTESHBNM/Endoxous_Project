@@ -24,6 +24,8 @@ import CustomerName from "./Pages/CustomerName/CustomerName";
 import PageNotFound from "./Components/SideBar/PageNotFound";
 import Coupon from "./Pages/Coupon/Coupon";
 import CouponList from "./Pages/Coupon/CouponList";
+import FAQs from "./Pages/FAQs/FAQs"; 
+
 
 function App() {
   const [show, setShow] = useState(false);
@@ -40,7 +42,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/verifyotp" element={<VerifyOTP />} />
           <Route path="/coupon" element={<Coupon />} />
-          <Route path="/couponlist" element={<CouponList toggle={toggle} />} />
+          <Route path="/couponlist" element={<CouponList />} />
+          <Route path="/faqs" element={<FAQs />} />
           <Route path="*" element={<PageNotFound toggle={toggle} />} />
           <Route path="/products" element={<AllProducts toggle={toggle} />} />
           <Route path="/dashboard" element={<HomePage toggle={toggle} />} />

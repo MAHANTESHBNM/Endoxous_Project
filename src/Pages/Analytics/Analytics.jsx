@@ -35,7 +35,7 @@ ChartJS.register(
   ArcElement
 );
 
-const Analytics = ({ toggle }) => {
+const Analytics = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -74,22 +74,6 @@ const Analytics = ({ toggle }) => {
   const totalOrderCount = totalOrder?.reduce((a, b) => a + b, 0);
   console.log(totalOrderCount);
   const totalsalesAmount = totalSales?.reduce((a, b) => a + b, 0);
-
-  // const toatlOrdersCount = ordersPerDayTotal && ordersPerDayTotal.reduce((a, b) => a + b, 0);
-  // console.log(toatlOrdersCount);
-
-  // const days = ordersPerDayDate && ordersPerDayDate.length;
-  // console.log(days);
-
-  // const avg = Math.floor(toatlOrdersCount / days);
-  // console.log(avg);
-
-  // const salesAmountTotal = salesTotal && salesTotal.reduce((a, b) => a + b, 0);
-  // console.log(salesAmountTotal);
-  // const numOfDays = salesDate && salesDate.length;
-  // console.log(numOfDays);
-  // const avgSale = Math.floor(salesAmountTotal / numOfDays);
-  // console.log(avgSale);
 
   const orderReport = {
     labels: dateOrder && dateOrder,
@@ -168,9 +152,6 @@ const Analytics = ({ toggle }) => {
   const avg = Math.floor(totalOrders / days);
   console.log(avg);
 
-  // const salesAmountTotal = salesTotal && salesTotal.reduce((a, b) => a + b, 0);
-  // console.log(salesAmountTotal);
-
   // Sales
   const numOfDays = salesDate && salesDate.length;
   console.log(numOfDays);
@@ -193,7 +174,6 @@ const Analytics = ({ toggle }) => {
   console.log(typeof yesterday, "Yesterday");
 
   // Filtering
-  //totalOrder.filter((order) => order.ordersPerDayDate === currentDate);
   const todayOrders =
     ordersReport &&
     ordersReport &&
@@ -241,7 +221,6 @@ const Analytics = ({ toggle }) => {
       >
         <div className="container-fluid px-5">
           <button
-            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -277,7 +256,7 @@ const Analytics = ({ toggle }) => {
                 {/* <button type="button" className="btn btn-sm btn-link me-5">
               Reorder Catagory
             </button> */}
-                <div className="p2-selection mx-2">
+                {/* <div className="p2-selection mx-2">
                   <select
                     className="form-select "
                     aria-label="Default select example"
@@ -285,7 +264,7 @@ const Analytics = ({ toggle }) => {
                     <option selected>All nurseries</option>
                     <option value="1">Greens Calicut</option>
                   </select>
-                </div>
+                </div> */}
                 <div className="p2-selection mx-2">
                   <select
                     selected={orderDate}
@@ -361,7 +340,7 @@ const Analytics = ({ toggle }) => {
           </div>
           <hr style={{ width: "95%", margin: "1rem auto" }} />
 
-          <div className="container d-flex justify-content-between w-100 px-5 py-4">
+          {/* <div className="container d-flex justify-content-between w-100 px-5 py-4">
             <div className="card" style={{ width: "30.5rem" }}>
               <div className="card-body">
                 <h2 className="card-title mb-4">SALES BY TOP NURSERIES</h2>
@@ -540,7 +519,7 @@ const Analytics = ({ toggle }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </>
       )}
     </div>

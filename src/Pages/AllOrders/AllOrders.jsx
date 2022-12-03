@@ -9,11 +9,7 @@ import { clearErrors, getAllOrders } from "../../redux/actions/orderAction";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-
-const AllOrders = ({ toggle }) => {
+function AllOrders() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -129,7 +125,6 @@ const AllOrders = ({ toggle }) => {
       .slice(0, 10);
   };
   const weekend = getLastWeeksDate();
-  console.log(weekend);
 
   // Month
   function getMonthEndDate(numOfMonths, date = new Date()) {
@@ -139,30 +134,28 @@ const AllOrders = ({ toggle }) => {
   }
   const date = new Date();
   const monthend = getMonthEndDate(1, date).toJSON().slice(0, 10);
+  console.log(monthend);
 
   // Custom Date
   const [showDatePicker, setShowDatePicker] = useState(false);
   //   const [selectedDate, setSelectedDate] = useState(new Date())
-  // const [selectedDate, setSelectedDate] = useState(new Date());
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  // const [selectedDate, setSelectedDate] = useState(new Date()); 
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState(''); 
 
-  console.log(startDate);
-  console.log(endDate);
-
-  const [customDate, setCustomDate] = useState(startDate, endDate);
-
+  const [customDate, setCustomDate] = useState(
+    startDate, endDate
+  );
+  
   useEffect(() => {
     setCustomDate(startDate);
     const customOrders =
       orders &&
-      orders.filter(
-        (order) =>
-          order.createdAt.slice(0, 10) >= startDate &&
-          order.createdAt.slice(0, 10) <= endDate
-      );
+      orders.filter((order) => (order.createdAt.slice(0, 10) >= startDate && order.createdAt.slice(0, 10) <= endDate ));
     setFilterOrders(customOrders);
   }, [startDate, orders, customDate, endDate]);
+
+  
 
   // Filtering
   const todayOrders =
@@ -211,7 +204,6 @@ const AllOrders = ({ toggle }) => {
           >
             <div className="container-fluid px-5">
               <button
-                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -234,13 +226,9 @@ const AllOrders = ({ toggle }) => {
             <hr />
           </nav>
           <div className="d-flex justify-content-between align-items-center px-2 py-1 filterInputInAllOrders">
-            <div
-              className="px-5 pt-4 pb-3 filterInput"
-              onClick={(e) => setState(false)}
-            >
+            <div className="p-5 filterInput" onClick={(e) => setState(false)}>
               {/* <form className="searchBox" onSubmit={searchSubmitHandler}> */}
               <input
-                style={{ borderRadius: ".2rem" }}
                 className="form-control px-4"
                 type="text"
                 value={keyword}
@@ -257,14 +245,14 @@ const AllOrders = ({ toggle }) => {
                     aria-label="Default select example"
                     onChange={handleSelect}
                   >
-                    <option selected>Order status </option>
+                    <option defaultValue=''>Order status </option>
                     <option value="1">Pending</option>
                     <option value="2">Shipped</option>
                     <option value="3">Delivered</option>
                     <option value="4">Cancelled</option>
                   </select>
                 </div>
-                <div className="p2-selection mx-2 ">
+                {/* <div className="p2-selection mx-2 ">
                   <select
                     className="form-select "
                     aria-label="Default select example"
@@ -280,14 +268,14 @@ const AllOrders = ({ toggle }) => {
                         </option>
                       ))}
                   </select>
-                </div>
+                </div> */}
                 <div className="p2-selection mx-2">
                   <select
                     className="form-select "
                     aria-label="Default select example"
                     onChange={daysSelect}
                   >
-                    <option defaultValue="Select">All Orders</option>
+                    <option defaultValue="Select">Life Time</option>
                     <option value="1">Today</option>
                     <option value="2">This Week</option>
                     <option value="3">This Month</option>
@@ -296,20 +284,16 @@ const AllOrders = ({ toggle }) => {
                   <h1>{showDatePicker}</h1>
                   {showDatePicker && (
                     <div>
-                      From :{" "}
-                      <input
-                        type="date"
-                        value={startDate}
-                        onChange={(e) => setStartDate(e.target.value)}
-                        className="mx-1"
-                      />
-                      To :{" "}
-                      <input
-                        type="date"
-                        value={endDate}
-                        onChange={(e) => setEndDate(e.target.value)}
-                      />
+                      From : <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} className='mx-1'/>
+                      To : <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)}/>
                     </div>
+                    // <DatePicker
+                    //   selected={selectedDate}
+                    //   onChange={(date) => getCustomOrders(date)}
+                    //   // onChange={(date)=> (setSelectedDate(date)
+                    //   //   )}
+                    //   dateFormat="dd-MM-yyyy"
+                    // />
                   )}
                 </div>
               </div>
@@ -348,10 +332,10 @@ const AllOrders = ({ toggle }) => {
               Cancelled
             </button>
           </div>
-
-          <div className="tableForAll s2-table">
+          
+          <div className="tableForAll s2-table m-5 ">
             <div className="s2-table subTableForAll">
-              {loading ? (
+              {loading ? ( 
                 <Loader />
               ) : (
                 <table
@@ -363,12 +347,10 @@ const AllOrders = ({ toggle }) => {
                     backgroundColor: "white",
                   }}
                 >
-                  <thead
-                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
-                  >
+                  <thead style={{ backgroundColor: "#eaeaea" }}>
                     <tr>
                       <th scope="col">Order ID</th>
-                      <th scope="col">Date & Time</th>
+                      <th scope="col">Date and Time</th>
                       <th scope="col">Customer</th>
                       <th scope="col">Items</th>
                       <th scope="col">Payment</th>
@@ -401,8 +383,6 @@ const AllOrders = ({ toggle }) => {
                                   scope="row"
                                   style={{
                                     cursor: "pointer",
-                                    color: "#0aa350",
-                                    fontWeight: "500",
                                   }}
                                 >
                                   {order?._id}
@@ -417,26 +397,7 @@ const AllOrders = ({ toggle }) => {
                                     : order.user?.phone}
                                 </td>
                                 <td>{order.orderItems?.length}</td>
-                                <td>
-                                  <div
-                                    className="d-flex justify-content-center"
-                                    style={
-                                      order.paymentInfo?.method === "online"
-                                        ? {
-                                            backgroundColor: "#eff5f1",
-                                            color: "#137e62",
-                                            borderRadius: ".2rem",
-                                          }
-                                        : {
-                                            backgroundColor: "#ffe5d4",
-                                            color: "#ff6a02",
-                                            borderRadius: ".2rem",
-                                          }
-                                    }
-                                  >
-                                    {order.paymentInfo?.method}
-                                  </div>
-                                </td>
+                                <td>{order.paymentInfo?.method}</td>
                                 <td>
                                   <div>
                                     <input
@@ -512,8 +473,6 @@ const AllOrders = ({ toggle }) => {
                                   scope="row"
                                   style={{
                                     cursor: "pointer",
-                                    color: "#0aa350",
-                                    fontWeight: "500",
                                   }}
                                 >
                                   {order?._id}
@@ -595,6 +554,6 @@ const AllOrders = ({ toggle }) => {
       </div>
     </div>
   );
-};
+}
 
 export default AllOrders;

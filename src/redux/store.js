@@ -5,7 +5,7 @@ import { chartReducer, chartSalesReducer, ordersPerDayReducer, salePerDayReducer
 import { addCouponReducer,allCouponsReducer,deleteCouponReducer } from "./reducers/couponReducer";
 import { allNurseriesReducer } from "./reducers/nurseryReducer";
 import { allOrdersReducer, orderDetailsReducer, orderReducer,  usersOrdersReducer,addNoteReducer,deleteorderNoteReducer} from "./reducers/orderReducer";
-import { newProductReducer, productDetailsReducer, productReducer, productsReducer } from "./reducers/productReducers";
+import { newProductReducer, productDetailsReducer, productReducer, productsReducer, newFAQReducer } from "./reducers/productReducers";
 import { ordersTicketReducer,allTicketsReducer,ticketActionsReducer } from "./reducers/ticketsReducer";
 import { allUsersReducer, userReducer, verifyUserReducer, userDetailsReducer,returningUsersReducer } from "./reducers/userReducer";
 
@@ -46,6 +46,7 @@ const Store = configureStore({
      deleteorderNote : deleteorderNoteReducer,
      allTickets : allTicketsReducer,
      ticketActions : ticketActionsReducer,
+     newFAQ : newFAQReducer,
     // forgotPassword : forgotPasswordReducer,
     // deleteCart : deleteCartItemReducer,
     // shippingInfo : saveShippingReducer,

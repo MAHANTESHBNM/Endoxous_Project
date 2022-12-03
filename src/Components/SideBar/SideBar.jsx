@@ -1,25 +1,27 @@
 import React from "react";
 import logo from "../../Assets/Images/logo3.png";
 import "./SideBar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink,useNavigate } from "react-router-dom";
 import { logout } from "../../redux/actions/userAction";
 import { useDispatch } from "react-redux";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 const SideBar = ({ show, toggle }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   function logoutUser() {
     dispatch(logout());
-    alert.success("Logout Successfully");
+    toast.success("Logout Successfully");
+    navigate('/')
   }
-  console.log("sidebar ", show);
-  console.log("widsdas", window.innerWidth < 992, show);
+  
   return (
     <div>
       {(show || !(window.innerWidth < 992)) && (
         <div style={{ zIndex: "1" }} className="section1">
-          <div style={{ position: "absolute", top: "1rem", left: "3rem" }}>
+          <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
             <BsFillArrowLeftCircleFill
               className="hideButton"
               style={{ display: "none" }}
@@ -106,6 +108,12 @@ const SideBar = ({ show, toggle }) => {
                   </button>
                 </NavLink>
               </li>
+              <li className="nav-item m-2">
+                <NavLink to="/customers">
+                  <button className="s1-btn btn btn-sm px-4 ">Customer</button>
+                </NavLink>
+              </li>
+              
               <li className="nav-item m-1">
                 <NavLink to="/ordersreport">
                   <button className="s1-btn btn btn-sm px-4  sideBtns">
@@ -131,6 +139,13 @@ const SideBar = ({ show, toggle }) => {
                 <NavLink to="/allnurseries">
                   <button className="s1-btn btn btn-sm px-4  sideBtns">
                     Nurseries
+                  </button>
+                </NavLink>
+              </li>
+              <li className="nav-item m-1">
+                <NavLink to="/faqs">
+                  <button className="s1-btn btn btn-sm px-4  sideBtns">
+                   FAQs
                   </button>
                 </NavLink>
               </li>

@@ -8,20 +8,23 @@ import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import { getAllOrders } from "../../redux/actions/orderAction";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const SalesReport = ({ toggle }) => {
+function SalesReport() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //const { error } = useSelector((state) => state.chartSalesperDay);
   const {
     error: orderError,
     orders,
     loading: ordresLoading,
   } = useSelector((state) => state.allOrders);
-
+  
   const { error, loading, dateSales, totalSales, salesReport } = useSelector(
     (state) => state.salePerDay
   );
+
+  const sorted= salesReport&&salesReport.sort((a,b)=>a.date - b.date) 
+  console.log(sorted,'=================sorted');
+  
   console.log(
     dateSales && dateSales,
     "============",
@@ -38,6 +41,8 @@ const SalesReport = ({ toggle }) => {
 
   const [state, setState] = useState(false);
   const [filteredOrders, setFilterOrders] = useState([]);
+
+  
 
   useEffect(() => {
     if (error) {
@@ -120,7 +125,6 @@ const SalesReport = ({ toggle }) => {
           >
             <div className="container-fluid px-5">
               <button
-                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -142,17 +146,15 @@ const SalesReport = ({ toggle }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between align-items-end flex-wrap px-2 py-1">
-            <div className="px-5 pt-4">
-              <p style={{ color: "#9f9f9f", fontSize: ".8rem" }}>TOTAL SALES</p>
-              <h4 style={{ fontWeight: "600" }}>
-                Rs {totalSalesAmount && totalSalesAmount}
-              </h4>
+          <div className="d-flex justify-content-between  align-items-center px-2 py-1">
+            <div className="p-5">
+              <p>TOTAL SALES</p>
+              <h4>Rs {totalSalesAmount && totalSalesAmount}</h4>
             </div>
-            <div className="mb-2">
+            <div>
               <div className="d-flex px-4 ">
                 <div className="p2-selection mx-2"></div>
-                <div className="p2-selection mx-2 ">
+                {/* <div className="p2-selection mx-2 ">
                   <select
                     className="form-select "
                     aria-label="Default select example"
@@ -166,7 +168,7 @@ const SalesReport = ({ toggle }) => {
                         </option>
                       ))}
                   </select>
-                </div>
+                </div> */}
                 <div className="p2-selection mx-2">
                   <select
                     className="form-select "
@@ -182,56 +184,48 @@ const SalesReport = ({ toggle }) => {
               </div>
             </div>
           </div>
-          <div className="s2-table tableForAll m-5 ">
-            <div className="s2-table subTableForAll">
+          <div className="s2-table px-5 m-3 ">
+            <div className="s2-table py-4">
               {loading ? (
                 <Loader />
-              ) : (
-                <table
-                  className="table table-borderless "
-                  style={{
-                    overflow: "hidden",
-                    width: "100%",
-                    borderRadius: ".5rem",
-                    backgroundColor: "white",
-                  }}
-                >
-                  <thead className="s2-table-nava">
-                    <tr>
-                      <th scope="col">Date</th>
-                      <th scope="col">Orders</th>
-                      <th scope="col">Sales</th>
-                      <th scope="col">Nursery Name</th>
-                    </tr>
-                  </thead>
-                  <tbody className="table-group-divider my-5">
-                    {state == false ? (
-                      <Fragment>
-                        {salesReport &&
-                          salesReport.map((sale, index) => (
-                            <tr>
-                              <th scope="row">{sale.date}</th>
-                              <td>{sale.count}</td>
-                              <td>{sale.total}</td>
-                              <td>Area/Locality</td>
-                            </tr>
-                          ))}
-                      </Fragment>
-                    ) : (
-                      <Fragment>
-                        {filteredOrders &&
-                          filteredOrders.map((sale, index) => (
-                            <tr>
-                              <th scope="row">{sale.date}</th>
-                              <td>{sale.count}</td>
-                              <td>{sale.total}</td>
-                              <td>Area/Locality</td>
-                            </tr>
-                          ))}
-                      </Fragment>
-                    )}
-                  </tbody>
-                </table>
+              ):(
+                <table className="table table-borderless table-sm ">
+                <thead className="s2-table-nava">
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Orders</th>
+                    <th scope="col">Sales</th>
+                    {/* <th scope="col">Nursery Name</th> */}
+                  </tr>
+                </thead>
+                <tbody className="table-group-divider my-5">
+                  {state == false ? (
+                    <Fragment>
+                      {salesReport &&
+                        salesReport.map((sale, index) => (
+                          <tr>
+                            <th scope="row">{sale.date}</th>
+                            <td>{sale.count}</td>
+                            <td>{sale.total}</td>
+                            {/* <td>Area/Locality</td> */}
+                          </tr>
+                        ))}
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      {filteredOrders &&
+                        filteredOrders.map((sale, index) => (
+                          <tr>
+                            <th scope="row">{sale.date}</th>
+                            <td>{sale.count}</td>
+                            <td>{sale.total}</td>
+                            {/* <td>Area/Locality</td> */}
+                          </tr>
+                        ))}
+                    </Fragment>
+                  )}
+                </tbody>
+              </table>
               )}
             </div>
           </div>
@@ -239,6 +233,6 @@ const SalesReport = ({ toggle }) => {
       </div>
     </div>
   );
-};
+}
 
 export default SalesReport;

@@ -2,14 +2,14 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getperDayOders } from "../../redux/actions/chartAction";
+import { getperDayOders, getSalesperDay } from "../../redux/actions/chartAction";
 import { clearErrors, getAllOrders } from "../../redux/actions/orderAction";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import "./Page6.css";
 // import logo from "../../Assets/Images/logo3.png";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const OrderReports = ({ toggle }) => {
+function OrderReports() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,11 +19,17 @@ const OrderReports = ({ toggle }) => {
     loading: salesLoading,
     dateSales,
     totalSales,
-    ordersReport,
-  } = useSelector((state) => state.ordersPerDay);
+    salesReport,
+  } = useSelector((state) => state.salePerDay);
 
-  const toatlOrdersCount = totalSales && totalSales.reduce((a, b) => a + b, 0);
+ const sorted= salesReport&&salesReport.sort((a,b)=>a.date - b.date) 
+  console.log(sorted,'=================sorted');
+
+  const {totalSales:orderTotalSales,} = useSelector((state) => state.ordersPerDay);
+
+  const toatlOrdersCount = orderTotalSales && orderTotalSales.reduce((a, b) => a + b, 0);
   const days = dateSales && dateSales.length;
+  console.log(days,"===d",dateSales&&dateSales);
   const avg = Math.floor(toatlOrdersCount / days);
 
   const { error: nurseriesError, nurseries } = useSelector(
@@ -39,7 +45,7 @@ const OrderReports = ({ toggle }) => {
       toast.error(error.message);
       dispatch(clearErrors());
     }
-
+    dispatch(getSalesperDay());
     dispatch(getperDayOders());
     dispatch(getAllOrders());
     dispatch(getAllNurseries());
@@ -48,8 +54,8 @@ const OrderReports = ({ toggle }) => {
   const nurseryDropDownHandler = (e) => {
     const nursery = e.target.value;
     const nuserysOrders =
-      ordersReport &&
-      ordersReport.filter((sale) => sale.deliveredBy === nursery);
+    salesReport &&
+    salesReport.filter((sale) => sale.deliveredBy === nursery);
     setFilterOrders(nuserysOrders);
     if (nursery === 1) {
       setFilterOrders(AllOrdders);
@@ -79,15 +85,20 @@ const OrderReports = ({ toggle }) => {
   const monthend = getMonthEndDate(1, date).toJSON().slice(0, 10);
 
   // Filtering
-  const AllOrdders = ordersReport && ordersReport.filter((sale) => sale);
+  const AllOrdders = salesReport && salesReport.filter((sale) => sale);
+  console.log(AllOrdders,'AllOrdders');
   const todayOrders =
-    ordersReport && ordersReport.filter((sale) => sale.date === currentDate);
+  salesReport && salesReport.filter((sale) => sale.date === currentDate);
+    console.log(todayOrders,'TodayOrders');
+
 
   const weekOrders =
-    ordersReport && ordersReport.filter((sale) => sale.date >= weekend);
+  salesReport && salesReport.filter((sale) => sale.date >= weekend);
+    console.log(weekOrders,'WeekendOrders');
 
   const monthOrders =
-    ordersReport && ordersReport.filter((sale) => sale.date >= monthend);
+  salesReport && salesReport.filter((sale) => sale.date >= monthend);
+    console.log(monthOrders,'MonthendOrders');
 
   const ordersSelect = (e) => {
     let item = parseInt(e.target.value);
@@ -116,7 +127,6 @@ const OrderReports = ({ toggle }) => {
           >
             <div className="container-fluid px-5">
               <button
-                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -138,16 +148,14 @@ const OrderReports = ({ toggle }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between align-items-end flex-wrap px-2 py-1">
+          <div className="d-flex justify-content-between align-items-center flex-wrap px-2 py-1">
             <div className="pt-4 px-5">
-              <p style={{ color: "#9f9f9f", fontSize: ".8rem" }}>
-                AVG ORDERS PER DAY
-              </p>
-              <h4 style={{ fontWeight: "600" }}>{avg}</h4>
+              <p>AVG ORDERS PER DAY</p>
+              <h4>{avg}</h4>
             </div>
-            <div className="mb-2">
+            <div>
               <div className="d-flex px-4 ">
-                <div className="p2-selection mx-2 ">
+                {/* <div className="p2-selection mx-2 ">
                   <select
                     className="form-select w-100"
                     aria-label="Default select example"
@@ -161,7 +169,7 @@ const OrderReports = ({ toggle }) => {
                         </option>
                       ))}
                   </select>
-                </div>
+                </div> */}
 
                 <div className="p2-selection mx-4">
                   <select
@@ -197,19 +205,19 @@ const OrderReports = ({ toggle }) => {
                       <th scope="col">Date</th>
                       <th scope="col">Orders</th>
                       <th scope="col">Sales</th>
-                      <th scope="col">Nursery Name</th>
+                      {/* <th scope="col">Nursery Name</th> */}
                     </tr>
                   </thead>
                   <tbody className="table-group-divider my-5">
                     {state === false ? (
                       <Fragment>
-                        {ordersReport &&
-                          ordersReport.map((sale, index) => (
-                            <tr>
+                        {salesReport &&
+                          salesReport.map((sale, index) => (
+                            <tr key={index}>
                               <th scope="row">{sale.date}</th>
                               <td>{sale.count}</td>
                               <td>{sale.total}</td>
-                              <td>Area/Locality</td>
+                              {/* <td>Area/Locality</td> */}
                             </tr>
                           ))}
                       </Fragment>
@@ -218,12 +226,10 @@ const OrderReports = ({ toggle }) => {
                         {filteredOrders &&
                           filteredOrders.map((sale, index) => (
                             <tr>
-                              <th scope="row" style={{ fontWeight: "500" }}>
-                                {sale.date}
-                              </th>
+                              <th scope="row">{sale.date}</th>
                               <td>{sale.count}</td>
                               <td>{sale.total}</td>
-                              <td>Area/Locality</td>
+                              {/* <td>Area/Locality</td> */}
                             </tr>
                           ))}
                       </Fragment>
@@ -237,6 +243,6 @@ const OrderReports = ({ toggle }) => {
       </div>
     </div>
   );
-};
+}
 
 export default OrderReports;
