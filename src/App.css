@@ -41,6 +41,29 @@ input[type="number"] {
   width: 100%;
   overflow-x: scroll;
 }
+.addNewNursery {
+  background: rgb(60, 104, 87);
+  background: linear-gradient(
+    90deg,
+    rgba(60, 104, 87, 1) 0%,
+    rgba(0, 81, 41, 1) 100%
+  );
+  color: white !important;
+}
+
+.form-check-input ::before {
+  border-radius: 50% !important;
+}
+
+.form-check-input:checked {
+  background-color: rgb(73, 133, 14) !important;
+  /* background-color: linear-gradient(
+    90deg,
+    rgba(73, 133, 14, 1) 0%,
+    rgba(141, 171, 62, 1) 100%
+  ) !important; */
+  border: none !important;
+}
 
 @media only screen and (max-width: 992px) {
   .mainsection {
@@ -78,7 +101,6 @@ input[type="number"] {
   .addNewNursery {
     width: 100%;
     margin-bottom: 2rem;
-    color: white !important;
   }
 
   .btn-AllNurseries {
@@ -113,6 +135,7 @@ input[type="number"] {
   }
 
   .allOptions {
+    flex-wrap: wrap;
     width: 100%;
     margin: 0 !important;
   }

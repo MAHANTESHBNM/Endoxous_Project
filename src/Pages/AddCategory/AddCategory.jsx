@@ -94,7 +94,13 @@ const AddCategory = () => {
             accept="image/*"
             onChange={categoryDataChange}
           />
-          <img src={avatarPreview} alt="" height="200px" width="160px" className="mt-2 "/>
+          <img
+            src={avatarPreview}
+            alt=""
+            height="200px"
+            width="160px"
+            className="mt-2 "
+          />
         </div>
         <button type="submit" className="btn btn-success w-100 mt-3">
           Add Category

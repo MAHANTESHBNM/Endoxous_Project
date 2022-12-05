@@ -9,7 +9,7 @@ import {
 import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-function AllNurseries() {
+const AllNurseries = ({ toggle }) => {
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
 
@@ -40,6 +40,7 @@ function AllNurseries() {
           >
             <div className="container-fluid px-5">
               <button
+                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -64,6 +65,7 @@ function AllNurseries() {
           <div className="d-flex justify-content-between align-items-center px-2 py-1 filterInputInAllOrders">
             <div className="px-5 py-4 filterInput">
               <input
+                style={{ borderRadius: ".2rem" }}
                 className="form-control px-4"
                 type="text"
                 value={keyword}
@@ -72,10 +74,10 @@ function AllNurseries() {
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
-            <div className="addNewNursery d-flex px-5 ">
+            <div className="d-flex px-5 filterInput">
               <button
                 type="button"
-                className="btn-AllNurseries btn btn-md"
+                className=" btn-AllNurseries btn btn-md"
                 onClick={addNewNurseryHandler}
               >
                 + Add new nursery
@@ -96,7 +98,9 @@ function AllNurseries() {
                     backgroundColor: "white",
                   }}
                 >
-                  <thead style={{ backgroundColor: "#eaeaea" }}>
+                  <thead
+                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                  >
                     <tr>
                       <th scope="col">Order ID</th>
                       <th scope="col">Nursery Name</th>
@@ -123,7 +127,15 @@ function AllNurseries() {
                         })
                         .map((nursery, index) => (
                           <tr>
-                            <th scope="row">#{nursery._id}</th>
+                            <th
+                              scope="row"
+                              style={{
+                                color: "#0aa350",
+                                fontWeight: "500",
+                              }}
+                            >
+                              #{nursery._id}
+                            </th>
                             <td>{nursery?.name}</td>
                             <td>{nursery.address} </td>
                             <td> 1 </td>
@@ -150,6 +162,6 @@ function AllNurseries() {
       </div>
     </div>
   );
-}
+};
 
 export default AllNurseries;

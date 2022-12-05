@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink,useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
@@ -12,7 +12,7 @@ import { getAllCategories } from "../../redux/actions/categoryAction";
 import "./AddProduct.css";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const EditProducts = () => {
+const EditProducts = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -23,9 +23,11 @@ const EditProducts = () => {
     isUpdated,
   } = useSelector((state) => state.product);
 
-  const { product, error,loading:detailError } = useSelector(
-    (state) => state.productDetails
-  );
+  const {
+    product,
+    error,
+    loading: detailError,
+  } = useSelector((state) => state.productDetails);
   const { categoryList } = useSelector((state) => state.allCategories);
 
   const [name, setName] = useState("");
@@ -61,7 +63,7 @@ const EditProducts = () => {
       setUnit(product.unit);
     }
 
-    if (error) { 
+    if (error) {
       toast.error(error.message);
       dispatch(clearErrors());
     }
@@ -173,6 +175,7 @@ const EditProducts = () => {
       >
         <div className="container-fluid px-5">
           <button
+            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"

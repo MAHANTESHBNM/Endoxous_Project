@@ -24,12 +24,11 @@ import CustomerName from "./Pages/CustomerName/CustomerName";
 import PageNotFound from "./Components/SideBar/PageNotFound";
 import Coupon from "./Pages/Coupon/Coupon";
 import CouponList from "./Pages/Coupon/CouponList";
-import FAQs from "./Pages/FAQs/FAQs"; 
+import FAQs from "./Pages/FAQs/FAQs";
 
 import store from './redux/store'
 import AdminPrivateRoute from './utils/protectiveRoute'
 import { getAdmin,loadUser } from "./redux/actions/userAction";
-
 
 
 function App() {
@@ -52,6 +51,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/verifyotp" element={<VerifyOTP />} />
+          <Route path="/coupon" element={<Coupon />} />
+          <Route path="/couponlist" element={<CouponList toggle={toggle} />} />
           <Route path="*" element={<PageNotFound toggle={toggle} />} />
 
           {/* <Route path="/coupon" element={<Coupon />} />

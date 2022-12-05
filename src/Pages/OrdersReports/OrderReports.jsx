@@ -2,14 +2,17 @@ import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getperDayOders, getSalesperDay } from "../../redux/actions/chartAction";
+import {
+  getperDayOders,
+  getSalesperDay,
+} from "../../redux/actions/chartAction";
 import { clearErrors, getAllOrders } from "../../redux/actions/orderAction";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import "./Page6.css";
 // import logo from "../../Assets/Images/logo3.png";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-function OrderReports() {
+const OrderReports = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,14 +25,17 @@ function OrderReports() {
     salesReport,
   } = useSelector((state) => state.salePerDay);
 
- const sorted= salesReport&&salesReport.sort((a,b)=>a.date - b.date) 
-  console.log(sorted,'=================sorted');
+  const sorted = salesReport && salesReport.sort((a, b) => a.date - b.date);
+  console.log(sorted, "=================sorted");
 
-  const {totalSales:orderTotalSales,} = useSelector((state) => state.ordersPerDay);
+  const { totalSales: orderTotalSales } = useSelector(
+    (state) => state.ordersPerDay
+  );
 
-  const toatlOrdersCount = orderTotalSales && orderTotalSales.reduce((a, b) => a + b, 0);
+  const toatlOrdersCount =
+    orderTotalSales && orderTotalSales.reduce((a, b) => a + b, 0);
   const days = dateSales && dateSales.length;
-  console.log(days,"===d",dateSales&&dateSales);
+  console.log(days, "===d", dateSales && dateSales);
   const avg = Math.floor(toatlOrdersCount / days);
 
   const { error: nurseriesError, nurseries } = useSelector(
@@ -54,8 +60,7 @@ function OrderReports() {
   const nurseryDropDownHandler = (e) => {
     const nursery = e.target.value;
     const nuserysOrders =
-    salesReport &&
-    salesReport.filter((sale) => sale.deliveredBy === nursery);
+      salesReport && salesReport.filter((sale) => sale.deliveredBy === nursery);
     setFilterOrders(nuserysOrders);
     if (nursery === 1) {
       setFilterOrders(AllOrdders);
@@ -86,19 +91,18 @@ function OrderReports() {
 
   // Filtering
   const AllOrdders = salesReport && salesReport.filter((sale) => sale);
-  console.log(AllOrdders,'AllOrdders');
+  console.log(AllOrdders, "AllOrdders");
   const todayOrders =
-  salesReport && salesReport.filter((sale) => sale.date === currentDate);
-    console.log(todayOrders,'TodayOrders');
-
+    salesReport && salesReport.filter((sale) => sale.date === currentDate);
+  console.log(todayOrders, "TodayOrders");
 
   const weekOrders =
-  salesReport && salesReport.filter((sale) => sale.date >= weekend);
-    console.log(weekOrders,'WeekendOrders');
+    salesReport && salesReport.filter((sale) => sale.date >= weekend);
+  console.log(weekOrders, "WeekendOrders");
 
   const monthOrders =
-  salesReport && salesReport.filter((sale) => sale.date >= monthend);
-    console.log(monthOrders,'MonthendOrders');
+    salesReport && salesReport.filter((sale) => sale.date >= monthend);
+  console.log(monthOrders, "MonthendOrders");
 
   const ordersSelect = (e) => {
     let item = parseInt(e.target.value);
@@ -127,6 +131,7 @@ function OrderReports() {
           >
             <div className="container-fluid px-5">
               <button
+                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -148,13 +153,15 @@ function OrderReports() {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between align-items-center flex-wrap px-2 py-1">
+          <div className="d-flex justify-content-between align-items-end flex-wrap px-2 py-1">
             <div className="pt-4 px-5">
-              <p>AVG ORDERS PER DAY</p>
-              <h4>{avg}</h4>
+              <p style={{ color: "#9f9f9f", fontSize: ".8rem" }}>
+                AVG ORDERS PER DAY
+              </p>
+              <h4 style={{ fontWeight: "600" }}>{avg}</h4>
             </div>
-            <div>
-              <div className="d-flex px-4 ">
+            <div className="mb-2 px-4 filterInput">
+              <div className="d-flex px-4 filterInput">
                 {/* <div className="p2-selection mx-2 ">
                   <select
                     className="form-select w-100"
@@ -171,7 +178,7 @@ function OrderReports() {
                   </select>
                 </div> */}
 
-                <div className="p2-selection mx-4">
+                <div className="p2-selection mx-2 filterInput">
                   <select
                     className="form-select w-100"
                     aria-label="Default select example"
@@ -226,7 +233,9 @@ function OrderReports() {
                         {filteredOrders &&
                           filteredOrders.map((sale, index) => (
                             <tr>
-                              <th scope="row">{sale.date}</th>
+                              <th scope="row" style={{ fontWeight: "500" }}>
+                                {sale.date}
+                              </th>
                               <td>{sale.count}</td>
                               <td>{sale.total}</td>
                               {/* <td>Area/Locality</td> */}
@@ -243,6 +252,6 @@ function OrderReports() {
       </div>
     </div>
   );
-}
+};
 
 export default OrderReports;

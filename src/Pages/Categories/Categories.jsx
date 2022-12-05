@@ -6,21 +6,36 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   clearErrors,
-  getAllCategories,unBlockCategory,blockCategory
+  getAllCategories,
+  unBlockCategory,
+  blockCategory,
 } from "../../redux/actions/categoryAction";
 import Loader from "../../Components/SideBar/Loader/Loader";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
-import { BLOCK_CATEGORY_RESET, UNBLOCK_CATEGORY_RESET } from "../../constants/categoryConstants";
+import {
+  BLOCK_CATEGORY_RESET,
+  UNBLOCK_CATEGORY_RESET,
+} from "../../constants/categoryConstants";
 import { getAdminProducts } from "../../redux/actions/productAction";
-function Categories() {
+const Categories = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
-  const { error, loading, categoryList } = useSelector((state) => state.allCategories );
-  const { nurseries } = useSelector( (state) => state.allNurseries);
+  const { error, loading, categoryList } = useSelector(
+    (state) => state.allCategories
+  );
+  const { nurseries } = useSelector((state) => state.allNurseries);
 
-  const {error:blockError,isBlocked,message} = useSelector( (state) => state.categoryBlock)
-  const {error:unblockError,isActive,message:unblockMessage} = useSelector( (state) => state.categoryUnblock)
+  const {
+    error: blockError,
+    isBlocked,
+    message,
+  } = useSelector((state) => state.categoryBlock);
+  const {
+    error: unblockError,
+    isActive,
+    message: unblockMessage,
+  } = useSelector((state) => state.categoryUnblock);
 
   const { products } = useSelector((state) => state.products);
 
@@ -42,19 +57,26 @@ function Categories() {
     }
     if (isBlocked) {
       toast.success(message);
-      dispatch({type:BLOCK_CATEGORY_RESET})
+      dispatch({ type: BLOCK_CATEGORY_RESET });
     }
     if (isActive) {
       toast.success(unblockMessage);
-      dispatch({type:UNBLOCK_CATEGORY_RESET})
-      
+      dispatch({ type: UNBLOCK_CATEGORY_RESET });
     }
-    
+
     dispatch(getAdminProducts());
     dispatch(getAllCategories());
     dispatch(getAllNurseries());
-
-  }, [dispatch, error,isActive,unblockMessage,isBlocked,message,unblockError,blockError]);
+  }, [
+    dispatch,
+    error,
+    isActive,
+    unblockMessage,
+    isBlocked,
+    message,
+    unblockError,
+    blockError,
+  ]);
 
   const addCategoryHandler = () => {
     navigate("/category/new");
@@ -72,25 +94,27 @@ function Categories() {
     }
   };
 
-  const toggleSwitch = (id,status)=>{
-    console.log(id,status,"======= inside func");
-    if(status===true){
-      dispatch(unBlockCategory(id))
-    }else if(!status){
-      dispatch(blockCategory(id))
-    }else if(status===false){
-      dispatch(blockCategory(id))
-    } 
-  }
+  const toggleSwitch = (id, status) => {
+    console.log(id, status, "======= inside func");
+    if (status === true) {
+      dispatch(unBlockCategory(id));
+    } else if (!status) {
+      dispatch(blockCategory(id));
+    } else if (status === false) {
+      dispatch(blockCategory(id));
+    }
+  };
 
   return (
     <div className="mainsection">
       <div className="section2 ">
         <nav
           className="s2-navabar navbar navbar-expand-lg "
-          style={{ backgroundColor: "white" }}>
+          style={{ backgroundColor: "white" }}
+        >
           <div className="container-fluid px-5">
             <button
+              onClick={() => toggle()}
               className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
@@ -149,7 +173,7 @@ function Categories() {
               </div>
               <button
                 type="button"
-                className="btn-page4 categorySelection btn btn-success btn-md"
+                className="btn-page4 addNewNursery btn btn-success btn-md"
                 onClick={addCategoryHandler}
               >
                 + Add New Category
@@ -170,7 +194,8 @@ function Categories() {
                   width: "100%",
                   borderRadius: ".5rem",
                   backgroundColor: "white",
-                }}>
+                }}
+              >
                 <thead style={{ backgroundColor: "#eaeaea" }}>
                   <tr>
                     <th scope="col">IMG</th>
@@ -215,7 +240,17 @@ function Categories() {
                             </div>
                           </th>
                           <td>{category?.name}</td>
-                          <td>{(products&&products.filter((product)=>product.category === category?.name)).length}</td>
+                          <td>
+                            {
+                              (
+                                products &&
+                                products.filter(
+                                  (product) =>
+                                    product.category === category?.name
+                                )
+                              ).length
+                            }
+                          </td>
                           <td>
                             <div>
                               <span
@@ -226,19 +261,31 @@ function Categories() {
                               >
                                 {category?.isBlock === true ? (
                                   <input
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="flexSwitchCheckDefault"
-                                  onClick={()=>toggleSwitch(category?._id,category?.isBlock,category)}
-                                  checked
-                                />
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    id="flexSwitchCheckDefault"
+                                    onClick={() =>
+                                      toggleSwitch(
+                                        category?._id,
+                                        category?.isBlock,
+                                        category
+                                      )
+                                    }
+                                    checked
+                                  />
                                 ) : (
                                   <input
-                                  className="form-check-input"
-                                  type="checkbox"
-                                  id="flexSwitchCheckDefault"
-                                  onClick={()=>toggleSwitch(category?._id,category?.isBlock,category)}
-                                />
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    id="flexSwitchCheckDefault"
+                                    onClick={() =>
+                                      toggleSwitch(
+                                        category?._id,
+                                        category?.isBlock,
+                                        category
+                                      )
+                                    }
+                                  />
                                 )}
                               </span>
                               {/* <span className="mx-5">Pending</span> */}
@@ -256,6 +303,6 @@ function Categories() {
       </div>
     </div>
   );
-}
+};
 
 export default Categories;
