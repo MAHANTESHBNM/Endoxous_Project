@@ -1,13 +1,13 @@
-import React, { useEffect, useState,Fragment } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import "./Page8.css";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { clearErrors, getAllUsers } from "../../redux/actions/userAction.js";
 import { toast } from "react-toastify";
 import DateFormatter from "../../utils/DateFormatter";
-import Loader from "../../Components/SideBar/Loader/Loader"; 
+import Loader from "../../Components/SideBar/Loader/Loader";
 
-function MyCustomers() {
+const MyCustomers = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
@@ -27,12 +27,11 @@ function MyCustomers() {
     dispatch(getAllUsers());
   }, [dispatch, error, keyword]);
 
-  const customerDetailsHandler=(id)=>{
-    navigate(`/customer/${id}`)
-  }
+  const customerDetailsHandler = (id) => {
+    navigate(`/customer/${id}`);
+  };
 
   const AllUsers = users && users.filter((user) => user);
-
 
   // Date
   let currentDate = new Date().toJSON().slice(0, 10);
@@ -55,18 +54,15 @@ function MyCustomers() {
   const date = new Date();
   const monthend = getMonthEndDate(1, date).toJSON().slice(0, 10);
 
-
   // Filtering
   const todayUsers =
-  users &&
-  users.filter((user) => user.joinedOn.slice(0, 10) === currentDate);
+    users && users.filter((user) => user.joinedOn.slice(0, 10) === currentDate);
 
   const weekUsers =
-  users && users.filter((user) => user.joinedOn.slice(0, 10) >= weekend);
+    users && users.filter((user) => user.joinedOn.slice(0, 10) >= weekend);
 
   const monthUsers =
-  users &&
-  users.filter((user) => user.joinedOn.slice(0, 10) >= monthend);
+    users && users.filter((user) => user.joinedOn.slice(0, 10) >= monthend);
 
   const userSelect = (e) => {
     let item = parseInt(e.target.value);
@@ -88,33 +84,6 @@ function MyCustomers() {
   return (
     <div>
       <div className="mainsection">
-        {/* <div className="section1">
-          <div className="logo">
-            <img className="logo" src={logo} />
-          </div>
-          <div>
-            <ul className="navbar-nav justify-content-end flex-grow-1 ">
-              <li className="nav-item m-2">
-                <button className="s1-btn btn  px-4 ">Home</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className="s1-btn btn  px-4 ">Orders</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className="s1-btn btn  px-4 ">All Nurseries</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className="s1-btn btn px-4 ">Payments</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className="s1-btn btn  px-4 ">Nurseries</button>
-              </li>
-              <li className="nav-item m-2">
-                <button className=" s1-btn btn  px-4 ">Logout</button>
-              </li>
-            </ul>
-          </div>
-        </div> */}
         <div className="section2 ">
           <nav
             className="s2-navabar navbar navbar-expand-lg "
@@ -122,6 +91,7 @@ function MyCustomers() {
           >
             <div className="container-fluid px-5">
               <button
+                onClick={() => toggle()}
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -143,17 +113,18 @@ function MyCustomers() {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between  align-items-center px-2 py-1">
-            <div className="p-5">
+          <div className="d-flex justify-content-between align-items-center flex-wrap px-2 py-1">
+            <div className="px-5 pt-4 pb-3 filterInput">
               <input
-                className="form-control px-5"
+                style={{ borderRadius: ".2rem" }}
+                className="form-control px-4"
                 type="text"
                 placeholder="Search Phone Number..."
                 aria-label="readonly input example"
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
-            <div>
+            <div className="px-4">
               <div className="d-flex px-4 ">
                 {/* <div className="p2-selection mx-2">
                   <select
@@ -193,62 +164,82 @@ function MyCustomers() {
             </div>
           </div>
           {/* <div className="section2-btn d-flex  px-5 ">
-            <button className="s2-btn">All</button>
-            <button className="s2-btn">Pending</button>
-            <button className="s2-btn">Shipped</button>
-            <button className="s2-btn">Delivered</button>
-            <button className="s2-btn">Cancelled</button>
+            <button className="s2-btn py-2 px-3 my-2">All</button>
+            <button className="s2-btn py-2 px-3 my-2">Pending</button>
+            <button className="s2-btn py-2 px-3 my-2">Shipped</button>
+            <button className="s2-btn py-2 px-3 my-2">Delivered</button>
+            <button className="s2-btn py-2 px-3 my-2">Cancelled</button>
           </div> */}
-          <div className="s2-table px-5 m-3 ">
-            <div className="s2-table py-4">
+          <div className="s2-table tableForAll">
+            <div className="s2-table subTableForAll">
               {loading ? (
-                <Loader/>
+                <Loader />
               ) : (
-                <table className="table table-borderless table-sm ">
-                <thead className="s2-table-nava">
-                  <tr>
-                    <th scope="col">Customer ID</th>
-                    <th scope="col">Date & Time</th>
-                    <th scope="col">Customer</th>
-                    {/* <th scope="col">Items</th>
+                <table
+                  className="table table-borderless"
+                  style={{
+                    overflow: "hidden",
+                    width: "100%",
+                    borderRadius: ".5rem",
+                    backgroundColor: "white",
+                  }}
+                >
+                  <thead
+                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                  >
+                    <tr>
+                      <th scope="col">Customer ID</th>
+                      <th scope="col">Date & Time</th>
+                      <th scope="col">Customer</th>
+                      {/* <th scope="col">Items</th>
                     <th scope="col">Payment</th>
                     <th scope="col">Status</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Area/Locality</th> */}
-                  </tr>
-                </thead>
-                <tbody className="table-group-divider  my-5">
-                  {state === false ? (<Fragment>
-                    {usersOnly &&
-                    usersOnly
-                      .filter((val) => {
-                        if (keyword === "") {
-                          return val;
-                        } else if (
-                          val.fullName
-                            .toLowerCase()
-                            .includes(keyword.toLowerCase())
-                        ) {
-                          return val;
-                        }
-                      })
-                      .map((user, index) => (
-                        <tr>
-                         
-                          <th scope="row" onClick={()=>customerDetailsHandler(user._id)} style={{cursor:"pointer"}}>
-                            {user._id}
-                          </th>
-                          <td>
-                            {" "}
-                            <DateFormatter date={user?.joinedOn} />{" "}
-                          </td>
-                          <td>
-                            {" "}
-                            {user?.phone ? user?.phone : "not specified"}
-                          </td>
-                          {/* <td> 1 </td>
+                    </tr>
+                  </thead>
+                  <tbody className="table-group-divider my-5">
+                    {state === false ? (
+                      <Fragment>
+                        {usersOnly &&
+                          usersOnly
+                            .filter((val) => {
+                              if (keyword === "") {
+                                return val;
+                              } else if (
+                                val.fullName
+                                  .toLowerCase()
+                                  .includes(keyword.toLowerCase())
+                              ) {
+                                return val;
+                              }
+                            })
+                            .map((user, index) => (
+                              <tr>
+                                <th
+                                  scope="row"
+                                  onClick={() =>
+                                    customerDetailsHandler(user._id)
+                                  }
+                                  style={{
+                                    cursor: "pointer",
+                                    color: "#0aa350",
+                                    fontWeight: "500",
+                                  }}
+                                >
+                                  {user._id}
+                                </th>
+                                <td>
+                                  {" "}
+                                  <DateFormatter date={user?.joinedOn} />{" "}
+                                </td>
+                                <td>
+                                  {" "}
+                                  {user?.phone ? user?.phone : "not specified"}
+                                </td>
+                                {/* <td> 1 </td>
                           <td>COD</td> */}
-                          {/* <td>
+                                {/* <td>
                             <div>
                               <input
                                 className="form-check-input s2-radio"
@@ -262,7 +253,7 @@ function MyCustomers() {
                             </div>
                           </td>
                           <td>Rs 320</td> */}
-                          {/* <td>
+                                {/* <td>
                             <select
                               className="form-select-sm px-3"
                               aria-label="Default select example"
@@ -273,38 +264,48 @@ function MyCustomers() {
                               <option value="3">Three</option>
                             </select>
                           </td> */}
-                        </tr>
-                      ))}
-                  </Fragment>) : (
-                    <Fragment>
-                      {filteredUsers &&
-                        filteredUsers
-                      .filter((val) => {
-                        if (keyword === "") {
-                          return val;
-                        } else if (
-                          val.fullName
-                            .toLowerCase()
-                            .includes(keyword.toLowerCase())
-                        ) {
-                          return val;
-                        }
-                      })
-                      .map((user, index) => (
-                        <tr>
-                         
-                          <th scope="row" onClick={()=>customerDetailsHandler(user._id)} style={{cursor:"pointer"}}>
-                            {user._id}
-                          </th>
-                          <td>
-                            {" "}
-                            <DateFormatter date={user?.joinedOn} />{" "}
-                          </td>
-                          <td>
-                            {" "}
-                            {user?.phone ? user?.phone : "not specified"}
-                          </td>
-                          {/* <td> 1 </td>
+                              </tr>
+                            ))}
+                      </Fragment>
+                    ) : (
+                      <Fragment>
+                        {filteredUsers &&
+                          filteredUsers
+                            .filter((val) => {
+                              if (keyword === "") {
+                                return val;
+                              } else if (
+                                val.fullName
+                                  .toLowerCase()
+                                  .includes(keyword.toLowerCase())
+                              ) {
+                                return val;
+                              }
+                            })
+                            .map((user, index) => (
+                              <tr>
+                                <th
+                                  scope="row"
+                                  onClick={() =>
+                                    customerDetailsHandler(user._id)
+                                  }
+                                  style={{
+                                    cursor: "pointer",
+                                    color: "#0aa350",
+                                    fontWeight: "500",
+                                  }}
+                                >
+                                  {user._id}
+                                </th>
+                                <td>
+                                  {" "}
+                                  <DateFormatter date={user?.joinedOn} />{" "}
+                                </td>
+                                <td>
+                                  {" "}
+                                  {user?.phone ? user?.phone : "not specified"}
+                                </td>
+                                {/* <td> 1 </td>
                           <td>COD</td>
                           <td>
                             <div>
@@ -331,12 +332,12 @@ function MyCustomers() {
                               <option value="3">Three</option>
                             </select>
                           </td> */}
-                        </tr>
-                      ))}
-                    </Fragment>
-                  )}
-                </tbody>
-              </table>
+                              </tr>
+                            ))}
+                      </Fragment>
+                    )}
+                  </tbody>
+                </table>
               )}
             </div>
           </div>
@@ -344,7 +345,6 @@ function MyCustomers() {
       </div>
     </div>
   );
-}
+};
 
 export default MyCustomers;
-
