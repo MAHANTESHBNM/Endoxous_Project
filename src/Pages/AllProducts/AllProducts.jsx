@@ -150,8 +150,8 @@ const AllProducts = ({ toggle }) => {
             onChange={(e) => setKeyword(e.target.value)}
           />
         </div>
-        <div className="px-5 allOptions">
-          <div className="d-flex flex-wrap align-items-center justify-content-between">
+        <div className="px-5">
+          <div className="d-flex allOptions align-items-center justify-content-between">
             <div className="modeHolder d-flex justify-content-center">
               <div className="form-check">
                 <input
@@ -200,7 +200,8 @@ const AllProducts = ({ toggle }) => {
             </div>
             <button
               type="button"
-              className="btn-page4 btn btn-success addNewNursery btn-md"
+              className="btn-page4 btn addNewNursery btn-md"
+              style={{ borderRadius: ".2rem" }}
               onClick={AddProductHandler}
             >
               + Add New Product
@@ -276,10 +277,14 @@ const AllProducts = ({ toggle }) => {
                                     />
                                   </div>
                                 </td>
+
                                 <td>{product.name}</td>
+
                                 {/* <td><button type="button" className="btn btn-outline-danger"
                              onClick={()=> dispatch(deleteProduct(product._id))}  >Delete</button></td> */}
+
                                 <td>{product.stock}</td>
+
                                 <td>...</td>
                                 <td>Rs {product.price}</td>
                                 <td>Nursery Name</td>
@@ -321,7 +326,9 @@ const AllProducts = ({ toggle }) => {
                                     />
                                   </div>
                                 </td>
+
                                 <td>{product.name}</td>
+
                                 {/* <td><button type="button" className="btn btn-outline-danger"
                              onClick={()=> dispatch(deleteProduct(product._id))}  >Delete</button></td> */}
                                 <td>{product.stock}</td>

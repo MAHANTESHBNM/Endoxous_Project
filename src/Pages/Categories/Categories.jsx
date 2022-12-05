@@ -173,7 +173,7 @@ const Categories = ({ toggle }) => {
               </div>
               <button
                 type="button"
-                className="btn-page4 categorySelection btn btn-success btn-md"
+                className="btn-page4 addNewNursery btn btn-success btn-md"
                 onClick={addCategoryHandler}
               >
                 + Add New Category

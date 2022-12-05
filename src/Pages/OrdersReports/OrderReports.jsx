@@ -160,8 +160,8 @@ const OrderReports = ({ toggle }) => {
               </p>
               <h4 style={{ fontWeight: "600" }}>{avg}</h4>
             </div>
-            <div className="mb-2">
-              <div className="d-flex px-4 ">
+            <div className="mb-2 px-4 filterInput">
+              <div className="d-flex px-4 filterInput">
                 {/* <div className="p2-selection mx-2 ">
                   <select
                     className="form-select w-100"
@@ -178,7 +178,7 @@ const OrderReports = ({ toggle }) => {
                   </select>
                 </div> */}
 
-                <div className="p2-selection mx-2">
+                <div className="p2-selection mx-2 filterInput">
                   <select
                     className="form-select w-100"
                     aria-label="Default select example"

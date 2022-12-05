@@ -242,7 +242,7 @@ const AllOrders = ({ toggle }) => {
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
-            <div className="px-4">
+            <div className="px-4 pt-4">
               <div className="d-flex px-4">
                 <div className="p2-selection mx-2">
                   <select
@@ -280,7 +280,7 @@ const AllOrders = ({ toggle }) => {
                     aria-label="Default select example"
                     onChange={daysSelect}
                   >
-                    <option defaultValue="Select">Life Time</option>
+                    <option defaultValue="Select">Lifetime</option>
                     <option value="1">Today</option>
                     <option value="2">This Week</option>
                     <option value="3">This Month</option>
@@ -425,11 +425,13 @@ const AllOrders = ({ toggle }) => {
                                           backgroundColor: "#eff5f1",
                                           color: "#137e62",
                                           borderRadius: ".2rem",
+                                          padding: "0.4rem 0",
                                         }
                                       : {
                                           backgroundColor: "#ffe5d4",
                                           color: "#ff6a02",
                                           borderRadius: ".2rem",
+                                          padding: "0.4rem 0",
                                         }
                                   }
                                 >
@@ -537,11 +539,13 @@ const AllOrders = ({ toggle }) => {
                                           backgroundColor: "#eff5f1",
                                           color: "#137e62",
                                           borderRadius: ".2rem",
+                                          padding: "0.4rem 0",
                                         }
                                       : {
                                           backgroundColor: "#ffe5d4",
                                           color: "#ff6a02",
                                           borderRadius: ".2rem",
+                                          padding: "0.4rem 0",
                                         }
                                   }
                                 >

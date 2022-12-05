@@ -53,7 +53,7 @@ const CouponList = ({ toggle }) => {
   return (
     <div>
       <div className="mainsection">
-        <div className="section2 ">
+        <div className="section2">
           <nav
             className="s2-navabar navbar navbar-expand-lg "
             style={{ backgroundColor: "white" }}
@@ -73,7 +73,7 @@ const CouponList = ({ toggle }) => {
               </button>
 
               <NavLink className="fw-bold navbar-brand " to="/">
-                Alll Coupons
+                All Coupons
               </NavLink>
               <button
                 className="btn btn-outline-success btnround"
@@ -93,13 +93,23 @@ const CouponList = ({ toggle }) => {
             </button>
           </div>
 
-          <div className="s2-table px-5 m-3 ">
-            <div className="s2-table py-4">
+          <div className="tableForAll s2-table m-5 ">
+            <div className="s2-table subTableForAll">
               {loading || deleteLoading ? (
                 <Loader />
               ) : (
-                <table className="table table-borderless table-sm ">
-                  <thead className="s2-table-nava">
+                <table
+                  className="table table-borderless"
+                  style={{
+                    overflow: "hidden",
+                    width: "100%",
+                    borderRadius: ".5rem",
+                    backgroundColor: "white",
+                  }}
+                >
+                  <thead
+                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                  >
                     <tr>
                       <th scope="col">Coupon Name</th>
                       <th scope="col">Coupon Code</th>
