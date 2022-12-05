@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 import "./AddProduct.css";
 
-const AddProducts = () => {
+const AddProducts = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -131,13 +131,14 @@ const AddProducts = () => {
   const offerPercentage = (100 * priceDifference) / mrp;
 
   return (
-    <div className="">
+    <div className="section2">
       <nav
         className="s2-navabar navbar navbar-expand-lg"
         style={{ backgroundColor: "white" }}
       >
         <div className="container-fluid px-5">
           <button
+            onClick={() => toggle()}
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
