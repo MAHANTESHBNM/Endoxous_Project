@@ -1,4 +1,3 @@
-
 import React, { Fragment, useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Page2.css";
@@ -419,7 +418,7 @@ const AllOrders = ({ toggle }) => {
                                 </td>
                                 <td>{order.orderItems?.length}</td>
                                 <div
-                                  className="d-flex justify-content-center"
+                                  className="d-flex justify-content-center my-1"
                                   style={
                                     order.paymentInfo?.method === "online"
                                       ? {
@@ -530,7 +529,24 @@ const AllOrders = ({ toggle }) => {
                                     : order.user?.phone}
                                 </td>
                                 <td>{order.orderItems?.length}</td>
-                                <td>{order.paymentInfo?.method}</td>
+                                <div
+                                  className="d-flex justify-content-center my-1"
+                                  style={
+                                    order.paymentInfo?.method === "online"
+                                      ? {
+                                          backgroundColor: "#eff5f1",
+                                          color: "#137e62",
+                                          borderRadius: ".2rem",
+                                        }
+                                      : {
+                                          backgroundColor: "#ffe5d4",
+                                          color: "#ff6a02",
+                                          borderRadius: ".2rem",
+                                        }
+                                  }
+                                >
+                                  <td>{order.paymentInfo?.method}</td>
+                                </div>
                                 <td>
                                   <div>
                                     <input
