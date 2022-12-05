@@ -10,6 +10,10 @@ export const LOAD_USER_REQUEST = "LOAD_USER_REQUEST" ;
 export const LOAD_USER_SUCCESS = "LOAD_USER_SUCCESS" ;
 export const LOAD_USER_FAIL =    "LOAD_USER_FAIL" ;
 
+export const ADMIN_REQUEST = "ADMIN_REQUEST" ;
+export const ADMIN_SUCCESS = "ADMIN_SUCCESS" ;
+export const ADMIN_FAIL =    "ADMIN_FAIL" ;
+
 export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS" ;
 export const LOGOUT_USER_FAIL =    "LOGOUT_USER_FAIL" ;
 

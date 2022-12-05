@@ -10,14 +10,19 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { error, loading, isAuthenticated, message} = useSelector((state) => state.user);
+  const { error, loading, message,success,isLogout,isLogined,isAuthenticated,user:LogetUser} = useSelector((state) => state.user);
+  const { isAdmin} = useSelector((state) => state.admin);
 
   const [phone, setPhone] = useState("");
   console.log(phone, "---- phone");
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(phone));
+    if(isAdmin&&isAdmin ===phone ){
+      dispatch(login(phone));
+    }else{
+      toast.warning(" Access Denied!!! ")
+    }
   };
 
   useEffect(() => {
@@ -25,10 +30,18 @@ const Login = () => {
       toast.error(error.message);
     }
     if (isAuthenticated) {
-      toast.success(message);
-      navigate("/verifyotp");
+      if(success){
+        toast.success(message);
+        return navigate("/verifyotp");
+       
+      }else if (LogetUser&&LogetUser.role === 'admin' && LogetUser.power === 'Hero'){
+        navigate('/dashboard')
+      }else{
+          navigate('/')
+        }
     }
-  }, [error, dispatch, message, navigate,isAuthenticated]);
+  }, [error, dispatch, message, navigate,success,LogetUser,isAuthenticated]);
+
 
   return (
     <div>
@@ -42,7 +55,7 @@ const Login = () => {
           <h2 className="mb-5">Login</h2>
           <form action="" onSubmit={loginSubmit}>
             <div className="mb-2">
-              <label htmlFor="exampleInputNumber" className="form-label">
+              <label for="exampleInputNumber" className="form-label">
                 Phone Number
               </label>
               <input
@@ -58,7 +71,7 @@ const Login = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-success w-100 mt-3">
+            <button type="submit" class="btn btn-success w-100 mt-3">
               Login
             </button>
           </form>

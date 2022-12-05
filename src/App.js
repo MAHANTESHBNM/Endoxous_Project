@@ -1,5 +1,5 @@
+import { useState,useEffect } from "react";
 import SideBar from "./Components/SideBar/SideBar";
-import { useState } from "react";
 import HomePage from "./Pages/HomePage/HomePage";
 import AllOrders from "./Pages/AllOrders/AllOrders";
 import AllOrdersPage3 from "./Pages/AllOrdersPage3/AllOrdersPage3";
@@ -26,11 +26,22 @@ import Coupon from "./Pages/Coupon/Coupon";
 import CouponList from "./Pages/Coupon/CouponList";
 import FAQs from "./Pages/FAQs/FAQs";
 
+import store from './redux/store'
+import AdminPrivateRoute from './utils/protectiveRoute'
+import { getAdmin,loadUser } from "./redux/actions/userAction";
+
+
 function App() {
   const [show, setShow] = useState(false);
   const toggle = () => {
     setShow(!show);
   };
+
+  useEffect(() => {
+    store.dispatch(loadUser());
+    store.dispatch(getAdmin());
+   
+}, []);
 
   return (
     <div className="App">
@@ -42,6 +53,10 @@ function App() {
           <Route path="/verifyotp" element={<VerifyOTP />} />
           <Route path="/coupon" element={<Coupon />} />
           <Route path="/couponlist" element={<CouponList toggle={toggle} />} />
+          <Route path="*" element={<PageNotFound toggle={toggle} />} />
+
+          {/* <Route path="/coupon" element={<Coupon />} />
+          <Route path="/couponlist" element={<CouponList />} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="*" element={<PageNotFound toggle={toggle} />} />
           <Route path="/products" element={<AllProducts toggle={toggle} />} />
@@ -86,7 +101,54 @@ function App() {
           <Route
             path="/product/edit/:id"
             element={<EditProducts show={show} />}
-          />
+          /> */}
+          <Route path="/faqs" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<FAQs />} />  </Route>
+
+        <Route path="/orders" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<AllOrders />} />  </Route>
+
+        <Route path="/products" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<AllProducts />} />  </Route>
+
+        <Route path="/dashboard" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<HomePage />} />  </Route>
+
+        <Route path="/orders/:id" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<AllOrdersPage3 />} />  </Route>
+
+        <Route path="/allnurseries" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<AllNurseries />} />  </Route>
+
+        <Route path="/ordersreport" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<OrdersReports />} />  </Route>
+
+        <Route path="/salesreport" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<SalesReport />} />  </Route>
+
+        <Route path="/catagories" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<Categories />} />  </Route>
+
+        <Route path="/customers" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<MyCustomers />} />  </Route>
+
+        <Route path="/customer/:id" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<CustomerName />} />  </Route>
+
+        <Route path="/category/new" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<AddCategory />} />  </Route>
+
+        <Route path="/product/new" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<AddProducts />} />  </Route>
+
+        <Route path="/analystics" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<Analystics />} />  </Route>
+
+        <Route path="/support" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<CustomerSupport />} />  </Route>
+
+        <Route path="/product/edit/:id" element={<AdminPrivateRoute isAdmin={true} />}>
+        <Route path="" element={<EditProducts />} />  </Route>
         </Routes>
       </BrowserRouter>
     </div>

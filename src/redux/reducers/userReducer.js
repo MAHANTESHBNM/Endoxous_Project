@@ -47,7 +47,10 @@ import {
   RESEND_PHONE_OTP_FAIL,
   RETURNING_USERS_REQUEST,
   RETURNING_USERS_SUCCESS,
-  RETURNING_USERS_FAIL
+  RETURNING_USERS_FAIL,
+  ADMIN_REQUEST,
+  ADMIN_SUCCESS,
+  ADMIN_FAIL,
 } from "../../constants/userConstants";
 
 // Register and Login
@@ -56,6 +59,7 @@ export const userReducer = (state = { user: {} }, action) => {
     case LOGIN_REQUEST:
     case REGISTER_USER_REQUEST:
     case LOAD_USER_REQUEST:
+
       return {
         loading: true,
         isAuthenticated: false,
@@ -359,6 +363,39 @@ export const verifyUserReducer = (state = {}, action) => {
 
     case VERIFY_PHONE_FAIL:
     case RESEND_PHONE_OTP_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const adminReducer = (state = { }, action) => {
+  switch (action.type) {
+    case ADMIN_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ADMIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isAdmin: action.payload.ADMIN,
+      };
+
+    case ADMIN_FAIL:
       return {
         ...state,
         loading: false,

@@ -7,7 +7,7 @@ import { allNurseriesReducer } from "./reducers/nurseryReducer";
 import { allOrdersReducer, orderDetailsReducer, orderReducer,  usersOrdersReducer,addNoteReducer,deleteorderNoteReducer} from "./reducers/orderReducer";
 import { newProductReducer, productDetailsReducer, productReducer, productsReducer, newFAQReducer } from "./reducers/productReducers";
 import { ordersTicketReducer,allTicketsReducer,ticketActionsReducer } from "./reducers/ticketsReducer";
-import { allUsersReducer, userReducer, verifyUserReducer, userDetailsReducer,returningUsersReducer } from "./reducers/userReducer";
+import { adminReducer,allUsersReducer, userReducer, verifyUserReducer, userDetailsReducer,returningUsersReducer } from "./reducers/userReducer";
 
 const Store = configureStore({
   reducer: {
@@ -47,6 +47,7 @@ const Store = configureStore({
      allTickets : allTicketsReducer,
      ticketActions : ticketActionsReducer,
      newFAQ : newFAQReducer,
+     admin : adminReducer,
     // forgotPassword : forgotPasswordReducer,
     // deleteCart : deleteCartItemReducer,
     // shippingInfo : saveShippingReducer,
