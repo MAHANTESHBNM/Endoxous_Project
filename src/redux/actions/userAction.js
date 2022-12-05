@@ -43,7 +43,10 @@ import {
   RESEND_PHONE_OTP_FAIL,
   RETURNING_USERS_REQUEST,
   RETURNING_USERS_SUCCESS,
-  RETURNING_USERS_FAIL
+  RETURNING_USERS_FAIL,
+  ADMIN_REQUEST,
+  ADMIN_SUCCESS,
+  ADMIN_FAIL,
 } from "../../constants/userConstants";
 import axios from "../../axios";
 import axiosWithoutToken from "../../axios-without";
@@ -240,6 +243,19 @@ export const getUserDetails = (id) => async (dispatch) => {
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({ type: USER_DETAILS_FAIL, payload: error.response.data });
+  }
+};
+
+// Get --Admin
+export const getAdmin = () => async (dispatch) => {
+  try {
+    dispatch({ type: ADMIN_REQUEST });
+
+    const { data } = await axios.get(`/adminphone`);
+
+    dispatch({ type: ADMIN_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: ADMIN_FAIL, payload: error.response.data });
   }
 };
 

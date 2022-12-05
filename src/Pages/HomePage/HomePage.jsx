@@ -151,7 +151,13 @@ const HomePage = ({ toggle }) => {
    const yesterday= getYesterdayDate()
  
 // -------------------------------- Filtering --------------------------------
-  const todayOrders =
+  // const todayOrders =
+  //   orders && orders.filter((order) => (order.createdAt) === currentDate);
+
+  // const yesterdayOrders =
+  //   orders &&orders.filter((order) => order.createdAt === yesterday);
+
+    const todayOrders =
     orders && orders.filter((order) => (order.createdAt).slice(0, 10) === currentDate);
 
   const yesterdayOrders =

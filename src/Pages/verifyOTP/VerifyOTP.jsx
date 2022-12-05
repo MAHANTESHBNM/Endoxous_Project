@@ -45,7 +45,7 @@ const VarifyOTP = () => {
           className="d-flex justify-content-center flex-column align-items-center w-100"
           style={{ height: "100vh" }}
         >
-          <h2 className="mb-5">Varify your OTP</h2>
+          <h2 className="mb-5">Verify your OTP</h2>
           <form action="" onSubmit={VerifyPhoneSubmit}>
             <div className="mb-2">
               <label for="exampleInputOTP" className="form-label">
