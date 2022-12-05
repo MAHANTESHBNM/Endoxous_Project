@@ -74,10 +74,10 @@ const AllNurseries = ({ toggle }) => {
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
-            <div className="addNewNursery d-flex px-5 ">
+            <div className="d-flex px-5 filterInput">
               <button
                 type="button"
-                className="btn-AllNurseries btn btn-md"
+                className=" btn-AllNurseries btn btn-md"
                 onClick={addNewNurseryHandler}
               >
                 + Add new nursery

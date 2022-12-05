@@ -124,8 +124,8 @@ const MyCustomers = ({ toggle }) => {
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
-            <div className="px-4">
-              <div className="d-flex px-4 ">
+            <div className="px-4 filterInput">
+              <div className="d-flex px-4">
                 {/* <div className="p2-selection mx-2">
                   <select
                     className="form-select "
@@ -148,7 +148,7 @@ const MyCustomers = ({ toggle }) => {
                     <option value="3">Three</option>
                   </select>
                 </div> */}
-                <div className="p2-selection mx-2">
+                <div className="p2-selection mx-2 filterInput">
                   <select
                     className="form-select "
                     aria-label="Default select example"

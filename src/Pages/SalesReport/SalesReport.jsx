@@ -152,9 +152,8 @@ const SalesReport = ({ toggle }) => {
                 Rs {totalSalesAmount && totalSalesAmount}
               </h4>
             </div>
-            <div>
-              <div className="d-flex px-4 ">
-                <div className="p2-selection mx-2"></div>
+            <div className="filterInput px-4">
+              <div className="d-flex px-4 filterInput">
                 {/* <div className="p2-selection mx-2 ">
                   <select
                     className="form-select "
@@ -170,7 +169,7 @@ const SalesReport = ({ toggle }) => {
                       ))}
                   </select>
                 </div> */}
-                <div className="p2-selection mx-2">
+                <div className="p2-selection mx-2 filterInput">
                   <select
                     className="form-select "
                     aria-label="Default select example"

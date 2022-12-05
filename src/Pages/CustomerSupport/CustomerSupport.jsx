@@ -111,22 +111,21 @@ const CustomerSupport = ({ toggle }) => {
         <div className="d-flex flex-wrap px-4" style={{ width: "60%" }}>
           <div className="section2-btn">
             <button
-              className="s2-btn fs-6"
-              style={{ padding: "0 .7rem" }}
+              className="s2-btn py-2 px-3 my-2"
               onClick={() => showAll()}
               autoFocus
             >
               All
             </button>
             <button
-              className="s2-btn fs-6"
+              className="s2-btn py-2 px-3 my-2"
               style={{ padding: "0 .7rem" }}
               onClick={() => showNew()}
             >
               New tickets
             </button>
             <button
-              className="s2-btn fs-6"
+              className="s2-btn py-2 px-3 my-2"
               style={{ padding: "0 .7rem" }}
               onClick={() => showClossed()}
             >
