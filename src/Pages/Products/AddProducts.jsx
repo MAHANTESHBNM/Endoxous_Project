@@ -217,7 +217,7 @@ const AddProducts = ({ toggle }) => {
               <div className="mb-2">
                 <label htmlFor="exampleInputNumber" className="form-label">
                   Product Category
-                </label>{" "}
+                </label>
                 <br />
                 <select
                   className="bg-white p-2 rounded"
@@ -247,10 +247,10 @@ const AddProducts = ({ toggle }) => {
                     aria-describedby="numberHelp"
                     value={mrp}
                     onChange={(e) => setMrp(e.target.value)}
-                    required=" "
+                    required=""
                   />
                 </div>
-                <div className="mb-2">
+                <div className="mb-2 d-flex flex-column align-items-end">
                   <label htmlFor="exampleInputNumber" className="form-label">
                     PRICE
                   </label>
@@ -265,7 +265,16 @@ const AddProducts = ({ toggle }) => {
                   />
                   <input
                     htmlFor="exampleInputNumber"
-                    className="form-label bg-success mt-1 px-1 text-white rounded w-50"
+                    className="form-label mt-1 px-1 text-white w-50"
+                    style={{
+                      background: "rgb(60, 104, 87)",
+                      background:
+                        "linear-gradient(90deg, rgba(60, 104, 87, 1) 0%, rgba(0, 81, 41, 1) 100%)",
+                      border: "none",
+                      outline: "none",
+                      borderRadius: ".2rem",
+                      textAlign: "center",
+                    }}
                     onChange={(e) => setDiscount(e.target.value)}
                     value={`${Math.floor(offerPercentage)} % OFF`}
                   />
