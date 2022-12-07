@@ -165,7 +165,7 @@ const AddProducts = ({ toggle }) => {
         <Loader />
       ) : (
         <div
-          className="conatiner-sm d-flex justify-content-center flex-column align-items-center section bg-light h-100"
+          className="px-4 conatiner-sm d-flex justify-content-center flex-column align-items-center section bg-light h-100"
           style={{ height: "100vh" }}
         >
           <h2 className="mb-5 mt-5">Add New Product</h2>
@@ -390,7 +390,7 @@ const AddProducts = ({ toggle }) => {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-success w-100 mt-3 mb-5">
+            <button type="submit" className="btn addNewNursery mt-3 mb-5">
               <Link to="" style={{ color: "white", textDecoration: "none" }}>
                 Add Products
               </Link>

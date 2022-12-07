@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addNewFAQ, clearErrors } from "../../redux/actions/productAction";
 import { ADD_FAQ_RESET } from "../../constants/productConstants";
 
-const FAQs = () => {
+const FAQs = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,60 +37,90 @@ const FAQs = () => {
   };
 
   return (
-    <div
-      className="conatiner-sm d-flex justify-content-center flex-column align-items-center w-100 bg-light"
-      style={{ height: "100vh" }}
-    >
-      <div className="bg-white rounded px-5 mt-5 py-2">
-        <h2 className="">Add New Coupon</h2>
-        <form
-          action=""
-          encType="multipart/form-data"
-          className="mt-4"
-          onSubmit={createCouponSubmitHandler}
-        >
-          <div className="mb-2 ">
-            <label htmlFor="exampleInputNumber" className="form-label">
-              Product ID
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputNumber"
-              aria-describedby="numberHelp"
-              onChange={(e) => setProductId(e.target.value)}
-            />
-          </div>
-
-          <div className="mb-2">
-            <label htmlFor="exampleInputNumber" className="form-label">
-              Question
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputNumber"
-              aria-describedby="numberHelp"
-              onChange={(e) => setQuestion(e.target.value)}
-            />
-          </div>
-
-          <div className="mb-2">
-            <label htmlFor="exampleInputNumber" className="form-label">
-              Answer
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputNumber"
-              aria-describedby="numberHelp"
-              onChange={(e) => setAnswer(e.target.value)}
-            />
-          </div>
-          <button type="submit" className="btn btn-success w-100 mt-3 mb-5">
-            Add FAQ
+    <div className="section2">
+      <nav
+        className="s2-navabar navbar navbar-expand-lg"
+        style={{ backgroundColor: "white" }}
+      >
+        <div className="container-fluid px-5">
+          <button
+            onClick={() => toggle()}
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
           </button>
-        </form>
+
+          <NavLink className="fw-bold navbar-brand" to="">
+            Add FAQs
+          </NavLink>
+          <button
+            className="btn btn-outline-success btnround"
+            type="submit"
+          ></button>
+        </div>
+        <hr />
+      </nav>
+      <div
+        className="conatiner-sm d-flex justify-content-center flex-column align-items-center w-100 bg-light"
+        style={{ height: "100vh" }}
+      >
+        <div className="bg-white rounded px-5 mt-5 py-2">
+          <h2 className="">Add New FAQ</h2>
+          <form
+            action=""
+            encType="multipart/form-data"
+            className="mt-4"
+            onSubmit={createCouponSubmitHandler}
+          >
+            <div className="mb-2 ">
+              <label htmlFor="exampleInputNumber" className="form-label">
+                Product ID
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputNumber"
+                aria-describedby="numberHelp"
+                onChange={(e) => setProductId(e.target.value)}
+              />
+            </div>
+
+            <div className="mb-2">
+              <label htmlFor="exampleInputNumber" className="form-label">
+                Question
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputNumber"
+                aria-describedby="numberHelp"
+                onChange={(e) => setQuestion(e.target.value)}
+              />
+            </div>
+
+            <div className="mb-2">
+              <label htmlFor="exampleInputNumber" className="form-label">
+                Answer
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputNumber"
+                aria-describedby="numberHelp"
+                onChange={(e) => setAnswer(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="btn addNewNursery w-100 mt-3 mb-5">
+              Add FAQ
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

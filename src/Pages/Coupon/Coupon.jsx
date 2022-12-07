@@ -74,7 +74,7 @@ const Coupon = ({ toggle }) => {
           </button>
 
           <NavLink className="fw-bold navbar-brand" to="">
-            Add Category
+            Add Coupon
           </NavLink>
           <button
             className="btn btn-outline-success btnround"
