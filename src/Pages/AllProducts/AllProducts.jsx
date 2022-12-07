@@ -262,7 +262,7 @@ const AllProducts = ({ toggle }) => {
                                 <td>
                                   <div
                                     style={{
-                                      backgroundColor: "#ececec",
+                                      border: "none",
                                       borderRadius: ".2rem",
                                       width: "40px",
                                       height: "40px",
@@ -312,10 +312,10 @@ const AllProducts = ({ toggle }) => {
                                 <td>
                                   <div
                                     style={{
-                                      backgroundColor: "#ececec",
+                                      border: "none",
                                       borderRadius: ".5rem",
-                                      width: "70px",
-                                      height: "70px",
+                                      width: "40px",
+                                      height: "40px",
                                       overflow: "hidden",
                                     }}
                                   >
@@ -384,7 +384,7 @@ const AllProducts = ({ toggle }) => {
                                     <div
                                       className="cardBox"
                                       style={{
-                                        backgroundColor: "#ececec",
+                                        border: "none",
                                         borderRadius: ".5rem",
                                         width: "70px",
                                         height: "70px",

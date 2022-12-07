@@ -87,8 +87,16 @@ const Coupon = ({ toggle }) => {
         className="conatiner-sm d-flex justify-content-center flex-column align-items-center w-100 bg-light"
         style={{ height: "100vh" }}
       >
-        <div className="bg-white rounded px-5 mt-5 py-2">
-          <h2 className="">Add New Coupon</h2>
+        <div
+          className="bg-white rounded px-5 pt-4 py-2"
+          style={{
+            borderRadius: ".5rem",
+            backgroundColor: "white",
+            boxShadow: "0 0 15px #546b912b",
+            border: "none",
+          }}
+        >
+          <h2 className="fs-4 text-center">Add New Coupon</h2>
           <form
             action=""
             encType="multipart/form-data"
@@ -172,7 +180,7 @@ const Coupon = ({ toggle }) => {
                 onChange={(e) => setMessage(e.target.value)}
               />
             </div>
-            <button type="submit" className="btn addNewNursery w-100 mt-3 mb-5">
+            <button type="submit" className="btn addNewNursery w-100 mt-3 mb-4">
               Add
             </button>
           </form>

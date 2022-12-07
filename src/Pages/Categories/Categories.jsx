@@ -225,7 +225,7 @@ const Categories = ({ toggle }) => {
                           <th scope="row">
                             <div
                               style={{
-                                backgroundColor: "#ececec",
+                                border: "none",
                                 borderRadius: ".2rem",
                                 width: "40px",
                                 height: "40px",

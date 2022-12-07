@@ -88,6 +88,13 @@ input[type="number"] {
   background-color: #eaeaea2e;
 }
 
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 0 15px #546b912b;
+}
+
 @media only screen and (max-width: 992px) {
   .mainsection {
     width: 100%;

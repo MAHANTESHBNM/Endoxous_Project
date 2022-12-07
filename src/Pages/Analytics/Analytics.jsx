@@ -249,23 +249,11 @@ const Analytics = ({ toggle }) => {
       ) : (
         <>
           <div className="d-flex justify-content-between align-items-center py-1">
-            <div className="p-5">
+            <div className="px-5 pt-5 pb-3">
               <h4>Overview</h4>
             </div>
             <div>
-              <div className="d-flex align-items-center px-4 ">
-                {/* <button type="button" className="btn btn-sm btn-link me-5">
-              Reorder Catagory
-            </button> */}
-                {/* <div className="p2-selection mx-2">
-                  <select
-                    className="form-select "
-                    aria-label="Default select example"
-                  >
-                    <option selected>All nurseries</option>
-                    <option value="1">Greens Calicut</option>
-                  </select>
-                </div> */}
+              <div className="d-flex align-items-center px-5 pt-5 pb-3 ">
                 <div className="p2-selection mx-2">
                   <select
                     selected={orderDate}
@@ -282,64 +270,128 @@ const Analytics = ({ toggle }) => {
             </div>
           </div>
 
-          <div className="container d-flex justify-content-between w-100 px-5">
-            <div className="card" style={{ width: "24%" }}>
+          <div className="container d-flex flex-wrap justify-content-between w-100 px-5">
+            <div
+              className="card my-2"
+              style={{
+                width: "24%",
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               <div className="card-body">
-                <h6 className="card-title">AVG ORDERS PER DAY</h6>
-                <h2 className="card-subtitle mb-2 text-muted">{avg}</h2>
+                <h6 style={{ opacity: ".7" }} className="card-title">
+                  AVG ORDERS PER DAY
+                </h6>
+                <h4 className="card-subtitle mb-2">{avg}</h4>
               </div>
             </div>
-            <div className="card" style={{ width: "24%" }}>
+            <div
+              className="card my-2"
+              style={{
+                width: "24%",
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               <div className="card-body">
-                <h6 className="card-title">AVG ORDER VALUE</h6>
+                <h6 style={{ opacity: ".7" }} className="card-title">
+                  AVG ORDER VALUE
+                </h6>
                 {/* <h2 className="card-subtitle mb-2 text-muted">{Math.round(averageOrderValue)}</h2> */}
-                <h2 className="card-subtitle mb-2 text-muted">
+                <h4 className="card-subtitle mb-2">
                   {averageOrderValue.toFixed(2)}
-                </h2>
+                </h4>
               </div>
             </div>
-            <div className="card" style={{ width: "24%" }}>
+            <div
+              className="card my-2"
+              style={{
+                width: "24%",
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               <div className="card-body">
-                <h6 className="card-title">AVG SALES PER DAY</h6>
-                <h2 className="card-subtitle mb-2 text-muted">
-                  Rs {avgSale.toFixed(2)}
-                </h2>
+                <h6 style={{ opacity: ".7" }} className="card-title">
+                  AVG SALES PER DAY
+                </h6>
+                <h4 className="card-subtitle mb-2">Rs {avgSale.toFixed(2)}</h4>
               </div>
             </div>
-            <div className="card" style={{ width: "24%" }}>
+            <div
+              className="card my-2"
+              style={{
+                width: "24%",
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               <div className="card-body">
-                <h6 className="card-title">RETURNING CUSTOMERS</h6>
-                <h2 className="card-subtitle mb-2 text-muted">
+                <h6 style={{ opacity: ".7" }} className="card-title">
+                  RETURNING CUSTOMERS
+                </h6>
+                <h4 className="card-subtitle mb-2">
                   {returningCustomers.toFixed(2)} %
-                </h2>
+                </h4>
               </div>
             </div>
           </div>
 
-          <div className="container d-flex justify-content-between w-100 px-5 py-4">
-            <div className="card" style={{ width: "30.5rem" }}>
+          <div className="container d-flex flex-wrap justify-content-between w-100 px-5 py-4">
+            <div
+              className="card my-2"
+              style={{
+                width: "49%",
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               <div className="card-body">
-                <h5 className="card-title">TOTAL ORDERS</h5>
+                <h6 style={{ opacity: ".7" }} className="card-title">
+                  TOTAL ORDERS
+                </h6>
                 <h2 className="card-subtitle mb-2 text-muted">{orders}</h2>
               </div>
             </div>
-            <div className="card" style={{ width: "30.5rem" }}>
+            <div
+              className="card my-2"
+              style={{
+                width: "49%",
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               <div className="card-body">
-                <h5 className="card-title">TOTAL SALES</h5>
+                <h6 style={{ opacity: ".7" }} className="card-title">
+                  TOTAL SALES
+                </h6>
                 <h2 className="card-subtitle mb-2 text-muted">{sales}</h2>
               </div>
             </div>
           </div>
 
-          <hr style={{ width: "95%", margin: "1rem auto" }} />
+          <hr style={{ width: "95%", margin: "2rem auto" }} />
           <div className="linechart">
             <Line data={orderReport} />
           </div>
-          <hr style={{ width: "95%", margin: "1rem auto" }} />
+          <hr style={{ width: "95%", margin: "2rem auto" }} />
           <div className="linechart">
             <Line data={salesReport} />
           </div>
-          <hr style={{ width: "95%", margin: "1rem auto" }} />
+          <hr style={{ width: "95%", margin: "2rem auto" }} />
 
           {/* <div className="container d-flex justify-content-between w-100 px-5 py-4">
             <div className="card" style={{ width: "30.5rem" }}>
