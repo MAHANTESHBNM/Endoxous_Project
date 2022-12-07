@@ -270,7 +270,7 @@ const AllProducts = ({ toggle }) => {
                                     }}
                                   >
                                     <img
-                                      className="bg-primary img-fluid rounded-start"
+                                      className="bg-primary img-fluid"
                                       src={product.images[0]?.url}
                                       alt="img"
                                     />
@@ -320,7 +320,7 @@ const AllProducts = ({ toggle }) => {
                                     }}
                                   >
                                     <img
-                                      className="bg-primary img-fluid rounded-start"
+                                      className="bg-primary img-fluid"
                                       src={product.images[0]?.url}
                                       alt="img"
                                     />
@@ -393,7 +393,7 @@ const AllProducts = ({ toggle }) => {
                                     >
                                       <img
                                         src={product.images[0]?.url}
-                                        className=" bg-primary img-fluid rounded-start"
+                                        className=" bg-primary img-fluid"
                                         alt="img"
                                       />
                                     </div>

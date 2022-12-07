@@ -10,18 +10,27 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { error, loading, message,success,isLogout,isLogined,isAuthenticated,user:LogetUser} = useSelector((state) => state.user);
-  const { isAdmin} = useSelector((state) => state.admin);
+  const {
+    error,
+    loading,
+    message,
+    success,
+    isLogout,
+    isLogined,
+    isAuthenticated,
+    user: LogetUser,
+  } = useSelector((state) => state.user);
+  const { isAdmin } = useSelector((state) => state.admin);
 
   const [phone, setPhone] = useState("");
   console.log(phone, "---- phone");
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    if(isAdmin&&isAdmin ===phone ){
+    if (isAdmin && isAdmin === phone) {
       dispatch(login(phone));
-    }else{
-      toast.warning(" Access Denied!!! ")
+    } else {
+      toast.warning(" Access Denied!!! ");
     }
   };
 
@@ -30,18 +39,20 @@ const Login = () => {
       toast.error(error.message);
     }
     if (isAuthenticated) {
-      if(success){
+      if (success) {
         toast.success(message);
         return navigate("/verifyotp");
-       
-      }else if (LogetUser&&LogetUser.role === 'admin' && LogetUser.power === 'Hero'){
-        navigate('/dashboard')
-      }else{
-          navigate('/')
-        }
+      } else if (
+        LogetUser &&
+        LogetUser.role === "admin" &&
+        LogetUser.power === "Hero"
+      ) {
+        navigate("/dashboard");
+      } else {
+        navigate("/");
+      }
     }
-  }, [error, dispatch, message, navigate,success,LogetUser,isAuthenticated]);
-
+  }, [error, dispatch, message, navigate, success, LogetUser, isAuthenticated]);
 
   return (
     <div>
