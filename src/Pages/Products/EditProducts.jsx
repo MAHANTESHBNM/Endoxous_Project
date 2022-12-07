@@ -168,7 +168,7 @@ const EditProducts = ({ toggle }) => {
   const offerPercentage = (100 * priceDifference) / mrp;
 
   return (
-    <div className="">
+    <div className="section2">
       <nav
         className="s2-navabar navbar navbar-expand-lg"
         style={{ backgroundColor: "white" }}
@@ -199,7 +199,7 @@ const EditProducts = ({ toggle }) => {
       </nav>
 
       <div
-        className="conatiner-sm d-flex justify-content-center flex-column align-items-center section bg-light h-100"
+        className="conatiner-sm px-5 d-flex justify-content-center flex-column align-items-center section bg-light h-100"
         style={{ height: "100vh" }}
       >
         <h2 className="mb-5 mt-5"> Product Details</h2>
@@ -319,7 +319,7 @@ const EditProducts = ({ toggle }) => {
               </div>
             </div>
 
-            <div className="bg-white p-4 rounded mt-3 d-flex">
+            <div className="bg-white p-4 rounded mt-3 d-flex flex-wrap">
               Product Images
               <div className="multipleImages" id="createProductFormFile">
                 <label htmlFor="images" className="imageLabel">
@@ -337,7 +337,7 @@ const EditProducts = ({ toggle }) => {
                   />
                 </label>
               </div>
-              <div id="createProductFormImage" className="images">
+              {/* <div id="createProductFormImage" className="images">
                 {imagesPreviw.map((image, index) => (
                   <div className="image">
                     <img
@@ -360,7 +360,7 @@ const EditProducts = ({ toggle }) => {
                     </button>
                   </div>
                 ))}
-              </div>
+              </div> */}
               <div id="createProductFormImage" className="images">
                 {oldImages.map((image, index) => (
                   <div className="image">

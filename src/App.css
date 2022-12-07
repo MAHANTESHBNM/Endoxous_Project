@@ -168,7 +168,6 @@ input[type="number"] {
   }
 
   .cardView {
-    display: flex;
     justify-content: flex-start !important;
     padding: 1rem;
   }

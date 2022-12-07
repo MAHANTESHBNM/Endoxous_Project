@@ -98,7 +98,7 @@ const AllProducts = ({ toggle }) => {
       products && products.filter((product) => product.seller === nursery);
     setFilteredProducts(nuserysproducts);
     setState(true);
-    if (nursery == 1) {
+    if (nursery === 1) {
       setFilteredProducts();
     }
   };
@@ -150,7 +150,7 @@ const AllProducts = ({ toggle }) => {
             onChange={(e) => setKeyword(e.target.value)}
           />
         </div>
-        <div className="px-5">
+        <div className="px-5 filterInput">
           <div className="d-flex allOptions align-items-center justify-content-between">
             <div className="modeHolder d-flex justify-content-center">
               <div className="form-check">
@@ -215,7 +215,7 @@ const AllProducts = ({ toggle }) => {
       ) : (
         <div>
           {/* List View */}
-          {status == false ? (
+          {status === false ? (
             <div className="tableForAll s2-table m-5 ">
               <div
                 className="subTableForAll s2-table"
@@ -263,12 +263,11 @@ const AllProducts = ({ toggle }) => {
                                   <div
                                     style={{
                                       backgroundColor: "#ececec",
-                                      borderRadius: ".5rem",
-                                      width: "70px",
-                                      height: "70px",
+                                      borderRadius: ".2rem",
+                                      width: "40px",
+                                      height: "40px",
                                       overflow: "hidden",
                                     }}
-                                    scope="row"
                                   >
                                     <img
                                       className="bg-primary img-fluid rounded-start"
@@ -283,7 +282,9 @@ const AllProducts = ({ toggle }) => {
                                 {/* <td><button type="button" className="btn btn-outline-danger"
                              onClick={()=> dispatch(deleteProduct(product._id))}  >Delete</button></td> */}
 
-                                <td>{product.stock}</td>
+                                <td className="text-success">
+                                  {product.stock}
+                                </td>
 
                                 <td>...</td>
                                 <td>Rs {product.price}</td>
@@ -317,7 +318,6 @@ const AllProducts = ({ toggle }) => {
                                       height: "70px",
                                       overflow: "hidden",
                                     }}
-                                    scope="row"
                                   >
                                     <img
                                       className="bg-primary img-fluid rounded-start"
@@ -399,21 +399,35 @@ const AllProducts = ({ toggle }) => {
                                     </div>
                                   </div>
                                   <div className="col-md-8 ">
-                                    <div className="card-body">
-                                      <h5 className="card-title text-capitalize">
+                                    <div
+                                      className="card-body"
+                                      style={{ lineHeight: ".7rem" }}
+                                    >
+                                      <h6
+                                        className="card-title text-capitalize"
+                                        style={{
+                                          opacity: ".9",
+                                        }}
+                                      >
                                         {product.name}
-                                      </h5>
+                                      </h6>
                                       <p className="card-text">
-                                        <small className="text-muted text-capitalize">
+                                        <small
+                                          className="text-muted text-capitalize"
+                                          style={{
+                                            opacity: ".6",
+                                            fontWeight: "500",
+                                          }}
+                                        >
                                           per piece
                                         </small>
                                       </p>
-                                      <p className="card-text ">
+                                      {/* <p className="card-text ">
                                         <small className="text-muted ">
                                           {product._id}
                                         </small>
-                                      </p>
-                                      <span className="card-text fs-5">
+                                      </p> */}
+                                      <span className="card-text text-success">
                                         Rs {product.mrp}
                                       </span>
 
@@ -433,26 +447,30 @@ const AllProducts = ({ toggle }) => {
                                     </div>
                                   </div>
                                   <hr style={{ width: "95%" }} />
-                                  <div className="d-flex p-2 justify-content-between align-items-center">
-                                    <h5>In Stock: {product.stock}</h5>
-                                    <button
-                                      type="button"
-                                      className="btn  btn-danger btn-md"
-                                      onClick={() =>
-                                        dispatch(deleteProduct(product._id))
-                                      }
-                                    >
-                                      Delete
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className="btn bg-success btn-success btn-md"
-                                      onClick={() =>
-                                        ProductDetailsHandler(product._id)
-                                      }
-                                    >
-                                      Details
-                                    </button>
+                                  <div className="d-flex px-2 pb-2 justify-content-between align-items-center">
+                                    <h6 className="text-success">
+                                      In Stock: {product.stock}
+                                    </h6>
+                                    <div className="d-flex align-items-center">
+                                      <button
+                                        type="button"
+                                        className="btn btn-outline-danger btn-md mx-2"
+                                        onClick={() =>
+                                          dispatch(deleteProduct(product._id))
+                                        }
+                                      >
+                                        Delete
+                                      </button>
+                                      <button
+                                        type="button"
+                                        className="btn btn-outline-success btn-md"
+                                        onClick={() =>
+                                          ProductDetailsHandler(product._id)
+                                        }
+                                      >
+                                        Details
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -506,16 +524,33 @@ const AllProducts = ({ toggle }) => {
                                     </div>
                                   </div>
                                   <div className="col-md-8">
-                                    <div className="card-body">
-                                      <h5 className="card-title text-capitalize">
+                                    <div
+                                      className="card-body"
+                                      style={{ lineHeight: ".7rem" }}
+                                    >
+                                      <h6
+                                        className="card-title text-capitalize"
+                                        style={{ opacity: ".9" }}
+                                      >
                                         {product.name}
-                                      </h5>
+                                      </h6>
                                       <p className="card-text">
-                                        <small className="text-muted text-capitalize">
+                                        <small
+                                          className="text-muted text-capitalize"
+                                          style={{
+                                            opacity: ".6",
+                                            fontWeight: "500",
+                                          }}
+                                        >
                                           per piece
                                         </small>
                                       </p>
-                                      <span className="card-text fs-5">
+                                      {/* <p className="card-text ">
+                                        <small className="text-muted ">
+                                          {product._id}
+                                        </small>
+                                      </p> */}
+                                      <span className="card-text text-success">
                                         Rs {product.mrp}
                                       </span>
 

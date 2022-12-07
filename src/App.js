@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import SideBar from "./Components/SideBar/SideBar";
 import HomePage from "./Pages/HomePage/HomePage";
 import AllOrders from "./Pages/AllOrders/AllOrders";
@@ -26,10 +26,9 @@ import Coupon from "./Pages/Coupon/Coupon";
 import CouponList from "./Pages/Coupon/CouponList";
 import FAQs from "./Pages/FAQs/FAQs";
 
-import store from './redux/store'
-import AdminPrivateRoute from './utils/protectiveRoute'
-import { getAdmin,loadUser } from "./redux/actions/userAction";
-
+import store from "./redux/store";
+import AdminPrivateRoute from "./utils/protectiveRoute";
+import { getAdmin, loadUser } from "./redux/actions/userAction";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -40,8 +39,7 @@ function App() {
   useEffect(() => {
     store.dispatch(loadUser());
     store.dispatch(getAdmin());
-   
-}, []);
+  }, []);
 
   return (
     <div className="App">
@@ -103,52 +101,107 @@ function App() {
             element={<EditProducts show={show} />}
           /> */}
           <Route path="/faqs" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<FAQs />} />  </Route>
+            <Route path="" element={<FAQs />} />
+          </Route>
 
-        <Route path="/orders" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<AllOrders />} />  </Route>
+          <Route path="/orders" element={<AdminPrivateRoute isAdmin={true} />}>
+            <Route path="" element={<AllOrders toggle={toggle} />} />
+          </Route>
 
-        <Route path="/products" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<AllProducts />} />  </Route>
+          <Route
+            path="/products"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<AllProducts toggle={toggle} />} />
+          </Route>
 
-        <Route path="/dashboard" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<HomePage />} />  </Route>
+          <Route
+            path="/dashboard"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<HomePage toggle={toggle} />} />
+          </Route>
 
-        <Route path="/orders/:id" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<AllOrdersPage3 />} />  </Route>
+          <Route
+            path="/orders/:id"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<AllOrdersPage3 toggle={toggle} />} />
+          </Route>
 
-        <Route path="/allnurseries" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<AllNurseries />} />  </Route>
+          <Route
+            path="/allnurseries"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<AllNurseries toggle={toggle} />} />
+          </Route>
 
-        <Route path="/ordersreport" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<OrdersReports />} />  </Route>
+          <Route
+            path="/ordersreport"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<OrdersReports toggle={toggle} />} />
+          </Route>
 
-        <Route path="/salesreport" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<SalesReport />} />  </Route>
+          <Route
+            path="/salesreport"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<SalesReport toggle={toggle} />} />
+          </Route>
 
-        <Route path="/catagories" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<Categories />} />  </Route>
+          <Route
+            path="/catagories"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<Categories toggle={toggle} />} />
+          </Route>
 
-        <Route path="/customers" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<MyCustomers />} />  </Route>
+          <Route
+            path="/customers"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<MyCustomers toggle={toggle} />} />
+          </Route>
 
-        <Route path="/customer/:id" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<CustomerName />} />  </Route>
+          <Route
+            path="/customer/:id"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<CustomerName />} />
+          </Route>
 
-        <Route path="/category/new" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<AddCategory />} />  </Route>
+          <Route
+            path="/category/new"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<AddCategory />} />{" "}
+          </Route>
 
-        <Route path="/product/new" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<AddProducts />} />  </Route>
+          <Route
+            path="/product/new"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<AddProducts />} />{" "}
+          </Route>
 
-        <Route path="/analystics" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<Analystics />} />  </Route>
+          <Route
+            path="/analystics"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<Analystics toggle={toggle} />} />
+          </Route>
 
-        <Route path="/support" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<CustomerSupport />} />  </Route>
+          <Route path="/support" element={<AdminPrivateRoute isAdmin={true} />}>
+            <Route path="" element={<CustomerSupport toggle={toggle} />} />
+          </Route>
 
-        <Route path="/product/edit/:id" element={<AdminPrivateRoute isAdmin={true} />}>
-        <Route path="" element={<EditProducts />} />  </Route>
+          <Route
+            path="/product/edit/:id"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route path="" element={<EditProducts toggle={toggle} />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -364,7 +364,10 @@ const AllOrders = ({ toggle }) => {
                   }}
                 >
                   <thead
-                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                    style={{
+                      backgroundColor: "#eaeaea",
+                      fontWeight: "500",
+                    }}
                   >
                     <tr>
                       <th scope="col">Order ID</th>
