@@ -226,14 +226,14 @@ const Categories = ({ toggle }) => {
                             <div
                               style={{
                                 backgroundColor: "#ececec",
-                                borderRadius: ".5rem",
-                                width: "70px",
-                                height: "70px",
+                                borderRadius: ".2rem",
+                                width: "40px",
+                                height: "40px",
                                 overflow: "hidden",
                               }}
                             >
                               <img
-                                className="bg-primary img-fluid rounded-start"
+                                className="bg-primary img-fluid"
                                 src={category?.avatar[0]?.url}
                                 alt="img"
                               />

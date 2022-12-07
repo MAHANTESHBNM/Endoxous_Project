@@ -104,11 +104,14 @@ const CustomerName = ({ toggle }) => {
         </div>
         <hr />
       </nav>
-      <div className="d-flex">
-        <div className="d-flex flex-wrap px-4" style={{ width: "60%" }}>
-          <div className="section2-btn py-4">
+      <div className="d-flex flex-wrap">
+        <div
+          className="d-flex flex-wrap px-4 customerNameContainer"
+          style={{ width: "60%", height: "100%" }}
+        >
+          <div className="section2-btn d-flex py-3">
             <button
-              className="s2-btn py-2 my-2"
+              className="s2-btn py-2 px-3 my-2"
               style={{ padding: ".8rem" }}
               onClick={() => showAll()}
               autoFocus
@@ -116,28 +119,28 @@ const CustomerName = ({ toggle }) => {
               All
             </button>
             <button
-              className="s2-btn py-2 px-2 my-2"
+              className="s2-btn py-2 px-3 my-2"
               style={{ padding: "0.7rem" }}
               onClick={() => showPending()}
             >
               Pending
             </button>
             <button
-              className="s2-btn py-2 px-2 my-2"
+              className="s2-btn py-2 px-3 my-2"
               style={{ padding: "0 .7rem" }}
               onClick={() => showShippied()}
             >
               Shipped
             </button>
             <button
-              className="s2-btn py-2 px-2 my-2"
+              className="s2-btn py-2 px-3 my-2"
               style={{ padding: "0 .7rem" }}
               onClick={() => showDelivered()}
             >
               Delivered
             </button>
             <button
-              className="s2-btn py-2 px-2 my-2"
+              className="s2-btn py-2 px-3 my-2"
               style={{ padding: "0 .7rem" }}
               onClick={() => showCancelled()}
             >
@@ -155,8 +158,14 @@ const CustomerName = ({ toggle }) => {
                       key={index}
                     >
                       <div className="row g-0 d-flex justify-content-center">
+                        <h6
+                          className="card-title text-wrap text-capitalize pt-2 px-2"
+                          style={{ opacity: ".9", fontSize: ".8rem" }}
+                        >
+                          Order no #{order?._id}
+                        </h6>
                         <div
-                          className="col-md-4"
+                          className="col-md-4 p-2"
                           style={{
                             display: "flex",
                             alignItems: "center",
@@ -175,32 +184,63 @@ const CustomerName = ({ toggle }) => {
                           >
                             <img
                               src={order.orderItems[0]?.image}
-                              className="img-fluid rounded-start"
+                              className="img-fluid"
                               alt="img"
                             />
                           </div>
                         </div>
 
-                        <div className="col-md-8">
-                          <div className="card-body">
-                            <h5 className="card-title text-capitalize">
-                              Order no #{order?._id}
-                            </h5>
+                        <div className="col-md-8 pb-2">
+                          <div
+                            className="card-body"
+                            style={{
+                              lineHeight: ".7rem",
+                            }}
+                          >
                             <p className="card-text">
-                              <small className="text-muted text-capitalize">
+                              <small
+                                className="text-muted text-capitalize"
+                                style={{
+                                  opacity: ".6",
+                                  fontWeight: "500",
+                                }}
+                              >
                                 item {order?.orderItems.length}
                               </small>
                             </p>
-                            <span className="card-text fs-5">
+                            <span className="card-text text-success">
                               Rs {order?.totalPrice}
                             </span>
 
                             <span
                               className="form-check form-switch d-inline me-2"
-                              style={{ position: "absolute", right: "0" }}
+                              style={{
+                                position: "absolute",
+                                // bottom: "45%",
+                                right: "0",
+                              }}
                             >
                               <input
-                                className=""
+                                style={
+                                  order.paymentInfo?.method === "online"
+                                    ? {
+                                        backgroundColor: "#eff5f1",
+                                        color: "#137e62",
+                                        borderRadius: ".2rem",
+                                        padding: "0.4rem 0",
+                                        border: "none",
+                                        outline: "none",
+                                      }
+                                    : {
+                                        backgroundColor: "#ffe5d4",
+                                        color: "#ff6a02",
+                                        borderRadius: ".2rem",
+                                        padding: "0.4rem 0",
+                                        border: "none",
+                                        outline: "none",
+                                      }
+                                }
+                                className="p-2"
                                 type="button"
                                 id="flexSwitchCheckDefault"
                                 value={order.paymentInfo?.method}
@@ -215,11 +255,11 @@ const CustomerName = ({ toggle }) => {
                           </div>
                         </div>
                         <hr style={{ width: "95%" }} />
-                        <div className="d-flex p-2 justify-content-between align-items-center">
-                          <h5>{order?.orderStatus}</h5>
+                        <div className="d-flex px-2 pb-2 justify-content-between align-items-center">
+                          <h6 className="m-0">{order?.orderStatus}</h6>
                           <button
                             type="button"
-                            className="btn bg-success btn-success btn-md"
+                            className="btn btn-outline-success btn-md allProductsBtn"
                             onClick={() => orderDetailsHandler(order?._id)}
                           >
                             Details
@@ -239,10 +279,17 @@ const CustomerName = ({ toggle }) => {
                       key={index}
                     >
                       <div className="row g-0 d-flex justify-content-center">
+                        <h6
+                          className="card-title text-wrap text-capitalize pt-2 px-2"
+                          style={{ opacity: ".9", fontSize: ".8rem" }}
+                        >
+                          Order no #{order?._id}
+                        </h6>
                         <div
-                          className="col-md-4"
+                          className="col-md-4 p-2 cardView"
                           style={{
                             display: "flex",
+                            // flexDirection: "column",
                             alignItems: "center",
                             justifyContent: "center",
                           }}
@@ -259,23 +306,31 @@ const CustomerName = ({ toggle }) => {
                           >
                             <img
                               src={order.orderItems[0]?.image}
-                              className="img-fluid rounded-start"
+                              className="img-fluid"
                               alt="img"
                             />
                           </div>
                         </div>
 
-                        <div className="col-md-8">
-                          <div className="card-body">
-                            <h5 className="card-title text-capitalize">
-                              Order no #{order?._id}
-                            </h5>
+                        <div className="col-md-8 pb-2">
+                          <div
+                            className="card-body"
+                            style={{
+                              lineHeight: ".7rem",
+                            }}
+                          >
                             <p className="card-text">
-                              <small className="text-muted text-capitalize">
+                              <small
+                                className="text-muted text-capitalize"
+                                style={{
+                                  opacity: ".6",
+                                  fontWeight: "500",
+                                }}
+                              >
                                 item {order?.orderItems.length}
                               </small>
                             </p>
-                            <span className="card-text fs-5">
+                            <span className="card-text text-success">
                               Rs {order?.totalPrice}
                             </span>
 
@@ -284,7 +339,26 @@ const CustomerName = ({ toggle }) => {
                               style={{ position: "absolute", right: "0" }}
                             >
                               <input
-                                className=""
+                                style={
+                                  order.paymentInfo?.method === "online"
+                                    ? {
+                                        backgroundColor: "#eff5f1",
+                                        color: "#137e62",
+                                        borderRadius: ".2rem",
+                                        padding: "0.4rem 0",
+                                        border: "none",
+                                        outline: "none",
+                                      }
+                                    : {
+                                        backgroundColor: "#ffe5d4",
+                                        color: "#ff6a02",
+                                        borderRadius: ".2rem",
+                                        padding: "0.4rem 0",
+                                        border: "none",
+                                        outline: "none",
+                                      }
+                                }
+                                className="p-2"
                                 type="button"
                                 id="flexSwitchCheckDefault"
                                 value={order.paymentInfo?.method}
@@ -299,11 +373,11 @@ const CustomerName = ({ toggle }) => {
                           </div>
                         </div>
                         <hr style={{ width: "95%" }} />
-                        <div className="d-flex p-2 justify-content-between align-items-center">
-                          <h5>{order?.orderStatus}</h5>
+                        <div className="d-flex px-2 pb-2 justify-content-between align-items-center">
+                          <h6 className="m-0">{order?.orderStatus}</h6>
                           <button
                             type="button"
-                            className="btn bg-success btn-success btn-md"
+                            className="btn btn-outline-success btn-md allProductsBtn"
                             onClick={() => orderDetailsHandler(order?._id)}
                           >
                             Details
@@ -317,7 +391,7 @@ const CustomerName = ({ toggle }) => {
           </div>
         </div>
         <div
-          className="container-md d-flex flex-column"
+          className="container-md d-flex flex-column customerNameContainer"
           style={{ width: "40%", backgroundColor: "white" }}
         >
           <div

@@ -168,7 +168,7 @@ function App() {
             path="/customer/:id"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<CustomerName />} />
+            <Route path="" element={<CustomerName toggle={toggle} />} />
           </Route>
 
           <Route

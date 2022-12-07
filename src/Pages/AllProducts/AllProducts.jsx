@@ -405,9 +405,7 @@ const AllProducts = ({ toggle }) => {
                                     >
                                       <h6
                                         className="card-title text-capitalize"
-                                        style={{
-                                          opacity: ".9",
-                                        }}
+                                        style={{ opacity: ".9" }}
                                       >
                                         {product.name}
                                       </h6>
@@ -448,7 +446,7 @@ const AllProducts = ({ toggle }) => {
                                   </div>
                                   <hr style={{ width: "95%" }} />
                                   <div className="d-flex px-2 pb-2 justify-content-between align-items-center">
-                                    <h6 className="text-success">
+                                    <h6 className="text-success m-0">
                                       In Stock: {product.stock}
                                     </h6>
                                     <div className="d-flex align-items-center">
@@ -463,7 +461,7 @@ const AllProducts = ({ toggle }) => {
                                       </button>
                                       <button
                                         type="button"
-                                        className="btn btn-outline-success btn-md"
+                                        className="btn btn-outline-success btn-md allProductsBtn"
                                         onClick={() =>
                                           ProductDetailsHandler(product._id)
                                         }
@@ -518,7 +516,7 @@ const AllProducts = ({ toggle }) => {
                                     >
                                       <img
                                         src={product.images[0]?.url}
-                                        className=" bg-primary img-fluid rounded-start"
+                                        className=" bg-primary img-fluid"
                                         alt="img"
                                       />
                                     </div>
@@ -571,7 +569,9 @@ const AllProducts = ({ toggle }) => {
                                   </div>
                                   <hr style={{ width: "95%" }} />
                                   <div className="d-flex p-2 justify-content-between align-items-center">
-                                    <h5>In Stock: {product.stock}</h5>
+                                    <h6 className="text-success m-0">
+                                      In Stock: {product.stock}
+                                    </h6>
                                     {/* <button
                               type="button"
                               className="btn  btn-danger btn-md"
@@ -581,7 +581,7 @@ const AllProducts = ({ toggle }) => {
                             </button> */}
                                     <button
                                       type="button"
-                                      className="btn bg-success btn-success btn-md"
+                                      className="btn btn-outline-success btn-md allProductsBtn"
                                       onClick={() =>
                                         ProductDetailsHandler(product._id)
                                       }
