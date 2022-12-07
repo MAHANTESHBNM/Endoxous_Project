@@ -398,7 +398,7 @@ const HomePage = ({ toggle }) => {
 
                 {banners &&
                   banners?.map((banner, index) => (
-                    <div key={index}>
+                    <div className="bannerContainer" key={index}>
                       <MdDelete
                         style={{
                           color: "#dc3545",
