@@ -104,15 +104,15 @@ const CustomerName = ({ toggle }) => {
         </div>
         <hr />
       </nav>
-      <div className="d-flex flex-wrap">
+      <div className="d-flex justify-content-between flex-wrap">
         <div
           className="d-flex flex-wrap px-4 customerNameContainer"
-          style={{ width: "60%", height: "100%" }}
+          style={{ width: "58%", height: "100%" }}
         >
-          <div className="section2-btn d-flex py-3">
+          <div className="section2-btn d-flex py-3 pe-3">
             <button
               className="s2-btn py-2 px-3 my-2"
-              style={{ padding: ".8rem" }}
+              style={{ padding: ".7rem" }}
               onClick={() => showAll()}
               autoFocus
             >
@@ -127,21 +127,21 @@ const CustomerName = ({ toggle }) => {
             </button>
             <button
               className="s2-btn py-2 px-3 my-2"
-              style={{ padding: "0 .7rem" }}
+              style={{ padding: "0.7rem" }}
               onClick={() => showShippied()}
             >
               Shipped
             </button>
             <button
               className="s2-btn py-2 px-3 my-2"
-              style={{ padding: "0 .7rem" }}
+              style={{ padding: "0.7rem" }}
               onClick={() => showDelivered()}
             >
               Delivered
             </button>
             <button
               className="s2-btn py-2 px-3 my-2"
-              style={{ padding: "0 .7rem" }}
+              style={{ padding: "0.7rem" }}
               onClick={() => showCancelled()}
             >
               Cancelled
@@ -392,7 +392,7 @@ const CustomerName = ({ toggle }) => {
         </div>
         <div
           className="container-md d-flex flex-column customerNameContainer"
-          style={{ width: "40%", backgroundColor: "white" }}
+          style={{ width: "38%", backgroundColor: "white", height: "100%" }}
         >
           <div
             className="d-flex align-items-center justify-content-between w-100 px-3"
