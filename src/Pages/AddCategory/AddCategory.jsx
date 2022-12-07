@@ -8,7 +8,7 @@ import {
   craeteCategory,
 } from "../../redux/actions/categoryAction";
 
-const AddCategory = () => {
+const AddCategory = ({ toggle }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -58,54 +58,84 @@ const AddCategory = () => {
   };
 
   return (
-    <div
-      className="conatiner-sm d-flex justify-content-center flex-column align-items-center w-100"
-      style={{ height: "100vh" }}
-    >
-      <h2 className="mb-5">Add New Category</h2>
-      <form
-        action=""
-        encType="multipart/form-data"
-        onSubmit={createCategorySubmitHandler}
+    <div className="section2">
+      <nav
+        className="s2-navabar navbar navbar-expand-lg"
+        style={{ backgroundColor: "white" }}
       >
-        <div className="mb-2">
-          <label htmlFor="exampleInputNumber" className="form-label">
-            Category Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleInputNumber"
-            aria-describedby="numberHelp"
-            onChange={(e) => setName(e.target.value)}
-            // value={phone}
-          />
+        <div className="container-fluid px-5">
+          <button
+            onClick={() => toggle()}
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <NavLink className="fw-bold navbar-brand" to="">
+            Add Category
+          </NavLink>
+          <button
+            className="btn btn-outline-success btnround"
+            type="submit"
+          ></button>
         </div>
-        <div className="mb-2">
-          <label htmlFor="exampleInputNumber" className="form-label">
-            Select Image
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            id="exampleInputNumber1"
-            aria-describedby="numberHelp"
-            name="avatar"
-            accept="image/*"
-            onChange={categoryDataChange}
-          />
-          <img
-            src={avatarPreview}
-            alt=""
-            height="200px"
-            width="160px"
-            className="mt-2 "
-          />
-        </div>
-        <button type="submit" className="btn btn-success w-100 mt-3">
-          Add Category
-        </button>
-      </form>
+        <hr />
+      </nav>
+      <div
+        className="conatiner-sm d-flex justify-content-center flex-column align-items-center w-100 px-4"
+        style={{ height: "100vh" }}
+      >
+        <h2 className="mb-5">Add New Category</h2>
+        <form
+          action=""
+          encType="multipart/form-data"
+          onSubmit={createCategorySubmitHandler}
+        >
+          <div className="mb-2">
+            <label htmlFor="exampleInputNumber" className="form-label">
+              Category Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputNumber"
+              aria-describedby="numberHelp"
+              onChange={(e) => setName(e.target.value)}
+              // value={phone}
+            />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="exampleInputNumber" className="form-label">
+              Select Image
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="exampleInputNumber1"
+              aria-describedby="numberHelp"
+              name="avatar"
+              accept="image/*"
+              onChange={categoryDataChange}
+            />
+            <img
+              src={avatarPreview}
+              alt=""
+              height="200px"
+              width="160px"
+              className="mt-2 "
+            />
+          </div>
+          <button type="submit" className="btn w-100 mt-3 addNewNursery">
+            Add Category
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -282,7 +282,7 @@ const AddProducts = ({ toggle }) => {
               </div>
             </div>
 
-            <div className="bg-white p-4 rounded mt-3 d-flex">
+            <div className="bg-white p-4 rounded mt-3 d-flex flex-wrap">
               Product Images
               <div className="multipleImages" id="createProductFormFile">
                 <label htmlFor="images" className="imageLabel">

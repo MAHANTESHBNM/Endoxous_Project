@@ -49,7 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/verifyotp" element={<VerifyOTP />} />
-          <Route path="/coupon" element={<Coupon />} />
+          <Route path="/coupon" element={<Coupon toggle={toggle} />} />
           <Route path="/couponlist" element={<CouponList toggle={toggle} />} />
           <Route path="*" element={<PageNotFound toggle={toggle} />} />
 
@@ -101,7 +101,7 @@ function App() {
             element={<EditProducts show={show} />}
           /> */}
           <Route path="/faqs" element={<AdminPrivateRoute isAdmin={true} />}>
-            <Route path="" element={<FAQs />} />
+            <Route path="" element={<FAQs toggle={toggle}/>} />
           </Route>
 
           <Route path="/orders" element={<AdminPrivateRoute isAdmin={true} />}>
@@ -175,14 +175,14 @@ function App() {
             path="/category/new"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<AddCategory />} />{" "}
+            <Route path="" element={<AddCategory toggle={toggle} />} />{" "}
           </Route>
 
           <Route
             path="/product/new"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<AddProducts />} />{" "}
+            <Route path="" element={<AddProducts toggle={toggle} />} />{" "}
           </Route>
 
           <Route
