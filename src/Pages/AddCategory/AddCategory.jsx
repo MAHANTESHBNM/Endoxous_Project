@@ -91,13 +91,21 @@ const AddCategory = ({ toggle }) => {
         className="conatiner-sm d-flex justify-content-center flex-column align-items-center w-100 px-4"
         style={{ height: "100vh" }}
       >
-        <h2 className="mb-5">Add New Category</h2>
+        <h3 className="mb-3 mt-4">Add New Category</h3>
         <form
           action=""
           encType="multipart/form-data"
           onSubmit={createCategorySubmitHandler}
         >
-          <div className="mb-2">
+          <div
+            className="mb-2 bg-white p-4 rounded mt-3"
+            style={{
+              borderRadius: ".5rem",
+              backgroundColor: "white",
+              boxShadow: "0 0 15px #546b912b",
+              border: "none",
+            }}
+          >
             <label htmlFor="exampleInputNumber" className="form-label">
               Category Name
             </label>
@@ -110,7 +118,15 @@ const AddCategory = ({ toggle }) => {
               // value={phone}
             />
           </div>
-          <div className="mb-2">
+          <div
+            className="mb-2 bg-white p-4 rounded mt-3"
+            style={{
+              borderRadius: ".5rem",
+              backgroundColor: "white",
+              boxShadow: "0 0 15px #546b912b",
+              border: "none",
+            }}
+          >
             <label htmlFor="exampleInputNumber" className="form-label">
               Select Image
             </label>

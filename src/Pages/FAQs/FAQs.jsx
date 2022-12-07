@@ -70,8 +70,16 @@ const FAQs = ({ toggle }) => {
         className="conatiner-sm d-flex justify-content-center flex-column align-items-center w-100 bg-light"
         style={{ height: "100vh" }}
       >
-        <div className="bg-white rounded px-5 mt-5 py-2">
-          <h2 className="">Add New FAQ</h2>
+        <div
+          className="bg-white rounded px-5 pt-5 py-2"
+          style={{
+            borderRadius: ".5rem",
+            backgroundColor: "white",
+            boxShadow: "0 0 15px #546b912b",
+            border: "none",
+          }}
+        >
+          <h2 className="fs-4 text-center">Add New FAQ</h2>
           <form
             action=""
             encType="multipart/form-data"

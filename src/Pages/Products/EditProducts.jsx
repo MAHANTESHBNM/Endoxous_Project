@@ -199,10 +199,10 @@ const EditProducts = ({ toggle }) => {
       </nav>
 
       <div
-        className="conatiner-sm px-5 d-flex justify-content-center flex-column align-items-center section bg-light h-100"
+        className="conatiner-sm px-5 d-flex justify-content-center flex-column align-items-center section bg-light"
         style={{ height: "100vh" }}
       >
-        <h2 className="mb-5 mt-5"> Product Details</h2>
+        <h2 className="my-4"> Product Details</h2>
         {loading || detailError ? (
           <Loader />
         ) : (
@@ -212,7 +212,15 @@ const EditProducts = ({ toggle }) => {
             encType="multipart/form-data"
             onSubmit={updateProductSubmitHandler}
           >
-            <div className="bg-white p-4 rounded">
+            <div
+              className="bg-white p-4 rounded "
+              style={{
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               <div className="mb-2">
                 <label htmlFor="exampleInputNumber" className="form-label">
                   Product Name
@@ -319,7 +327,15 @@ const EditProducts = ({ toggle }) => {
               </div>
             </div>
 
-            <div className="bg-white p-4 rounded mt-3 d-flex flex-wrap">
+            <div
+              className="bg-white p-4 rounded mt-3 d-flex flex-wrap"
+              style={{
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               Product Images
               <div className="multipleImages" id="createProductFormFile">
                 <label htmlFor="images" className="imageLabel">
@@ -387,7 +403,15 @@ const EditProducts = ({ toggle }) => {
               </div>
             </div>
 
-            <div className="bg-white p-4 rounded mt-3">
+            <div
+              className="bg-white p-4 rounded mt-3"
+              style={{
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               <div className="mb-2">
                 <h6>Product Unit</h6>
                 <label htmlFor="exampleInputNumber" className="form-label">
@@ -405,7 +429,15 @@ const EditProducts = ({ toggle }) => {
               </div>
             </div>
 
-            <div className="bg-white p-4 rounded mt-3">
+            <div
+              className="bg-white p-4 rounded mt-3"
+              style={{
+                borderRadius: ".5rem",
+                backgroundColor: "white",
+                boxShadow: "0 0 15px #546b912b",
+                border: "none",
+              }}
+            >
               <div className="mb-2">
                 <h6>Tags to Products</h6>
 
@@ -451,7 +483,7 @@ const EditProducts = ({ toggle }) => {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-success w-100 mt-3 mb-5">
+            <button type="submit" className="btn addNewNursery w-100 mt-3 mb-5">
               Edit Product
             </button>
           </form>

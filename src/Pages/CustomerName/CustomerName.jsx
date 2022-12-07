@@ -109,7 +109,7 @@ const CustomerName = ({ toggle }) => {
           className="d-flex flex-wrap px-4 customerNameContainer"
           style={{ width: "58%", height: "100%" }}
         >
-          <div className="section2-btn d-flex py-3 pe-3">
+          <div className="section2-btn d-flex flex-wrap py-3">
             <button
               className="s2-btn py-2 px-3 my-2"
               style={{ padding: ".7rem" }}
