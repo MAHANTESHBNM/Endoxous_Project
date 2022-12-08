@@ -254,7 +254,7 @@ const CustomerName = ({ toggle }) => {
                             </span>
                           </div>
                         </div>
-                        <hr style={{ width: "95%" }} />
+                        <hr style={{ width: "95%", margin: ".5rem" }} />
                         <div className="d-flex px-2 pb-2 justify-content-between align-items-center">
                           <h6 className="m-0">{order?.orderStatus}</h6>
                           <button
@@ -372,7 +372,7 @@ const CustomerName = ({ toggle }) => {
                             </span>
                           </div>
                         </div>
-                        <hr style={{ width: "95%" }} />
+                        <hr style={{ width: "95%", margin: ".5rem" }} />
                         <div className="d-flex px-2 pb-2 justify-content-between align-items-center">
                           <h6 className="m-0">{order?.orderStatus}</h6>
                           <button

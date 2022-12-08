@@ -243,4 +243,37 @@ input[type="number"] {
   .customerNameContainer {
     width: 100% !important;
   }
+
+  .Page3Wrapper {
+    width: 100% !important;
+  }
+
+  .page3Container {
+    width: 100% !important;
+    overflow: hidden;
+    padding: 1rem 1rem 0 1rem !important;
+  }
+
+  .page3Container2 {
+    width: 100% !important;
+    padding: 0 1rem !important;
+  }
+
+  .p3-order-block {
+    margin: 1rem 0 !important;
+  }
+
+  .p3-notes {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .p3-activity-bg {
+    width: 100% !important;
+    margin: 1rem 0 !important;
+  }
+
+  .footerPage3 {
+    width: 100% !important;
+  }
 }
