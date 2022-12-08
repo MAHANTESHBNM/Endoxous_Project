@@ -85,11 +85,12 @@ const Coupon = ({ toggle }) => {
       </nav>
       <div
         className="conatiner-sm d-flex justify-content-center flex-column align-items-center w-100 bg-light"
-        style={{ height: "100vh" }}
+        style={{ minHeight: "100vh" }}
       >
         <div
-          className="bg-white rounded px-5 pt-4 py-2"
+          className="bg-white px-5 pt-4 py-2 my-4"
           style={{
+            height: "100%",
             borderRadius: ".5rem",
             backgroundColor: "white",
             boxShadow: "0 0 15px #546b912b",

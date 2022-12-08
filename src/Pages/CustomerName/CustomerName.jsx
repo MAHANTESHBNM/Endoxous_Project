@@ -165,7 +165,7 @@ const CustomerName = ({ toggle }) => {
                           Order no #{order?._id}
                         </h6>
                         <div
-                          className="col-md-4 p-2"
+                          className="col-md-4 p-2 cardView"
                           style={{
                             display: "flex",
                             alignItems: "center",

@@ -89,10 +89,10 @@ const AddCategory = ({ toggle }) => {
       </nav>
       <div
         className="conatiner-sm d-flex justify-content-center flex-column align-items-center w-100 px-4"
-        style={{ height: "100vh" }}
+        style={{ minHeight: "100vh" }}
       >
         <h3 className="mb-3 mt-4">Add New Category</h3>
-        <form
+        <form className="mb-4"
           action=""
           encType="multipart/form-data"
           onSubmit={createCategorySubmitHandler}

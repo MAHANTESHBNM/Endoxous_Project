@@ -49,6 +49,7 @@ input[type="number"] {
     rgba(0, 81, 41, 1) 100%
   );
   color: white !important;
+  border-radius: 0.2rem !important;
 }
 
 .form-check-input ::before {

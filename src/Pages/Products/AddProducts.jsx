@@ -161,14 +161,14 @@ const AddProducts = ({ toggle }) => {
         <hr />
       </nav>
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <div
-          className="px-4 conatiner-sm d-flex justify-content-center flex-column align-items-center section bg-light h-100"
-          style={{ height: "100vh" }}
-        >
-          <h2 className="mb-4 mt-4">Add New Product</h2>
+      <div
+        className="px-4 conatiner-sm d-flex justify-content-center flex-column align-items-center section bg-light h-100"
+        style={{ height: "100vh" }}
+      >
+        <h2 className="mb-4 mt-4">Add New Product</h2>
+        {loading ? (
+          <Loader />
+        ) : (
           <form
             action=""
             className="createproductForm"
@@ -437,8 +437,8 @@ const AddProducts = ({ toggle }) => {
               </Link>
             </button>
           </form>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
