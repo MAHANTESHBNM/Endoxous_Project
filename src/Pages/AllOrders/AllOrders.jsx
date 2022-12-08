@@ -50,7 +50,7 @@ const AllOrders = ({ toggle }) => {
     navigate(`/orders/${id}`);
   };
 
-  const AllOrdders = orders && orders.filter((order) => order);
+  const AllOrders = orders && orders.filter((order) => order);
   const pendingOrdders =
     orders && orders.filter((order) => order.orderStatus === "pending");
   const shippedOrdders =
@@ -61,7 +61,7 @@ const AllOrders = ({ toggle }) => {
     orders && orders.filter((order) => order.orderStatus === "Cancelled");
 
   const showAll = () => {
-    setFilterOrders(AllOrdders);
+    setFilterOrders(AllOrders);
     setState(true);
   };
   const showPending = () => {
@@ -96,7 +96,7 @@ const AllOrders = ({ toggle }) => {
       setFilterOrders(CancelledOrdders);
       setState(true);
     } else {
-      setFilterOrders(AllOrdders);
+      setFilterOrders(AllOrders);
       setState(true);
     }
   };
@@ -109,7 +109,7 @@ const AllOrders = ({ toggle }) => {
     setState(true);
 
     if (nursery === 1) {
-      setFilterOrders(AllOrdders);
+      setFilterOrders(AllOrders);
       setState(true);
     }
   };
@@ -189,7 +189,7 @@ const AllOrders = ({ toggle }) => {
       setShowDatePicker(true);
       setState(true);
     } else {
-      setFilterOrders(AllOrdders);
+      setFilterOrders(AllOrders);
       setState(true);
     }
   };

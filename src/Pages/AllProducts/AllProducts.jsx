@@ -444,7 +444,9 @@ const AllProducts = ({ toggle }) => {
                                       </span>
                                     </div>
                                   </div>
-                                  <hr style={{ width: "95%" }} />
+                                  <hr
+                                    style={{ width: "95%", margin: ".5rem" }}
+                                  />
                                   <div className="d-flex px-2 pb-2 justify-content-between align-items-center">
                                     <h6 className="text-success m-0">
                                       In Stock: {product.stock}
@@ -567,8 +569,10 @@ const AllProducts = ({ toggle }) => {
                                       </span>
                                     </div>
                                   </div>
-                                  <hr style={{ width: "95%" }} />
-                                  <div className="d-flex p-2 justify-content-between align-items-center">
+                                  <hr
+                                    style={{ width: "95%", margin: ".5rem" }}
+                                  />
+                                  <div className="d-flex px-2 pb-2 justify-content-between align-items-center">
                                     <h6 className="text-success m-0">
                                       In Stock: {product.stock}
                                     </h6>
