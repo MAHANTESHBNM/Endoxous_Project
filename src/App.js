@@ -101,7 +101,7 @@ function App() {
             element={<EditProducts show={show} />}
           /> */}
           <Route path="/faqs" element={<AdminPrivateRoute isAdmin={true} />}>
-            <Route path="" element={<FAQs toggle={toggle}/>} />
+            <Route path="" element={<FAQs toggle={toggle} />} />
           </Route>
 
           <Route path="/orders" element={<AdminPrivateRoute isAdmin={true} />}>

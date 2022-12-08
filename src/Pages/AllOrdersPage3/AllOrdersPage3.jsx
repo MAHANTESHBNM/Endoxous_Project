@@ -649,14 +649,14 @@ const AllOrdersPage3 = ({ toggle }) => {
                       <Fragment>
                         <form action="" onSubmit={noteSubmitHandler}>
                           <textarea
-                            class="form-control"
+                            className="form-control"
                             type="text"
                             placeholder="Add your Note"
                             onChange={(e) => setNote(e.target.value)}
                           />
                           <button
                             type="submit"
-                            class="btn btn-outline-secondary w-25 mx-1"
+                            className="btn btn-outline-secondary w-25 mx-1"
                           >
                             Send
                           </button>
@@ -792,7 +792,7 @@ const AllOrdersPage3 = ({ toggle }) => {
                                       onSubmit={ticketSubmitHandler}
                                     >
                                       <textarea
-                                        class="form-control"
+                                        className="form-control"
                                         type="text"
                                         placeholder="Add Reply"
                                         onChange={(e) =>
@@ -801,7 +801,7 @@ const AllOrdersPage3 = ({ toggle }) => {
                                       />
                                       <button
                                         type="submit"
-                                        class="btn btn-outline-secondary w-25 mx-1"
+                                        className="btn btn-outline-secondary w-25 mx-1"
                                       >
                                         Send
                                       </button>

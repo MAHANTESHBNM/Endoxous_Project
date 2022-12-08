@@ -50,6 +50,7 @@ input[type="number"] {
   );
   color: white !important;
   border-radius: 0.2rem !important;
+  border: none;
 }
 
 .form-check-input ::before {
