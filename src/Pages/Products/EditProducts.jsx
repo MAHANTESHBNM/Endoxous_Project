@@ -198,10 +198,7 @@ const EditProducts = ({ toggle }) => {
         <hr />
       </nav>
 
-      <div
-        className="conatiner-sm px-5 d-flex justify-content-center flex-column align-items-center section bg-light"
-        style={{ height: "100vh" }}
-      >
+      <div className="conatiner-sm px-5 d-flex justify-content-center flex-column align-items-center section bg-light">
         <h2 className="my-4"> Product Details</h2>
         {loading || detailError ? (
           <Loader />
