@@ -48,7 +48,7 @@ const VarifyOTP = () => {
           <h2 className="mb-5">Verify your OTP</h2>
           <form action="" onSubmit={VerifyPhoneSubmit}>
             <div className="mb-2">
-              <label for="exampleInputOTP" className="form-label">
+              <label htmlFor="exampleInputOTP" className="form-label">
                 Enter your OTP
               </label>
               <input
@@ -63,8 +63,8 @@ const VarifyOTP = () => {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-success w-100 mt-3">
-              Verify
+            <button type="submit" className="btn addNewNursery w-100 mt-3">
+              Verify OTP
             </button>
           </form>
         </div>

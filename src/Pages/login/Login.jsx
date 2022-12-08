@@ -56,38 +56,40 @@ const Login = () => {
 
   return (
     <div>
-      {loading ? (
-        <Loader />
-      ) : (
-        <div
-          className="d-flex justify-content-center flex-column align-items-center w-100"
-          style={{ height: "100vh" }}
-        >
-          <h2 className="mb-5">Login</h2>
-          <form action="" onSubmit={loginSubmit}>
-            <div className="mb-2">
-              <label for="exampleInputNumber" className="form-label">
-                Phone Number
-              </label>
-              <input
-                type="number"
-                className="form-control"
-                id="exampleInputNumber"
-                aria-describedby="numberHelp"
-                onChange={(e) => setPhone(e.target.value)}
-                value={phone}
-              />
-              <div id="numberHelp" className="form-text">
-                We'll never share your number with anyone.
+      <div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div
+            className="d-flex justify-content-center flex-column align-items-center w-100"
+            style={{ height: "100vh" }}
+          >
+            <h2 className="mb-5">Login</h2>
+            <form action="" onSubmit={loginSubmit}>
+              <div className="mb-2">
+                <label htmlFor="exampleInputNumber" className="form-label">
+                  Phone Number
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="exampleInputNumber"
+                  aria-describedby="numberHelp"
+                  onChange={(e) => setPhone(e.target.value)}
+                  value={phone}
+                />
+                <div id="numberHelp" className="form-text">
+                  We'll never share your number with anyone.
+                </div>
               </div>
-            </div>
 
-            <button type="submit" class="btn btn-success w-100 mt-3">
-              Login
-            </button>
-          </form>
-        </div>
-      )}
+              <button type="submit" className="btn addNewNursery w-100 mt-3">
+                Login
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

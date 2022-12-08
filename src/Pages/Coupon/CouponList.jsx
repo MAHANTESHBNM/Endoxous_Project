@@ -134,7 +134,7 @@ const CouponList = ({ toggle }) => {
                           <td>{coupon?.message}</td>
                           <td>
                             <button
-                              class="btn btn-danger"
+                              className="btn btn-danger"
                               onClick={() => deleteHandler(coupon?._id)}
                             >
                               Delete
