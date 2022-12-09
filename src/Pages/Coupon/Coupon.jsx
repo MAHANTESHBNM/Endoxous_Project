@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/couponAction";
 import { ADD_COUPON_RESET } from "../../constants/couponConstants";
 
-const Coupon = ({ toggle }) => {
+const Coupon = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,6 +27,7 @@ const Coupon = ({ toggle }) => {
   } = useSelector((state) => state.addCoupon);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

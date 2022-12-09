@@ -17,7 +17,7 @@ import {
   UNBLOCK_CATEGORY_RESET,
 } from "../../constants/categoryConstants";
 import { getAdminProducts } from "../../redux/actions/productAction";
-const Categories = ({ toggle }) => {
+const Categories = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
@@ -43,6 +43,7 @@ const Categories = ({ toggle }) => {
   const [filteredCategories, setFilteredCategories] = useState([]);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

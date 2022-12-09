@@ -8,7 +8,7 @@ import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import { getAllOrders } from "../../redux/actions/orderAction";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const SalesReport = ({ toggle }) => {
+const SalesReport = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,6 +43,7 @@ const SalesReport = ({ toggle }) => {
   const [filteredOrders, setFilterOrders] = useState([]);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

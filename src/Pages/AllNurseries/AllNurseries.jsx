@@ -9,7 +9,7 @@ import {
 import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const AllNurseries = ({ toggle }) => {
+const AllNurseries = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
 
@@ -18,6 +18,7 @@ const AllNurseries = ({ toggle }) => {
   );
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

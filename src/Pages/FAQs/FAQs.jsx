@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { addNewFAQ, clearErrors } from "../../redux/actions/productAction";
 import { ADD_FAQ_RESET } from "../../constants/productConstants";
 
-const FAQs = ({ toggle }) => {
+const FAQs = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -16,6 +16,7 @@ const FAQs = ({ toggle }) => {
   const { error, success, message } = useSelector((state) => state.newFAQ);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

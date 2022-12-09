@@ -6,7 +6,7 @@ import { login } from "../../redux/actions/userAction";
 import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const Login = () => {
+const Login = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -38,6 +38,7 @@ const Login = () => {
     if (error) {
       toast.error(error.message);
     }
+    props.setRestrictSide(true)
     if (isAuthenticated) {
       if (success) {
         toast.success(message);

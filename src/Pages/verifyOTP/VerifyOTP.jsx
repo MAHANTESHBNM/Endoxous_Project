@@ -6,7 +6,7 @@ import { clearErrors, login, verifyOTP } from "../../redux/actions/userAction";
 import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const VarifyOTP = () => {
+const VarifyOTP = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,6 +21,7 @@ const VarifyOTP = () => {
       toast.error(error.message);
       dispatch(clearErrors());
     }
+    props.setRestrictSide(true)
 
     if (success) {
       toast.success(message);

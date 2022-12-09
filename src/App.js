@@ -25,7 +25,6 @@ import PageNotFound from "./Components/SideBar/PageNotFound";
 import Coupon from "./Pages/Coupon/Coupon";
 import CouponList from "./Pages/Coupon/CouponList";
 import FAQs from "./Pages/FAQs/FAQs";
-
 import store from "./redux/store";
 import AdminPrivateRoute from "./utils/protectiveRoute";
 import { getAdmin, loadUser } from "./redux/actions/userAction";
@@ -35,6 +34,7 @@ function App() {
   const toggle = () => {
     setShow(!show);
   };
+  const [restrictSide, setRestrictSide] = useState(true);
 
   useEffect(() => {
     store.dispatch(loadUser());
@@ -44,14 +44,35 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <SideBar show={show} toggle={toggle} />
+        {!restrictSide && <SideBar show={show} toggle={toggle} />}
         <ToastContainer position="top-center" />
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/verifyotp" element={<VerifyOTP />} />
-          <Route path="/coupon" element={<Coupon toggle={toggle} />} />
-          <Route path="/couponlist" element={<CouponList toggle={toggle} />} />
-          <Route path="*" element={<PageNotFound toggle={toggle} />} />
+          <Route
+            path="/"
+            element={<Login setRestrictSide={setRestrictSide} />}
+          />
+          <Route
+            path="/verifyotp"
+            element={<VerifyOTP setRestrictSide={setRestrictSide} />}
+          />
+          <Route
+            path="/coupon"
+            element={
+              <Coupon setRestrictSide={setRestrictSide} toggle={toggle} />
+            }
+          />
+          <Route
+            path="/couponlist"
+            element={
+              <CouponList setRestrictSide={setRestrictSide} toggle={toggle} />
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <PageNotFound setRestrictSide={setRestrictSide} toggle={toggle} />
+            }
+          />
 
           {/* <Route path="/coupon" element={<Coupon />} />
           <Route path="/couponlist" element={<CouponList />} />
@@ -101,106 +122,219 @@ function App() {
             element={<EditProducts show={show} />}
           /> */}
           <Route path="/faqs" element={<AdminPrivateRoute isAdmin={true} />}>
-            <Route path="" element={<FAQs toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <FAQs setRestrictSide={setRestrictSide} toggle={toggle} />
+              }
+            />
           </Route>
 
           <Route path="/orders" element={<AdminPrivateRoute isAdmin={true} />}>
-            <Route path="" element={<AllOrders toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <AllOrders setRestrictSide={setRestrictSide} toggle={toggle} />
+              }
+            />
           </Route>
 
           <Route
             path="/products"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<AllProducts toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <AllProducts
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/dashboard"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<HomePage toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <HomePage setRestrictSide={setRestrictSide} toggle={toggle} />
+              }
+            />
           </Route>
 
           <Route
             path="/orders/:id"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<AllOrdersPage3 toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <AllOrdersPage3
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/allnurseries"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<AllNurseries toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <AllNurseries
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/ordersreport"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<OrdersReports toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <OrdersReports
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/salesreport"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<SalesReport toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <SalesReport
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/catagories"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<Categories toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <Categories setRestrictSide={setRestrictSide} toggle={toggle} />
+              }
+            />
           </Route>
 
           <Route
             path="/customers"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<MyCustomers toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <MyCustomers
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/customer/:id"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<CustomerName toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <CustomerName
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/category/new"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<AddCategory toggle={toggle} />} />{" "}
+            <Route
+              path=""
+              element={
+                <AddCategory
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/product/new"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<AddProducts toggle={toggle} />} />{" "}
+            <Route
+              path=""
+              element={
+                <AddProducts
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/analystics"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<Analystics toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <Analystics setRestrictSide={setRestrictSide} toggle={toggle} />
+              }
+            />
           </Route>
 
           <Route path="/support" element={<AdminPrivateRoute isAdmin={true} />}>
-            <Route path="" element={<CustomerSupport toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <CustomerSupport
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
 
           <Route
             path="/product/edit/:id"
             element={<AdminPrivateRoute isAdmin={true} />}
           >
-            <Route path="" element={<EditProducts toggle={toggle} />} />
+            <Route
+              path=""
+              element={
+                <EditProducts
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>

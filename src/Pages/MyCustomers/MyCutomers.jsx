@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import DateFormatter from "../../utils/DateFormatter";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const MyCustomers = ({ toggle }) => {
+const MyCustomers = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
@@ -19,6 +19,7 @@ const MyCustomers = ({ toggle }) => {
   const [state, setState] = useState(false);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

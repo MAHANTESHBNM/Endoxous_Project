@@ -9,7 +9,7 @@ import { clearErrors, getAllOrders } from "../../redux/actions/orderAction";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const AllOrders = ({ toggle }) => {
+const AllOrders = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,6 +25,7 @@ const AllOrders = ({ toggle }) => {
   const [state, setState] = useState(false);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

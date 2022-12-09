@@ -35,7 +35,7 @@ ChartJS.register(
   ArcElement
 );
 
-const Analytics = ({ toggle }) => {
+const Analytics = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -110,6 +110,7 @@ const Analytics = ({ toggle }) => {
   console.log(averageOrderValue);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

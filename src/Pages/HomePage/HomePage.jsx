@@ -18,7 +18,7 @@ import {
 import { getAllOrders } from "../../redux/actions/orderAction";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
 
-const HomePage = ({ toggle }) => {
+const HomePage = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -71,6 +71,7 @@ const HomePage = ({ toggle }) => {
   // -------------------------------- UseEffect --------------------------------
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

@@ -12,7 +12,7 @@ import "./Page6.css";
 // import logo from "../../Assets/Images/logo3.png";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const OrderReports = ({ toggle }) => {
+const OrderReports = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -47,6 +47,7 @@ const OrderReports = ({ toggle }) => {
   const [filteredOrders, setFilterOrders] = useState([]);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());
