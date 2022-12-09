@@ -13,7 +13,7 @@ import { getAllNurseries } from "../../redux/actions/nurseryAction";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
 import { BsGrid, BsList } from "react-icons/bs";
 
-const AllProducts = ({ toggle }) => {
+const AllProducts = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const id = useParams();
@@ -37,6 +37,7 @@ const AllProducts = ({ toggle }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

@@ -12,7 +12,7 @@ import { DELETE_COUPON_RESET } from "../../constants/couponConstants";
 import DateFormatter from "../../utils/DateFormatter";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const CouponList = ({ toggle }) => {
+const CouponList = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,6 +25,7 @@ const CouponList = ({ toggle }) => {
   } = useSelector((state) => state.deleteCoupon);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

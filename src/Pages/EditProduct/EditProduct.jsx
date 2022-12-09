@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-const EditProduct = ({ toggle }) => {
+const EditProduct = ({ toggle, setRestrictSide }) => {
+  useEffect(() => {
+    setRestrictSide(false);
+  }, []);
+
   return (
     <div className="section2">
       <nav

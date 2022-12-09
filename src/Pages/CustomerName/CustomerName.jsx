@@ -6,7 +6,7 @@ import { clearErrors, getUserDetails } from "../../redux/actions/userAction";
 import { toast } from "react-toastify";
 import { getUsersOrders } from "../../redux/actions/orderAction";
 
-const CustomerName = ({ toggle }) => {
+const CustomerName = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -22,6 +22,7 @@ const CustomerName = ({ toggle }) => {
   } = useSelector((state) => state.usersOrders);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

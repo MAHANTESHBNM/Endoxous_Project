@@ -7,7 +7,7 @@ import { clearErrors } from "../../redux/actions/orderAction";
 import { getAllTickets, openTicket } from "../../redux/actions/ticketsAction";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const CustomerSupport = ({ toggle }) => {
+const CustomerSupport = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [filterTickets, setFilterTickets] = useState([]);
@@ -19,6 +19,7 @@ const CustomerSupport = ({ toggle }) => {
   );
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

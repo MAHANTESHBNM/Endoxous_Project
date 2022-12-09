@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Loader from "../../Components/SideBar/Loader/Loader";
 import "./AddProduct.css";
 
-const AddProducts = ({ toggle }) => {
+const AddProducts = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,6 +34,7 @@ const AddProducts = ({ toggle }) => {
   const [hashTags, setHashTags] = useState([]);
   const [tag, setTag] = useState("");
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());

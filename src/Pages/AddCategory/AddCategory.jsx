@@ -8,7 +8,7 @@ import {
   craeteCategory,
 } from "../../redux/actions/categoryAction";
 
-const AddCategory = ({ toggle }) => {
+const AddCategory = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,6 +23,7 @@ const AddCategory = ({ toggle }) => {
 
   console.log(name, "===== Name", avatar);
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());
@@ -92,7 +93,8 @@ const AddCategory = ({ toggle }) => {
         style={{ minHeight: "100vh" }}
       >
         <h3 className="mb-3 mt-4">Add New Category</h3>
-        <form className="mb-4"
+        <form
+          className="mb-4"
           action=""
           encType="multipart/form-data"
           onSubmit={createCategorySubmitHandler}

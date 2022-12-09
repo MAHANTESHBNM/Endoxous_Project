@@ -12,7 +12,7 @@ import { getAllCategories } from "../../redux/actions/categoryAction";
 import "./AddProduct.css";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const EditProducts = ({ toggle }) => {
+const EditProducts = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -49,6 +49,7 @@ const EditProducts = ({ toggle }) => {
   const productId = id;
 
   useEffect(() => {
+    setRestrictSide(false);
     if (product && product._id !== productId) {
       dispatch(getProductDetails(productId));
     } else {

@@ -34,7 +34,7 @@ import {
 } from "../../constants/tiketsConstants";
 import Loader from "../../Components/SideBar/Loader/Loader";
 
-const AllOrdersPage3 = ({ toggle }) => {
+const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -83,6 +83,7 @@ const AllOrdersPage3 = ({ toggle }) => {
   } = useSelector((state) => state.order);
 
   useEffect(() => {
+    setRestrictSide(false);
     if (error) {
       toast.error(error.message);
       dispatch(clearErrors());
