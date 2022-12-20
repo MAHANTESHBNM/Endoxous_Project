@@ -104,7 +104,7 @@ const AddCategory = ({ toggle, setRestrictSide }) => {
             style={{
               borderRadius: ".5rem",
               backgroundColor: "white",
-              boxShadow: "0 0 15px #546b912b",
+              boxShadow: "3px 3px 5px #546b910f",
               border: "none",
             }}
           >
@@ -125,7 +125,7 @@ const AddCategory = ({ toggle, setRestrictSide }) => {
             style={{
               borderRadius: ".5rem",
               backgroundColor: "white",
-              boxShadow: "0 0 15px #546b912b",
+              boxShadow: "3px 3px 5px #546b910f",
               border: "none",
             }}
           >

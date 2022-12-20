@@ -137,7 +137,7 @@ const Categories = ({ toggle, setRestrictSide }) => {
           </div>
           <hr />
         </nav>
-        <div className="d-flex flex-wrap justify-content-between align-items-center px-2 py-1">
+        <div className="d-flex flex-wrap justify-content-between align-items-center py-1">
           <div className="px-5 py-4 filterInput">
             <input
               className="form-control px-4"
@@ -197,8 +197,9 @@ const Categories = ({ toggle, setRestrictSide }) => {
                   backgroundColor: "white",
                 }}
               >
-                <thead style={{ backgroundColor: "#eaeaea" }}>
+                <thead style={{ backgroundColor: "#eeeeee" }}>
                   <tr>
+                    <th></th>
                     <th scope="col">IMG</th>
                     <th scope="col">Category Name</th>
                     <th scope="col">Products</th>
@@ -223,6 +224,7 @@ const Categories = ({ toggle, setRestrictSide }) => {
                       })
                       .map((category, index) => (
                         <tr key={index}>
+                          <th></th>
                           <th scope="row">
                             <div
                               style={{

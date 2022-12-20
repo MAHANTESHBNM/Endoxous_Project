@@ -63,7 +63,7 @@ const AllNurseries = ({ toggle, setRestrictSide }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between align-items-center px-2 py-1 filterInputInAllOrders">
+          <div className="d-flex justify-content-between align-items-center py-1 filterInputInAllOrders">
             <div className="px-5 py-4 filterInput">
               <input
                 style={{ borderRadius: ".2rem" }}
@@ -100,9 +100,10 @@ const AllNurseries = ({ toggle, setRestrictSide }) => {
                   }}
                 >
                   <thead
-                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                    style={{ backgroundColor: "#eeeeee", fontWeight: "500" }}
                   >
                     <tr>
+                      <th scope="col"></th>
                       <th scope="col">Order ID</th>
                       <th scope="col">Nursery Name</th>
                       <th scope="col">Area/Locality</th>
@@ -128,6 +129,7 @@ const AllNurseries = ({ toggle, setRestrictSide }) => {
                         })
                         .map((nursery, index) => (
                           <tr>
+                            <th scope="col"></th>
                             <th
                               scope="row"
                               style={{
@@ -141,7 +143,7 @@ const AllNurseries = ({ toggle, setRestrictSide }) => {
                             <td>{nursery.address} </td>
                             <td> 1 </td>
                             {/* <td>🟢</td> */}
-                            <div>
+                            {/* <div>
                               <input
                                 className="form-check-input s2-radio"
                                 type="radio"
@@ -150,7 +152,26 @@ const AllNurseries = ({ toggle, setRestrictSide }) => {
                                 value="Pending"
                                 aria-label="..."
                               />
-                            </div>
+                            </div> */}
+
+                            <td>
+                              <div>
+                                <span
+                                  className="form-check form-switch d-inline me-2"
+                                  style={{
+                                    position: "absolute",
+                                  }}
+                                >
+                                  <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    id="flexSwitchCheckDefault"
+                                    checked
+                                  />
+                                </span>
+                                {/* <span className="mx-5">Pending</span> */}
+                              </div>
+                            </td>
                             <td>Rs 36,320</td>
                           </tr>
                         ))}

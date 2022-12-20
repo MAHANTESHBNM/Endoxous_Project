@@ -94,58 +94,62 @@ const CouponList = ({ toggle, setRestrictSide }) => {
             </button>
           </div>
 
-          <div className="tableForAll s2-table m-5 ">
-            <div className="s2-table subTableForAll">
-              {loading || deleteLoading ? (
-                <Loader />
-              ) : (
-                <table
-                  className="table table-borderless"
-                  style={{
-                    overflow: "hidden",
-                    width: "100%",
-                    borderRadius: ".5rem",
-                    backgroundColor: "white",
-                  }}
-                >
-                  <thead
-                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+          <div className="my-4">
+            <div className="tableForAll s2-table m-5">
+              <div className="s2-table subTableForAll">
+                {loading || deleteLoading ? (
+                  <Loader />
+                ) : (
+                  <table
+                    className="table table-borderless"
+                    style={{
+                      overflow: "hidden",
+                      width: "100%",
+                      borderRadius: ".5rem",
+                      backgroundColor: "white",
+                    }}
                   >
-                    <tr>
-                      <th scope="col">Coupon Name</th>
-                      <th scope="col">Coupon Code</th>
-                      <th scope="col">Limit</th>
-                      <th scope="col">Discount</th>
-                      <th scope="col">Expiration Date</th>
-                      <th scope="col">Message</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody className="table-group-divider my-5">
-                    {coupons &&
-                      coupons.map((coupon, key) => (
-                        <tr key={key}>
-                          <th scope="row">{coupon?.couponName}</th>
-                          <td>{coupon?.couponCode}</td>
-                          <td>{coupon?.limit}</td>
-                          <td>{coupon?.discount}</td>
-                          <td>
-                            <DateFormatter date={coupon?.expirationTime} />{" "}
-                          </td>
-                          <td>{coupon?.message}</td>
-                          <td>
-                            <button
-                              className="btn btn-danger"
-                              onClick={() => deleteHandler(coupon?._id)}
-                            >
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              )}
+                    <thead
+                      style={{ backgroundColor: "#eeeeee", fontWeight: "500" }}
+                    >
+                      <tr>
+                        <th></th>
+                        <th scope="col">Coupon Name</th>
+                        <th scope="col">Coupon Code</th>
+                        <th scope="col">Limit</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Expiration Date</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="table-group-divider my-5">
+                      {coupons &&
+                        coupons.map((coupon, key) => (
+                          <tr key={key}>
+                            <th></th>
+                            <th scope="row">{coupon?.couponName}</th>
+                            <td>{coupon?.couponCode}</td>
+                            <td>{coupon?.limit}</td>
+                            <td>{coupon?.discount}</td>
+                            <td>
+                              <DateFormatter date={coupon?.expirationTime} />{" "}
+                            </td>
+                            <td>{coupon?.message}</td>
+                            <td>
+                              <button
+                                className="btn btn-danger"
+                                onClick={() => deleteHandler(coupon?._id)}
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
             </div>
           </div>
         </div>

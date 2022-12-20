@@ -290,7 +290,7 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                         {/* {console.log(order.createdAt.slice(11,16))} */}
                       </p>
                       {/* <h6>{order.createdAt.slice(11,16)}</h6> */}
-                      <div>
+                      {/* <div>
                         <input
                           className="form-check-input s2-radio"
                           type="radio"
@@ -311,6 +311,50 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                           }}
                         />{" "}
                         {order?.orderStatus}
+                      </div> */}
+
+                      <div className="d-flex align-items-center">
+                        <div
+                          className="d-flex align-items-center justify-content-center"
+                          style={{
+                            width: "14px",
+                            height: "14px",
+                            borderRadius: "100%",
+                            marginBottom: "1.5rem",
+                            backgroundColor:
+                              order?.orderStatus === "Shipped"
+                                ? "#dcf6dc"
+                                : order?.orderStatus === "Cancelled"
+                                ? "#fae2e2"
+                                : order?.orderStatus === "Delivered"
+                                ? "#eff5f1"
+                                : "#ffe5d4",
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: "7px",
+                              height: "7px",
+                              borderRadius: "100%",
+                              backgroundColor:
+                                order?.orderStatus === "Shipped"
+                                  ? "lightgreen"
+                                  : order?.orderStatus === "Cancelled"
+                                  ? "#d60909"
+                                  : order?.orderStatus === "Delivered"
+                                  ? "#137e62"
+                                  : "#ffa23f",
+                            }}
+                          ></div>
+                        </div>
+                        <div
+                          style={{
+                            marginBottom: "1.5rem",
+                            marginLeft: ".3rem",
+                          }}
+                        >
+                          {order?.orderStatus}
+                        </div>
                       </div>
                     </div>
                     <div
@@ -348,8 +392,8 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       order?.orderItems &&
                       order?.orderItems.map((item, index) => (
                         <Fragment>
-                          <p>{index + 1} ITEM</p>
-                          <div className="d-flex">
+                          <p className="mt-3">{index + 1} ITEM</p>
+                          <div className="d-flex flex-wrap">
                             <div
                               className="p3-order-item-block me-5"
                               style={{
@@ -413,7 +457,7 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                           </div>
                         </Fragment>
                       ))}
-                    <hr style={{ marginTop: "" }} />
+                    <hr style={{ marginTop: "0" }} />
                     <div className="d-flex justify-content-between">
                       <p
                         style={{
@@ -474,7 +518,7 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                           fontSize: "1.3rem",
                         }}
                       >
-                        Customer Detailes
+                        Customer Details
                       </h6>
                       <NavLink className="text-decoration-none" to="/">
                         Edit
@@ -791,9 +835,18 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       backgroundColor: "white",
                       boxShadow: "3px 3px 5px #546b910f",
                       border: "none",
+                      padding: "1.8rem 1.8rem 0 1.8rem",
                     }}
                   >
-                    <p>Notes</p>
+                    <p
+                      className="text-muted"
+                      style={{
+                        fontWeight: "500",
+                        fontSize: "1.3rem",
+                      }}
+                    >
+                      NOTES
+                    </p>
                     {order?.note?.message ? (
                       <Fragment>
                         <p className="w-100">
@@ -811,8 +864,17 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       </Fragment>
                     ) : (
                       <Fragment>
-                        <form action="" onSubmit={noteSubmitHandler}>
+                        <form
+                          action=""
+                          className="d-flex flex-column align-items-end"
+                          onSubmit={noteSubmitHandler}
+                        >
                           <textarea
+                            style={{
+                              backgroundColor: "#f4f4f4",
+                              border: "none",
+                              outline: "none",
+                            }}
                             className="form-control"
                             type="text"
                             placeholder="Add your Note"
@@ -835,86 +897,141 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       backgroundColor: "white",
                       boxShadow: "3px 3px 5px #546b910f",
                       border: "none",
+                      padding: "1.8rem",
                     }}
                   >
-                    ACTIVITY
-                    <div>
-                      <div>
-                        <input
-                          className="form-check-input bg-success"
-                          type="radio"
-                          name="radioNoLabel"
-                          id="radioNoLabel1"
-                          value="Pending"
-                          aria-label="..."
-                        />{" "}
-                        Order Placed
-                        <p>
+                    <p
+                      className="text-muted"
+                      style={{
+                        fontWeight: "500",
+                        fontSize: "1.3rem",
+                      }}
+                    >
+                      ACTIVITY
+                    </p>
+
+                    <div className="d-flex align-items-center">
+                      <div className="lilCircle">
+                        <div
+                          style={{
+                            width: "12px",
+                            height: "12px",
+                            backgroundColor: "#f4f4f4",
+                            borderRadius: "100%",
+                          }}
+                        ></div>
+                      </div>
+
+                      <div className="p-0">
+                        <h6 className="mb-2">Order Placed</h6>
+                        <p
+                          className="m-0 text-muted"
+                          style={{ fontSize: ".7rem" }}
+                        >
                           <DateFormatter date={order?.createdAt} />{" "}
                         </p>
                       </div>
-                      <div>
-                        <input
-                          className="form-check-input bg-success"
-                          type="radio"
-                          name="radioNoLabel"
-                          id="radioNoLabel1"
-                          value="Pending"
-                          aria-label="..."
-                        />{" "}
-                        Assigned to
-                        <p>
+                    </div>
+                    <div className="d-flex align-items-center mt-5">
+                      <div className="lilCircle">
+                        <div
+                          style={{
+                            width: "12px",
+                            height: "12px",
+                            backgroundColor: "#f4f4f4",
+                            borderRadius: "100%",
+                          }}
+                        ></div>
+                      </div>
+
+                      <div className="p-0">
+                        <h6 className="mb-2">Assigned to</h6>
+                        <p
+                          className="m-0 text-muted"
+                          style={{ fontSize: ".7rem" }}
+                        >
                           {order?.shippedAt ? (
                             <Fragment>
                               <DateFormatter date={order?.shippedAt} />
                             </Fragment>
                           ) : (
                             <Fragment>
-                              <h6>Not Accepted</h6>
+                              <p
+                                className="m-0 text-muted"
+                                style={{ fontSize: ".7rem" }}
+                              >
+                                Not Accepted
+                              </p>
                             </Fragment>
                           )}
                         </p>
                       </div>
-                      <div>
-                        <input
-                          className="form-check-input bg-success"
-                          type="radio"
-                          name="radioNoLabel"
-                          id="radioNoLabel1"
-                          value="Pending"
-                          aria-label="..."
-                        />{" "}
-                        Order Shipped
-                        <p>
+                    </div>
+                    <div className="d-flex align-items-center mt-5">
+                      <div className="lilCircle">
+                        <div
+                          style={{
+                            width: "12px",
+                            height: "12px",
+                            backgroundColor: "#f4f4f4",
+                            borderRadius: "100%",
+                          }}
+                        ></div>
+                      </div>
+
+                      <div className="p-0">
+                        <h6 className="mb-2">Order Shipped</h6>
+                        <p
+                          className="m-0 text-muted"
+                          style={{ fontSize: ".7rem" }}
+                        >
                           {order?.shippedAt ? (
                             <Fragment>
                               <DateFormatter date={order?.shippedAt} />
                             </Fragment>
                           ) : (
                             <Fragment>
-                              <h6>Not Shipped</h6>
+                              <p
+                                className="m-0 text-muted"
+                                style={{ fontSize: ".7rem" }}
+                              >
+                                Not Shipped
+                              </p>
                             </Fragment>
                           )}
                         </p>
                       </div>
-                      <div>
-                        <input
-                          className="form-check-input bg-success"
-                          type="radio"
-                          name="radioNoLabel"
-                          id="radioNoLabel1"
-                          value="Pending"
-                          aria-label="..."
-                        />{" "}
-                        Order Delivered
-                        <p>
+                    </div>
+                    <div className="d-flex align-items-center mt-5">
+                      <div className="lilCircle">
+                        <div
+                          style={{
+                            width: "12px",
+                            height: "12px",
+                            backgroundColor: "#f4f4f4",
+                            borderRadius: "100%",
+                          }}
+                        ></div>
+                      </div>
+
+                      <div className="p-0">
+                        <h6 className="mb-2">Order Delivered</h6>
+                        <p
+                          className="m-0 text-muted"
+                          style={{ fontSize: ".7rem" }}
+                        >
                           {order?.deliverdAt ? (
                             <Fragment>
                               <DateFormatter date={order?.deliverdAt} />
                             </Fragment>
                           ) : (
                             <Fragment>
-                              <h6>Not Delevered</h6>
+                              <p
+                                className="m-0 text-muted"
+                                style={{ fontSize: ".7rem" }}
+                              >
+                                Not Delevered
+                              </p>
                             </Fragment>
                           )}
                         </p>

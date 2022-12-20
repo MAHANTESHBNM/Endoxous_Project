@@ -154,9 +154,15 @@ const OrderReports = ({ toggle, setRestrictSide }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between align-items-end flex-wrap px-2 py-1">
+          <div className="d-flex justify-content-between align-items-end flex-wrap py-1">
             <div className="pt-4 px-5">
-              <p style={{ color: "#9f9f9f", fontSize: ".8rem" }}>
+              <p
+                style={{
+                  color: "#9f9f9f",
+                  fontSize: ".8rem",
+                  marginBottom: ".5rem",
+                }}
+              >
                 AVG ORDERS PER DAY
               </p>
               <h4 style={{ fontWeight: "600" }}>{avg}</h4>
@@ -179,7 +185,7 @@ const OrderReports = ({ toggle, setRestrictSide }) => {
                   </select>
                 </div> */}
 
-                <div className="p2-selection mx-2 filterInput">
+                <div className="p2-selection filterInput">
                   <select
                     className="form-select w-100"
                     aria-label="Default select example"
@@ -208,8 +214,9 @@ const OrderReports = ({ toggle, setRestrictSide }) => {
                     backgroundColor: "white",
                   }}
                 >
-                  <thead style={{ backgroundColor: "#eaeaea" }}>
+                  <thead style={{ backgroundColor: "#eeeeee" }}>
                     <tr>
+                      <th scope="col"></th>
                       <th scope="col">Date</th>
                       <th scope="col">Orders</th>
                       <th scope="col">Sales</th>
@@ -222,6 +229,8 @@ const OrderReports = ({ toggle, setRestrictSide }) => {
                         {salesReport &&
                           salesReport.map((sale, index) => (
                             <tr key={index}>
+                              <th scope="col"></th>
+
                               <th scope="row">{sale.date}</th>
                               <td>{sale.count}</td>
                               <td>{sale.total}</td>

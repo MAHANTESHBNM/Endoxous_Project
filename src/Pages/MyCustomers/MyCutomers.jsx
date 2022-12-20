@@ -114,7 +114,7 @@ const MyCustomers = ({ toggle, setRestrictSide }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between align-items-center flex-wrap px-2 py-1">
+          <div className="d-flex justify-content-between align-items-center flex-wrap py-1">
             <div className="px-5 pt-4 pb-3 filterInput">
               <input
                 style={{ borderRadius: ".2rem" }}
@@ -125,7 +125,7 @@ const MyCustomers = ({ toggle, setRestrictSide }) => {
                 onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
-            <div className="px-4 filterInput">
+            <div className="px-5 pt-4 pb-3 filterInput">
               <div className="d-flex px-4">
                 {/* <div className="p2-selection mx-2">
                   <select
@@ -149,7 +149,7 @@ const MyCustomers = ({ toggle, setRestrictSide }) => {
                     <option value="3">Three</option>
                   </select>
                 </div> */}
-                <div className="p2-selection mx-2 filterInput">
+                <div className="p2-selection filterInput">
                   <select
                     className="form-select "
                     aria-label="Default select example"
@@ -186,9 +186,10 @@ const MyCustomers = ({ toggle, setRestrictSide }) => {
                   }}
                 >
                   <thead
-                    style={{ backgroundColor: "#eaeaea", fontWeight: "500" }}
+                    style={{ backgroundColor: "#eeeeee", fontWeight: "500" }}
                   >
                     <tr>
+                      <th></th>
                       <th scope="col">Customer ID</th>
                       <th scope="col">Date & Time</th>
                       <th scope="col">Customer</th>
@@ -217,6 +218,7 @@ const MyCustomers = ({ toggle, setRestrictSide }) => {
                             })
                             .map((user, index) => (
                               <tr>
+                                <th></th>
                                 <th
                                   scope="row"
                                   onClick={() =>

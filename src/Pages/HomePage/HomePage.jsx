@@ -217,7 +217,7 @@ const HomePage = ({ toggle, setRestrictSide }) => {
         </div>
         <hr />
       </nav>
-      <div className="overviewText d-flex justify-content-between align-items-center px-2 pb-2 pt-4">
+      <div className="overviewText d-flex justify-content-between align-items-center pe-2 pb-2 pt-4">
         <div
           className="d-flex justify-content-between align-items-center px-5"
           style={{ width: "24rem" }}
