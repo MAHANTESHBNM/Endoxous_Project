@@ -559,7 +559,29 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                     : order.user?.phone}
                                 </td>
                                 <td>{order.orderItems?.length}</td>
-                                <div
+
+                                <div className="d-flex justify-content-center my-1">
+                                  <td
+                                    style={
+                                      order.paymentInfo?.method === "online"
+                                        ? {
+                                            backgroundColor: "#eff5f1",
+                                            color: "#137e62",
+                                            borderRadius: ".2rem",
+                                            padding: "0.1rem 1rem",
+                                          }
+                                        : {
+                                            backgroundColor: "#ffe5d4",
+                                            color: "#ff6a02",
+                                            borderRadius: ".2rem",
+                                            padding: "0.1rem 1rem",
+                                          }
+                                    }
+                                  >
+                                    {order.paymentInfo?.method}
+                                  </td>
+                                </div>
+                                {/* <div
                                   className="d-flex justify-content-center my-1"
                                   style={
                                     order.paymentInfo?.method === "online"
@@ -578,7 +600,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                   }
                                 >
                                   <td>{order.paymentInfo?.method}</td>
-                                </div>
+                                </div> */}
                                 {/* <td>
                                   <div>
                                     <input
