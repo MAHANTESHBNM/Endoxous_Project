@@ -250,8 +250,11 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                 </div>
                 <hr />
               </nav>
-              <div className="d-flex flex-wrap justify-content-around Page3Wrapper">
-                <div className="page3Container">
+              <div
+                className="d-flex flex-wrap justify-content-around Page3Wrapper"
+                style={{ padding: "3rem" }}
+              >
+                <div className="page3Container" style={{ width: "60%" }}>
                   <div
                     className="p3-order-block"
                     style={{
@@ -259,17 +262,29 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       borderRadius: ".5rem",
                       border: "none",
                       backgroundColor: "white",
-                      boxShadow: "0 0 15px #546b912b",
+                      boxShadow: "3px 3px 5px #546b910f",
                       overflowX: "auto",
+                      padding: " 1.8rem",
                     }}
                   >
-                    <h6 style={{ fontWeight: "500", fontSize: "1.4rem" }}>
+                    <div
+                      className="text-wrap"
+                      style={{
+                        fontWeight: "500",
+                        fontSize: "1.3rem",
+                        marginBottom: ".5rem",
+                      }}
+                    >
                       Order ID #{order && order._id}
-                    </h6>
+                    </div>
                     <div className="d-flex justify-content-between">
                       <p
                         className="text-muted fs-6"
-                        style={{ opacity: ".7", fontWeight: "500" }}
+                        style={{
+                          opacity: ".7",
+                          fontWeight: "500",
+                          marginBottom: "1.5rem",
+                        }}
                       >
                         <DateFormatter date={order?.createdAt} />
                         {/* {console.log(order.createdAt.slice(11,16))} */}
@@ -284,6 +299,7 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                           value="Pending"
                           aria-label="..."
                           style={{
+                            marginBottom: "1.5rem",
                             backgroundColor:
                               order?.orderStatus === "Shipped"
                                 ? "lightgreen"
@@ -298,8 +314,8 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       </div>
                     </div>
                     <div
-                      className="p-4"
                       style={{
+                        padding: "1.2rem 1.8rem",
                         backgroundColor: "#f4f4f4",
                         borderRadius: ".5rem",
                         border: "none",
@@ -307,33 +323,33 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                     >
                       <p
                         className="text-success m-0"
-                        style={{ fontSize: ".9rem" }}
+                        style={{ fontSize: ".7rem", fontWeight: "400" }}
                       >
                         DELIVERING NURSERY
                       </p>
-                      <p className="my-1 fs-6">
+                      <p className="my-1" style={{ fontSize: "1rem" }}>
                         {order?.deliveredBy
                           ? order?.deliveredBy
                           : "Name of the nursery"}
                       </p>
                       <p
-                        className="m-0 text-muted"
+                        className="m-0"
                         style={{
                           opacity: ".7",
-                          fontWeight: "500",
+                          fontWeight: "400",
                           fontSize: ".9rem",
                         }}
                       >
                         Complete Address goes here with area, pincode
                       </p>
                     </div>
-                    <hr />
+                    <hr className="mt-4" />
                     {order &&
                       order?.orderItems &&
                       order?.orderItems.map((item, index) => (
                         <Fragment>
                           <p>{index + 1} ITEM</p>
-                          <div className="d-flex ">
+                          <div className="d-flex">
                             <div
                               className="p3-order-item-block me-5"
                               style={{
@@ -349,37 +365,93 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                               />
                             </div>
                             <div>
-                              <p>{item.name}</p>
-                              <p>Per Price</p>
+                              <p
+                                style={{
+                                  fontSize: ".9rem",
+                                  fontWeight: "600",
+                                  color: "#000",
+                                }}
+                              >
+                                {item.name}
+                              </p>
+                              <p
+                                style={{
+                                  fontSize: "1rem",
+                                  fontWeight: "500",
+                                }}
+                              >
+                                per piece
+                              </p>
                               <div
                                 className="d-flex align-items-center justify-content-between"
                                 style={{ width: "10rem" }}
                               >
-                                <button className="btn btn-outline-success">
-                                  {item.quantity}
+                                <button
+                                  className="btn"
+                                  style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    width: "35px",
+                                    height: "35px",
+                                    backgroundColor: "#e1e9e6",
+                                    border: "1px solid #226444",
+                                  }}
+                                >
+                                  <p style={{ color: "#226444", margin: "0" }}>
+                                    {item.quantity}
+                                  </p>
                                 </button>
-                                x {item?.price} =
-                                <div>{item.quantity * item?.price}/-</div>
+                                <p style={{ opacity: ".9", margin: "0" }}>
+                                  x {item?.price} =
+                                </p>
+                                <p style={{ opacity: ".9", margin: "0" }}>
+                                  {item.quantity * item?.price}/-
+                                </p>
                               </div>
                             </div>
                           </div>
                         </Fragment>
                       ))}
-                    <hr />
+                    <hr style={{ marginTop: "" }} />
                     <div className="d-flex justify-content-between">
-                      <p className="m-0 text-muted">Item Total</p>
+                      <p
+                        style={{
+                          fontSize: ".7rem",
+                          fontWeight: "500",
+                        }}
+                        className="m-0 text-muted"
+                      >
+                        Item Total
+                      </p>
                       <p className="m-0 text-muted">{order?.itemPrice}/-</p>
                     </div>
                     <div className="d-flex justify-content-between">
-                      <p className="my-1 text-muted">Delivery</p>
-                      <p className="my-1 text-success">
+                      <p
+                        style={{
+                          fontSize: ".7rem",
+                          fontWeight: "500",
+                        }}
+                        className="my-1 text-muted"
+                      >
+                        Delivery
+                      </p>
+                      <p className="my-1" style={{ color: "#0bab40" }}>
                         {order?.shippingPrice === 0
                           ? "FREE"
                           : order?.shippingPrice}
                       </p>
                     </div>
-                    <div className="d-flex justify-content-between">
-                      <p className="m-0">GRAND TOTAL</p>
+                    <div className="d-flex justify-content-between mt-2">
+                      <p
+                        style={{
+                          fontSize: ".8rem",
+                          fontWeight: "700",
+                        }}
+                        className="m-0"
+                      >
+                        GRAND TOTAL
+                      </p>
                       <p className="m-0">{order?.totalPrice}/-</p>
                     </div>
                   </div>
@@ -390,27 +462,43 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       borderRadius: ".5rem",
                       border: "none",
                       backgroundColor: "white",
-                      boxShadow: "0 0 15px #546b912b",
+                      boxShadow: "3px 3px 5px #546b910f",
                       overflowX: "auto",
+                      padding: "1.8rem",
                     }}
                   >
-                    <div className="d-flex justify-content-between px-3">
-                      <h6>Customer Detailes</h6>
+                    <div className="d-flex justify-content-between">
+                      <h6
+                        style={{
+                          fontWeight: "500",
+                          fontSize: "1.3rem",
+                        }}
+                      >
+                        Customer Detailes
+                      </h6>
                       <NavLink className="text-decoration-none" to="/">
                         Edit
                       </NavLink>
                     </div>
                     <hr />
-                    <div className="d-flex justify-content-between px-5 my-2">
+                    <div className="d-flex justify-content-between my-2">
                       <div>
                         <label
                           className="text-muted"
-                          style={{ fontWeight: "500" }}
+                          style={{
+                            fontWeight: "100",
+                            fontSize: ".8rem",
+                            marginTop: "1rem",
+                          }}
                         >
                           Name
-                        </label>{" "}
+                        </label>
                         <br />
                         <input
+                          style={{
+                            fontWeight: "500",
+                            fontSize: ".9rem",
+                          }}
                           type="text"
                           placeholder="Full Name"
                           value={order?.user?.name ? order?.user?.name : "Name"}
@@ -420,12 +508,20 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       <div>
                         <label
                           className="text-muted"
-                          style={{ fontWeight: "500" }}
+                          style={{
+                            fontWeight: "100",
+                            fontSize: ".8rem",
+                            marginTop: "1rem",
+                          }}
                         >
                           Number
                         </label>{" "}
                         <br />
                         <input
+                          style={{
+                            fontWeight: "500",
+                            fontSize: ".9rem",
+                          }}
                           type="text"
                           placeholder="Phone Number"
                           value={
@@ -437,15 +533,23 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                         />
                       </div>
                     </div>
-                    <div className="px-5 my-2">
+                    <div className="my-2">
                       <label
                         className="text-muted"
-                        style={{ fontWeight: "500" }}
+                        style={{
+                          fontWeight: "100",
+                          fontSize: ".8rem",
+                          marginTop: "1rem",
+                        }}
                       >
                         Email Id
                       </label>{" "}
                       <br />
                       <input
+                        style={{
+                          fontWeight: "500",
+                          fontSize: ".9rem",
+                        }}
                         type="text"
                         placeholder="Email address"
                         value={
@@ -457,15 +561,23 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                         readOnly
                       />
                     </div>
-                    <div className="px-5 my-2">
+                    <div className="my-2">
                       <label
                         className="text-muted"
-                        style={{ fontWeight: "500" }}
+                        style={{
+                          fontWeight: "100",
+                          fontSize: ".8rem",
+                          marginTop: "1rem",
+                        }}
                       >
                         Address
                       </label>{" "}
                       <br />
                       <input
+                        style={{
+                          fontWeight: "500",
+                          fontSize: ".9rem",
+                        }}
                         type="text"
                         placeholder="Address"
                         value={
@@ -476,16 +588,24 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                         readOnly
                       />
                     </div>
-                    <div className="d-flex justify-content-between px-5 my-2">
+                    <div className="d-flex justify-content-between my-2">
                       <div>
                         <label
                           className="text-muted"
-                          style={{ fontWeight: "500" }}
+                          style={{
+                            fontWeight: "100",
+                            fontSize: ".8rem",
+                            marginTop: "1rem",
+                          }}
                         >
                           Area/Locality
                         </label>{" "}
                         <br />
                         <input
+                          style={{
+                            fontWeight: "500",
+                            fontSize: ".9rem",
+                          }}
                           type="text"
                           placeholder="Area/Locality"
                           value={
@@ -499,12 +619,20 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       <div>
                         <label
                           className="text-muted"
-                          style={{ fontWeight: "500" }}
+                          style={{
+                            fontWeight: "100",
+                            fontSize: ".8rem",
+                            marginTop: "1rem",
+                          }}
                         >
                           Landmark
                         </label>{" "}
                         <br />
                         <input
+                          style={{
+                            fontWeight: "500",
+                            fontSize: ".9rem",
+                          }}
                           type="text"
                           placeholder="Landmark"
                           value={
@@ -516,16 +644,24 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                         />
                       </div>
                     </div>
-                    <div className="d-flex justify-content-between px-5 my-2">
+                    <div className="d-flex justify-content-between my-2">
                       <div>
                         <label
                           className="text-muted"
-                          style={{ fontWeight: "500" }}
+                          style={{
+                            fontWeight: "100",
+                            fontSize: ".8rem",
+                            marginTop: "1rem",
+                          }}
                         >
                           City
                         </label>{" "}
                         <br />
                         <input
+                          style={{
+                            fontWeight: "500",
+                            fontSize: ".9rem",
+                          }}
                           type="text"
                           placeholder="City"
                           value={
@@ -539,12 +675,20 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                       <div>
                         <label
                           className="text-muted"
-                          style={{ fontWeight: "500" }}
+                          style={{
+                            fontWeight: "100",
+                            fontSize: ".8rem",
+                            marginTop: "1rem",
+                          }}
                         >
                           Pincode
                         </label>{" "}
                         <br />
                         <input
+                          style={{
+                            fontWeight: "500",
+                            fontSize: ".9rem",
+                          }}
                           type="text"
                           placeholder="Pincode  "
                           value={
@@ -556,16 +700,24 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                         />
                       </div>
                     </div>
-                    <div className="d-flex justify-content-between px-5 my-2">
+                    <div className="d-flex justify-content-between my-2">
                       <div>
                         <label
                           className="text-muted"
-                          style={{ fontWeight: "500" }}
+                          style={{
+                            fontWeight: "100",
+                            fontSize: ".8rem",
+                            marginTop: "1rem",
+                          }}
                         >
                           State
                         </label>{" "}
                         <br />
                         <input
+                          style={{
+                            fontWeight: "500",
+                            fontSize: ".9rem",
+                          }}
                           type="text"
                           placeholder="State"
                           value={
@@ -576,15 +728,23 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                           readOnly
                         />
                       </div>
-                      <div>
+                      <div className="position-relative">
                         <label
                           className="text-muted"
-                          style={{ fontWeight: "500" }}
+                          style={{
+                            fontWeight: "100",
+                            fontSize: ".8rem",
+                            marginTop: "1rem",
+                          }}
                         >
                           Payment Method
                         </label>{" "}
                         <br />
                         <input
+                          style={{
+                            fontWeight: "500",
+                            fontSize: ".9rem",
+                          }}
                           type="text"
                           placeholder="Cash on delivery"
                           value={
@@ -595,20 +755,23 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                           readOnly
                         />
                         <button
-                          className="btn"
+                          className="btn position-absolute end-0"
                           style={
                             order.paymentInfo?.method === "online"
                               ? {
+                                  top: "65%",
                                   backgroundColor: "#eff5f1",
                                   color: "#137e62",
                                   borderRadius: ".2rem",
-                                  padding: "0 0.4rem",
+                                  padding: "0 1rem",
                                 }
                               : {
+                                  top: "65%",
                                   backgroundColor: "#ffe5d4",
                                   color: "#ff6a02",
                                   borderRadius: ".2rem",
-                                  padding: "0 0.4rem",
+                                  fontSize: ".7rem",
+                                  padding: "0 0.5rem",
                                 }
                           }
                         >
@@ -626,7 +789,7 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                     style={{
                       borderRadius: ".5rem",
                       backgroundColor: "white",
-                      boxShadow: "0 0 15px #546b912b",
+                      boxShadow: "3px 3px 5px #546b910f",
                       border: "none",
                     }}
                   >
@@ -670,7 +833,7 @@ const AllOrdersPage3 = ({ toggle, setRestrictSide }) => {
                     style={{
                       borderRadius: ".5rem",
                       backgroundColor: "white",
-                      boxShadow: "0 0 15px #546b912b",
+                      boxShadow: "3px 3px 5px #546b910f",
                       border: "none",
                     }}
                   >
