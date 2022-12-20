@@ -230,7 +230,7 @@ const HomePage = ({ toggle, setRestrictSide }) => {
           </p>
         </div>
         <div className="homePageSelector">
-          <div className="d-flex px-4 ">
+          <div className="d-flex px-4 me-2">
             <div className="p2-selection mx-2">
               <select
                 // selected={saleDate}
@@ -261,16 +261,40 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                 height: "14rem",
                 borderRadius: ".5rem",
                 backgroundColor: "white",
-                boxShadow: "0 0 15px #546b912b",
+                boxShadow: "3px 3px 5px #546b910f",
               }}
             >
               <thead>
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col" style={{ opacity: ".9", fontWeight: "500" }}>
+                  <th
+                    scope="col"
+                    style={{
+                      opacity: ".9",
+                      fontWeight: "500",
+                      paddingBottom: ".7rem",
+                      paddingTop: "1.1rem",
+                    }}
+                  ></th>
+                  <th
+                    scope="col"
+                    style={{
+                      opacity: ".9",
+                      fontWeight: "500",
+                      paddingBottom: ".7rem",
+                      paddingTop: "1.1rem",
+                    }}
+                  >
                     TOP NURSERIES
                   </th>
-                  <th scope="col" style={{ opacity: ".9", fontWeight: "500" }}>
+                  <th
+                    scope="col"
+                    style={{
+                      opacity: ".9",
+                      fontWeight: "500",
+                      paddingBottom: ".7rem",
+                      paddingTop: "1.1rem",
+                    }}
+                  >
                     SALES
                   </th>
                 </tr>
@@ -291,10 +315,10 @@ const HomePage = ({ toggle, setRestrictSide }) => {
               </tbody>
             </table>
             <div
-              className="container-sm px-4 py-2"
+              className="container-sm px-4"
               style={{
                 width: "100%",
-                boxShadow: "0 0 15px #546b912b",
+                boxShadow: "3px 3px 5px #546b910f",
                 backgroundColor: "white",
                 borderRadius: ".5rem",
                 height: "14rem",
@@ -304,7 +328,14 @@ const HomePage = ({ toggle, setRestrictSide }) => {
             >
               <div>
                 <p
-                  style={{ opacity: ".9", fontWeight: "500", fontWeight: 500 }}
+                  style={{
+                    opacity: ".9",
+                    fontWeight: "500",
+                    fontWeight: 500,
+                    paddingBottom: ".7rem",
+                    paddingTop: "1.1rem",
+                    marginBottom: ".5rem",
+                  }}
                 >
                   TOTAL SALES
                 </p>
@@ -320,7 +351,14 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                 }}
               >
                 <p
-                  style={{ fontWeight: 500, fontSize: ".8rem", opacity: ".8" }}
+                  style={{
+                    fontWeight: 500,
+                    fontSize: ".8rem",
+                    opacity: ".8",
+                    paddingBottom: ".7rem",
+                    paddingTop: "1.1rem",
+                    marginBottom: ".5rem",
+                  }}
                 >
                   Lifetime
                 </p>
@@ -332,7 +370,7 @@ const HomePage = ({ toggle, setRestrictSide }) => {
           </div>
           <div className="lastContainerHolder container-lg d-flex justify-content-between px-5 py-4">
             <div
-              className="tableAndBannerHolder container-md p-0 me-3"
+              className="tableAndBannerHolder container-md p-0"
               style={{ width: "63%" }}
             >
               <div className="d-flex justify-content-between align-items-center mb-2">
@@ -378,7 +416,7 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                   backgroundColor: "white",
                   borderRadius: ".5rem",
                   overflowX: "auto",
-                  boxShadow: "0 0 15px #546b912b",
+                  boxShadow: "3px 3px 5px #546b910f",
                 }}
                 className="container-sm d-flex justify-content-between py-2"
               >
@@ -400,13 +438,6 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                 {banners &&
                   banners?.map((banner, index) => (
                     <div className="bannerContainer" key={index}>
-                      <MdDelete
-                        style={{
-                          color: "#dc3545",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => bannerDeleteHandler(banner._id)}
-                      />
                       <div
                         className="card mx-1"
                         style={{
@@ -422,14 +453,21 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                           className="bg-primary img-fluid rounded-start h-100"
                           alt="..."
                         />
+                        <MdDelete
+                          style={{
+                            position: "absolute",
+                            right: ".3rem",
+                            top: ".3rem",
+                            color: "#dc3545",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => bannerDeleteHandler(banner._id)}
+                        />
                       </div>
                     </div>
                   ))}
               </div>
-              <div
-                className="container-md px-0 py-2 mt-3"
-                style={{ width: "100%" }}
-              >
+              <div className="container-md px-0 py-4" style={{ width: "100%" }}>
                 <div className="d-flex justify-content-between align-items-center container-md p-0 my-2">
                   <h5>Notifications</h5>
                   <button
@@ -452,45 +490,127 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                   >
                     <thead style={{ backgroundColor: "#eaeaea" }}>
                       <tr>
-                        <th scope="col">S.no</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Message</th>
-                        <th scope="col">Sent to</th>
+                        <th scope="col" style={{ border: "none" }}></th>
+                        <th scope="col" style={{ fontSize: ".8rem" }}>
+                          S.no
+                        </th>
+                        <th scope="col" style={{ fontSize: ".8rem" }}>
+                          Title
+                        </th>
+                        <th scope="col" style={{ fontSize: ".8rem" }}>
+                          Message
+                        </th>
+                        <th scope="col" style={{ fontSize: ".8rem" }}>
+                          Sent to
+                        </th>
+                        <th scope="col" style={{ border: "none" }}></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">1</th>
-                        <td>MEGA OFFER</td>
-                        <td className="text-wrap w-50">
+                        <th scope="col" style={{ border: "none" }}></th>
+                        <th
+                          scope="row"
+                          className="text-success"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
+                          1
+                        </th>
+                        <td style={{ fontSize: ".8rem", opacity: ".7" }}>
+                          MEGA OFFER
+                        </td>
+                        <td
+                          className="text-wrap w-50"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
                           Lorem ipsum dolor, sit amet consectetur adipisicing
                           elit.
                         </td>
-                        <td>Vendor</td>
+                        <td
+                          className="text-success"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
+                          Vendor
+                        </td>
+                        <th scope="col" style={{ border: "none" }}></th>
                       </tr>
                       <tr>
-                        <th scope="row">2</th>
-                        <td>MEGA OFFER</td>
-                        <td className="text-wrap w-50">
+                        <th scope="col" style={{ border: "none" }}></th>
+                        <th
+                          scope="row"
+                          className="text-success"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
+                          2
+                        </th>
+                        <td style={{ fontSize: ".8rem", opacity: ".7" }}>
+                          MEGA OFFER
+                        </td>
+                        <td
+                          className="text-wrap w-50"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
                           Lorem ipsum dolor, sit amet.
                         </td>
-                        <td>Clients</td>
+                        <td
+                          className="text-warning"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
+                          Clients
+                        </td>
+                        <th scope="col" style={{ border: "none" }}></th>
                       </tr>
                       <tr>
-                        <th scope="row">3</th>
-                        <td>MEGA OFFER</td>
-                        <td className="text-wrap w-50">
+                        <th scope="col" style={{ border: "none" }}></th>
+                        <th
+                          scope="row"
+                          className="text-success"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
+                          3
+                        </th>
+                        <td style={{ fontSize: ".8rem", opacity: ".7" }}>
+                          MEGA OFFER
+                        </td>
+                        <td
+                          className="text-wrap w-50"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
                           Lorem ipsum dolor, sit amet.
                         </td>
-                        <td>Clients</td>
+                        <td
+                          className="text-warning"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
+                          Clients
+                        </td>
+                        <th scope="col" style={{ border: "none" }}></th>
                       </tr>
                       <tr>
-                        <th scope="row">4</th>
-                        <td>MEGA OFFER</td>
-                        <td className="text-wrap w-50">
+                        <th scope="col" style={{ border: "none" }}></th>
+                        <th
+                          scope="row"
+                          className="text-success"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
+                          4
+                        </th>
+                        <td style={{ fontSize: ".8rem", opacity: ".7" }}>
+                          MEGA OFFER
+                        </td>
+                        <td
+                          className="text-wrap w-50"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
                           Lorem ipsum dolor, sit amet.
                         </td>
-                        <td>Clients</td>
+                        <td
+                          className="text-warning"
+                          style={{ fontSize: ".8rem", opacity: ".7" }}
+                        >
+                          Clients
+                        </td>
+                        <th scope="col" style={{ border: "none" }}></th>
                       </tr>
                     </tbody>
                   </table>
@@ -502,7 +622,7 @@ const HomePage = ({ toggle, setRestrictSide }) => {
               style={{ width: "35%" }}
             >
               <div className="pt-1">
-                <h4>Orders</h4>
+                <h5>Orders</h5>
               </div>
 
               <div
@@ -511,9 +631,9 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
-                  boxShadow: "0 0 15px #546b912b",
+                  boxShadow: "3px 3px 5px #546b910f",
                 }}
-                className="container-sm d-flex justify-content-between mt-1"
+                className="container-sm d-flex justify-content-between mt-1 px-4"
               >
                 <p className="d-flex align-items-end">
                   {pendingOrders && pendingOrders.length} Pending orders
@@ -525,9 +645,9 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
-                  boxShadow: "0 0 15px #546b912b",
+                  boxShadow: "3px 3px 5px #546b910f",
                 }}
-                className="container-sm d-flex justify-content-between mt-4"
+                className="container-sm d-flex justify-content-between mt-4 px-4"
               >
                 <p className="d-flex align-items-end">
                   {pendingOrders && pendingOrders.length} Pending order worth Rs{" "}
@@ -540,9 +660,9 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
-                  boxShadow: "0 0 15px #546b912b",
+                  boxShadow: "3px 3px 5px #546b910f",
                 }}
-                className="container-sm d-flex justify-content-between mt-4"
+                className="container-sm d-flex justify-content-between mt-4 px-4"
               >
                 <p className="d-flex align-items-end">
                   {ordersToShip && ordersToShip.length} order to ship
@@ -554,9 +674,9 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                   borderRadius: ".5rem",
                   width: "100%",
                   height: "5.6rem",
-                  boxShadow: "0 0 15px #546b912b",
+                  boxShadow: "3px 3px 5px #546b910f",
                 }}
-                className="container-sm d-flex justify-content-between mt-4"
+                className="container-sm d-flex justify-content-between mt-4 px-4"
               >
                 <p className="d-flex align-items-end">
                   {pendingOrders && pendingOrders.length} Pending orders

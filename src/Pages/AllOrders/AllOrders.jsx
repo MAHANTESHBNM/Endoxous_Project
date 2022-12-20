@@ -227,7 +227,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between align-items-center px-2 py-1 filterInputInAllOrders">
+          <div className="d-flex justify-content-between align-items-center py-1 filterInputInAllOrders">
             <div
               className="px-5 pt-4 pb-3 filterInput"
               onClick={(e) => setState(false)}
@@ -244,7 +244,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
               />
             </div>
             <div className="px-4 pt-4">
-              <div className="d-flex px-4">
+              <div className="d-flex px-3">
                 <div className="p2-selection mx-2">
                   <select
                     className="form-select "
@@ -316,7 +316,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
               </div>
             </div>
           </div>
-          <div className="section2-btn d-flex px-5 ">
+          <div className="section2-btn d-flex px-4 ">
             <button
               className="s2-btn py-2 px-3 my-2"
               onClick={() => showAll()}
@@ -350,7 +350,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
             </button>
           </div>
 
-          <div className="tableForAll s2-table m-5 ">
+          <div className="tableForAll s2-table  " style={{ margin: "0 5rem" }}>
             <div className="s2-table subTableForAll">
               {loading ? (
                 <Loader />
@@ -362,6 +362,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                     width: "100%",
                     borderRadius: ".5rem",
                     backgroundColor: "white",
+                    boxShadow: "3px 3px 5px #546b910f",
                   }}
                 >
                   <thead
@@ -371,6 +372,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                     }}
                   >
                     <tr>
+                      <th scope="col"></th>
                       <th scope="col">Order ID</th>
                       <th scope="col">Date and Time</th>
                       <th scope="col">Customer</th>
@@ -379,6 +381,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                       <th scope="col">Status</th>
                       <th scope="col">Amount</th>
                       <th scope="col">Deliverd By</th>
+                      <th scope="col"></th>
                     </tr>
                   </thead>
 
@@ -400,6 +403,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                             })
                             .map((order, index) => (
                               <tr key={index}>
+                                <th scope="col"></th>
                                 <th
                                   onClick={() => viewDeatils(order._id)}
                                   scope="row"
@@ -421,36 +425,35 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                     : order.user?.phone}
                                 </td>
                                 <td>{order.orderItems?.length}</td>
-                                <div
-                                  className="d-flex justify-content-center my-1"
-                                  style={
-                                    order.paymentInfo?.method === "online"
-                                      ? {
-                                          backgroundColor: "#eff5f1",
-                                          color: "#137e62",
-                                          borderRadius: ".2rem",
-                                          padding: "0.4rem 0",
-                                        }
-                                      : {
-                                          backgroundColor: "#ffe5d4",
-                                          color: "#ff6a02",
-                                          borderRadius: ".2rem",
-                                          padding: "0.4rem 0",
-                                        }
-                                  }
-                                >
-                                  <td>{order.paymentInfo?.method}</td>
+                                <div className="d-flex justify-content-center my-1">
+                                  <td
+                                    style={
+                                      order.paymentInfo?.method === "online"
+                                        ? {
+                                            backgroundColor: "#eff5f1",
+                                            color: "#137e62",
+                                            borderRadius: ".2rem",
+                                            padding: "0.1rem 1rem",
+                                          }
+                                        : {
+                                            backgroundColor: "#ffe5d4",
+                                            color: "#ff6a02",
+                                            borderRadius: ".2rem",
+                                            padding: "0.1rem 1rem",
+                                          }
+                                    }
+                                  >
+                                    {order.paymentInfo?.method}
+                                  </td>
                                 </div>
                                 <td>
-                                  <div>
-                                    <input
-                                      className="form-check-input s2-radio"
-                                      type="radio"
-                                      name="radioNoLabel"
-                                      id="radioNoLabel1"
-                                      value="Pending"
-                                      aria-label="..."
+                                  <div className="d-flex align-items-center">
+                                    <div className="d-flex align-items-center justify-content-center"
                                       style={{
+                                        width: "14px",
+                                        height: "14px",
+                                        borderRadius: "100%",
+                                        marginRight: "5px",
                                         backgroundColor:
                                           order?.orderStatus === "Shipped"
                                             ? "lightgreen"
@@ -458,10 +461,28 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                             ? "red"
                                             : order?.orderStatus === "Delivered"
                                             ? "green"
-                                            : "orange",
+                                            : "#fae2e2",
                                       }}
-                                    />{" "}
-                                    {order?.orderStatus}
+                                    >
+                                      <div
+                                        style={{
+                                          width: "7px",
+                                          height: "7px",
+                                          borderRadius: "100%",
+                                          backgroundColor:
+                                            order?.orderStatus === "Shipped"
+                                              ? "lightgreen"
+                                              : order?.orderStatus ===
+                                                "Cancelled"
+                                              ? "red"
+                                              : order?.orderStatus ===
+                                                "Delivered"
+                                              ? "green"
+                                              : "#d60909",
+                                        }}
+                                      ></div>
+                                    </div>
+                                    <div>{order?.orderStatus}</div>
                                   </div>
                                 </td>
                                 <td>Rs {order?.totalPrice}</td>
@@ -491,6 +512,8 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                     </select>
                                   )}
                                 </td>
+
+                                <td scope="col"></td>
                               </tr>
                             ))}
                       </Fragment>
