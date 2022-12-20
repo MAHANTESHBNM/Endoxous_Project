@@ -367,7 +367,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                 >
                   <thead
                     style={{
-                      backgroundColor: "#eaeaea",
+                      backgroundColor: "#eeeeee",
                       fontWeight: "500",
                     }}
                   >
@@ -448,7 +448,8 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                 </div>
                                 <td>
                                   <div className="d-flex align-items-center">
-                                    <div className="d-flex align-items-center justify-content-center"
+                                    <div
+                                      className="d-flex align-items-center justify-content-center"
                                       style={{
                                         width: "14px",
                                         height: "14px",
@@ -456,12 +457,12 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                         marginRight: "5px",
                                         backgroundColor:
                                           order?.orderStatus === "Shipped"
-                                            ? "lightgreen"
+                                            ? "#dcf6dc"
                                             : order?.orderStatus === "Cancelled"
-                                            ? "red"
+                                            ? "#fae2e2"
                                             : order?.orderStatus === "Delivered"
-                                            ? "green"
-                                            : "#fae2e2",
+                                            ? "#eff5f1"
+                                            : "#ffe5d4",
                                       }}
                                     >
                                       <div
@@ -474,11 +475,11 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                               ? "lightgreen"
                                               : order?.orderStatus ===
                                                 "Cancelled"
-                                              ? "red"
+                                              ? "#d60909"
                                               : order?.orderStatus ===
                                                 "Delivered"
-                                              ? "green"
-                                              : "#d60909",
+                                              ? "#137e62"
+                                              : "#ffa23f",
                                         }}
                                       ></div>
                                     </div>
@@ -578,7 +579,7 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                 >
                                   <td>{order.paymentInfo?.method}</td>
                                 </div>
-                                <td>
+                                {/* <td>
                                   <div>
                                     <input
                                       className="form-check-input s2-radio"
@@ -599,6 +600,47 @@ const AllOrders = ({ toggle, setRestrictSide }) => {
                                       }}
                                     />{" "}
                                     {order?.orderStatus}
+                                  </div>
+                                </td> */}
+
+                                <td>
+                                  <div className="d-flex align-items-center">
+                                    <div
+                                      className="d-flex align-items-center justify-content-center"
+                                      style={{
+                                        width: "14px",
+                                        height: "14px",
+                                        borderRadius: "100%",
+                                        marginRight: "5px",
+                                        backgroundColor:
+                                          order?.orderStatus === "Shipped"
+                                            ? "#dcf6dc"
+                                            : order?.orderStatus === "Cancelled"
+                                            ? "#fae2e2"
+                                            : order?.orderStatus === "Delivered"
+                                            ? "#eff5f1"
+                                            : "#ffe5d4",
+                                      }}
+                                    >
+                                      <div
+                                        style={{
+                                          width: "7px",
+                                          height: "7px",
+                                          borderRadius: "100%",
+                                          backgroundColor:
+                                            order?.orderStatus === "Shipped"
+                                              ? "lightgreen"
+                                              : order?.orderStatus ===
+                                                "Cancelled"
+                                              ? "#d60909"
+                                              : order?.orderStatus ===
+                                                "Delivered"
+                                              ? "#137e62"
+                                              : "#ffa23f",
+                                        }}
+                                      ></div>
+                                    </div>
+                                    <div>{order?.orderStatus}</div>
                                   </div>
                                 </td>
                                 <td>Rs {order?.totalPrice}</td>

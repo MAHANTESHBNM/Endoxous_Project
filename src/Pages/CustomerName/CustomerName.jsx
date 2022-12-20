@@ -392,36 +392,74 @@ const CustomerName = ({ toggle, setRestrictSide }) => {
           </div>
         </div>
         <div
-          className="container-md d-flex flex-column customerNameContainer"
-          style={{ width: "38%", backgroundColor: "white", height: "100%" }}
+          className="container-md my-4 d-flex flex-column customerNameContainer"
+          style={{
+            width: "38%",
+            backgroundColor: "white",
+            height: "100%",
+            borderRadius: ".5rem",
+            boxShadow: "3px 3px 5px #546b910f",
+          }}
         >
           <div
-            className="d-flex align-items-center justify-content-between w-100 px-3"
+            className="d-flex align-items-center justify-content-between w-100 px-3 pt-3"
             style={{ height: "4rem" }}
           >
             <h5 className="m-0">Customer Details</h5>
-            <button className="btn py-0">Edit</button>
+            <button
+              style={{ textDecoration: "none" }}
+              className="btn btn-link py-0"
+            >
+              Edit
+            </button>
           </div>
-          <hr />
+          <hr className="mt-0" />
           <div
             className="px-3"
             style={{ lineHeight: ".4rem", margin: ".7rem 0" }}
           >
-            <p>Name</p>
+            <p
+              className="text-muted"
+              style={{
+                opacity: ".7",
+                fontSize: ".9rem",
+                marginBottom: ".7rem",
+              }}
+            >
+              Name
+            </p>
             <h6>{user?.name ? user?.name : "USER NAME"}</h6>
           </div>
           <div
             className="px-3"
             style={{ lineHeight: ".4rem", margin: ".7rem 0" }}
           >
-            <p>Phone</p>
+            <p
+              className="text-muted"
+              style={{
+                opacity: ".7",
+                fontSize: ".9rem",
+                marginBottom: ".7rem",
+              }}
+            >
+              Phone number
+            </p>
             <h6>{user?.phone ?? "USER PHONE"}</h6>
           </div>
           <div
             className="px-3"
             style={{ lineHeight: ".4rem", margin: ".7rem 0" }}
           >
-            <p>Email</p>
+            <p
+              className="text-muted"
+              style={{
+                opacity: ".7",
+                fontSize: ".9rem",
+                marginBottom: ".7rem",
+              }}
+            >
+              Email ID
+            </p>
             <h6>
               {user?.email?.slice(0, 17) === "example@gmail.com"
                 ? "USER EMAIL"
@@ -432,21 +470,48 @@ const CustomerName = ({ toggle, setRestrictSide }) => {
             className="px-3"
             style={{ lineHeight: ".4rem", margin: ".7rem 0" }}
           >
-            <p>Address</p>
+            <p
+              className="text-muted"
+              style={{
+                opacity: ".7",
+                fontSize: ".9rem",
+                marginBottom: ".7rem",
+              }}
+            >
+              Address
+            </p>
             <h6>{user?.address ?? "USER ADDRESS"}</h6>
           </div>
           <div
             className="px-3"
             style={{ lineHeight: ".4rem", margin: ".7rem 0" }}
           >
-            <p>Area/Locality</p>
+            <p
+              className="text-muted"
+              style={{
+                opacity: ".7",
+                fontSize: ".9rem",
+                marginBottom: ".7rem",
+              }}
+            >
+              Area/Locality
+            </p>
             <h6>{user?.area ?? "USER AREA/LOCALITY"}</h6>
           </div>
           <div
             className="px-3"
             style={{ lineHeight: ".4rem", margin: ".7rem 0" }}
           >
-            <p>State</p>
+            <p
+              className="text-muted"
+              style={{
+                opacity: ".7",
+                fontSize: ".9rem",
+                marginBottom: ".7rem",
+              }}
+            >
+              State
+            </p>
             <h6>{user?.state ?? "USER STATE"}</h6>
           </div>
         </div>

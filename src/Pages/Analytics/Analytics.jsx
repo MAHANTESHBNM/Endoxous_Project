@@ -250,12 +250,12 @@ const Analytics = ({ toggle, setRestrictSide }) => {
       ) : (
         <>
           <div className="d-flex justify-content-between align-items-center py-1">
-            <div className="px-5 pt-5 pb-3">
+            <div className="px-5 pt-4 pb-2">
               <h4>Overview</h4>
             </div>
             <div>
-              <div className="d-flex align-items-center px-5 pt-5 pb-3 ">
-                <div className="p2-selection mx-2">
+              <div className="d-flex align-items-center px-5 pt-4 pb-2 ">
+                <div className="p2-selection">
                   <select
                     selected={orderDate}
                     className="form-select "
@@ -276,9 +276,9 @@ const Analytics = ({ toggle, setRestrictSide }) => {
               className="card my-2"
               style={{
                 width: "24%",
-                borderRadius: ".5rem",
+                borderRadius: ".3rem",
                 backgroundColor: "white",
-                boxShadow: "0 0 15px #546b912b",
+                boxShadow: "3px 3px 5px #546b910f",
                 border: "none",
               }}
             >
@@ -286,16 +286,16 @@ const Analytics = ({ toggle, setRestrictSide }) => {
                 <h6 style={{ opacity: ".7" }} className="card-title">
                   AVG ORDERS PER DAY
                 </h6>
-                <h4 className="card-subtitle mb-2">{avg}</h4>
+                <h4 className="card-subtitle">{avg}</h4>
               </div>
             </div>
             <div
               className="card my-2"
               style={{
                 width: "24%",
-                borderRadius: ".5rem",
+                borderRadius: ".3rem",
                 backgroundColor: "white",
-                boxShadow: "0 0 15px #546b912b",
+                boxShadow: "3px 3px 5px #546b910f",
                 border: "none",
               }}
             >
@@ -304,7 +304,7 @@ const Analytics = ({ toggle, setRestrictSide }) => {
                   AVG ORDER VALUE
                 </h6>
                 {/* <h2 className="card-subtitle mb-2 text-muted">{Math.round(averageOrderValue)}</h2> */}
-                <h4 className="card-subtitle mb-2">
+                <h4 className="card-subtitle">
                   {averageOrderValue.toFixed(2)}
                 </h4>
               </div>
@@ -313,9 +313,9 @@ const Analytics = ({ toggle, setRestrictSide }) => {
               className="card my-2"
               style={{
                 width: "24%",
-                borderRadius: ".5rem",
+                borderRadius: ".3rem",
                 backgroundColor: "white",
-                boxShadow: "0 0 15px #546b912b",
+                boxShadow: "3px 3px 5px #546b910f",
                 border: "none",
               }}
             >
@@ -323,16 +323,16 @@ const Analytics = ({ toggle, setRestrictSide }) => {
                 <h6 style={{ opacity: ".7" }} className="card-title">
                   AVG SALES PER DAY
                 </h6>
-                <h4 className="card-subtitle mb-2">Rs {avgSale.toFixed(2)}</h4>
+                <h4 className="card-subtitle">Rs {avgSale.toFixed(2)}</h4>
               </div>
             </div>
             <div
               className="card my-2"
               style={{
                 width: "24%",
-                borderRadius: ".5rem",
+                borderRadius: ".3rem",
                 backgroundColor: "white",
-                boxShadow: "0 0 15px #546b912b",
+                boxShadow: "3px 3px 5px #546b910f",
                 border: "none",
               }}
             >
@@ -340,7 +340,7 @@ const Analytics = ({ toggle, setRestrictSide }) => {
                 <h6 style={{ opacity: ".7" }} className="card-title">
                   RETURNING CUSTOMERS
                 </h6>
-                <h4 className="card-subtitle mb-2">
+                <h4 className="card-subtitle">
                   {returningCustomers.toFixed(2)} %
                 </h4>
               </div>
@@ -352,9 +352,9 @@ const Analytics = ({ toggle, setRestrictSide }) => {
               className="card my-2"
               style={{
                 width: "49%",
-                borderRadius: ".5rem",
+                borderRadius: ".3rem",
                 backgroundColor: "white",
-                boxShadow: "0 0 15px #546b912b",
+                boxShadow: "3px 3px 5px #546b910f",
                 border: "none",
               }}
             >
@@ -369,9 +369,9 @@ const Analytics = ({ toggle, setRestrictSide }) => {
               className="card my-2"
               style={{
                 width: "49%",
-                borderRadius: ".5rem",
+                borderRadius: ".3rem",
                 backgroundColor: "white",
-                boxShadow: "0 0 15px #546b912b",
+                boxShadow: "3px 3px 5px #546b910f",
                 border: "none",
               }}
             >

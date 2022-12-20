@@ -141,7 +141,7 @@ const AllProducts = ({ toggle, setRestrictSide }) => {
         </div>
         <hr />
       </nav>
-      <div className="d-flex flex-wrap justify-content-between align-items-center px-2 py-1">
+      <div className="d-flex flex-wrap justify-content-between align-items-center py-1">
         <div className="px-5 py-4 filterInput" onClick={(e) => setState(false)}>
           <input
             className="form-control px-4"
@@ -231,8 +231,9 @@ const AllProducts = ({ toggle, setRestrictSide }) => {
                     backgroundColor: "white",
                   }}
                 >
-                  <thead style={{ backgroundColor: "#eaeaea" }}>
+                  <thead style={{ backgroundColor: "#eeeeee" }}>
                     <tr>
+                      <th></th>
                       <th scope="col">Order ID</th>
                       <th scope="col">Product Name</th>
                       {/* <th scope="col">Option</th> */}
@@ -260,6 +261,7 @@ const AllProducts = ({ toggle, setRestrictSide }) => {
                             })
                             .map((product, index) => (
                               <tr key={index}>
+                                <td></td>
                                 <td>
                                   <div
                                     style={{
@@ -287,7 +289,7 @@ const AllProducts = ({ toggle, setRestrictSide }) => {
                                   {product.stock}
                                 </td>
 
-                                <td>...</td>
+                                <td></td>
                                 <td>Rs {product.price}</td>
                                 <td>Nursery Name</td>
                               </tr>

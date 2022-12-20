@@ -146,9 +146,17 @@ const SalesReport = ({ toggle, setRestrictSide }) => {
             </div>
             <hr />
           </nav>
-          <div className="d-flex justify-content-between align-items-end flex-wrap px-2 py-1">
+          <div className="d-flex justify-content-between align-items-end flex-wrap py-1">
             <div className="px-5 pt-4">
-              <p style={{ color: "#9f9f9f", fontSize: ".8rem" }}>TOTAL SALES</p>
+              <p
+                style={{
+                  color: "#9f9f9f",
+                  fontSize: ".8rem",
+                  marginBottom: ".5rem",
+                }}
+              >
+                TOTAL SALES
+              </p>
               <h4 style={{ fontWeight: "600" }}>
                 Rs {totalSalesAmount && totalSalesAmount}
               </h4>
@@ -170,7 +178,7 @@ const SalesReport = ({ toggle, setRestrictSide }) => {
                       ))}
                   </select>
                 </div> */}
-                <div className="p2-selection mx-2 filterInput">
+                <div className="p2-selection filterInput">
                   <select
                     className="form-select "
                     aria-label="Default select example"
@@ -199,8 +207,12 @@ const SalesReport = ({ toggle, setRestrictSide }) => {
                     backgroundColor: "white",
                   }}
                 >
-                  <thead className="s2-table-nava">
+                  <thead
+                    style={{ backgroundColor: "#eeeeee" }}
+                    className="s2-table-nava"
+                  >
                     <tr>
+                      <th></th>
                       <th scope="col">Date</th>
                       <th scope="col">Orders</th>
                       <th scope="col">Sales</th>
@@ -213,6 +225,7 @@ const SalesReport = ({ toggle, setRestrictSide }) => {
                         {salesReport &&
                           salesReport.map((sale, index) => (
                             <tr>
+                              <th></th>
                               <th scope="row">{sale.date}</th>
                               <td>{sale.count}</td>
                               <td>{sale.total}</td>
