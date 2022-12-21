@@ -28,6 +28,7 @@ import FAQs from "./Pages/FAQs/FAQs";
 import store from "./redux/store";
 import AdminPrivateRoute from "./utils/protectiveRoute";
 import { getAdmin, loadUser } from "./redux/actions/userAction";
+import Notification from "./Pages/Notification/Notification";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -330,6 +331,20 @@ function App() {
               path=""
               element={
                 <EditProducts
+                  setRestrictSide={setRestrictSide}
+                  toggle={toggle}
+                />
+              }
+            />
+          </Route>
+          <Route
+            path="/notification/new"
+            element={<AdminPrivateRoute isAdmin={true} />}
+          >
+            <Route
+              path=""
+              element={
+                <Notification
                   setRestrictSide={setRestrictSide}
                   toggle={toggle}
                 />

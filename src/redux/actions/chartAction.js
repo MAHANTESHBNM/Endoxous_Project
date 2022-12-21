@@ -12,7 +12,6 @@ import {
   ORDER_PER_DAY_REQUEST,
   ORDER_PER_DAY_SUCCESS,
   ORDER_PER_DAY_FAIL,
-  
   CLEAR_ERRORS,
 } from "../../constants/chartConstants";
 // GET Order Chart
@@ -77,8 +76,7 @@ export const getperDayOders = () => async (dispatch) => {
   }
 };
 
-
 // Clearing Errors
 export const clearErrors = () => async (dispatch) => {
-    dispatch({ type: CLEAR_ERRORS });
-  };
+  dispatch({ type: CLEAR_ERRORS });
+};

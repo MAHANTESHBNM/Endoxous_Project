@@ -85,7 +85,7 @@ export const chartSalesReducer = (
 
 // Get Sales per Day Report
 export const salePerDayReducer = (
-  state = { dateSales: [], totalSales: [] ,salesReport:[]},
+  state = { dateSales: [], totalSales: [], salesReport: [] },
   action
 ) => {
   switch (action.type) {
@@ -102,7 +102,7 @@ export const salePerDayReducer = (
         success: action.payload.success,
         salesReport: action.payload.salesReport,
       };
-   
+
     case SALES_PER_DAY_FAIL:
       return {
         loading: false,
@@ -121,7 +121,7 @@ export const salePerDayReducer = (
 
 // Get orders per Day Report
 export const ordersPerDayReducer = (
-  state = { dateSales: [], totalSales: [] ,ordersReport:[]},
+  state = { dateSales: [], totalSales: [], ordersReport: [] },
   action
 ) => {
   switch (action.type) {
@@ -137,7 +137,7 @@ export const ordersPerDayReducer = (
         success: action.payload.success,
         ordersReport: action.payload.orderReport,
       };
-   
+
     case ORDER_PER_DAY_FAIL:
       return {
         loading: false,

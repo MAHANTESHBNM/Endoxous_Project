@@ -6,7 +6,9 @@ import {
 } from "./reducers/bannerReducer";
 import {
   allCategoriesReducer,
+  categoryBlockReducer,
   newCategoryReducer,
+  categoryUnblockReducer,
 } from "./reducers/categoryReducer";
 import {
   chartReducer,
@@ -15,36 +17,38 @@ import {
   salePerDayReducer,
 } from "./reducers/chartReducer";
 import {
-  allNotificationsReducer,
-  sendNotificationReducer,
-} from "./reducers/notificationReducer";
+  addCouponReducer,
+  allCouponsReducer,
+  deleteCouponReducer,
+} from "./reducers/couponReducer";
 import { allNurseriesReducer } from "./reducers/nurseryReducer";
 import {
-  addNoteReducer,
   allOrdersReducer,
-  deleteorderNoteReducer,
   orderDetailsReducer,
   orderReducer,
   usersOrdersReducer,
+  addNoteReducer,
+  deleteorderNoteReducer,
 } from "./reducers/orderReducer";
 import {
-  newFAQReducer,
   newProductReducer,
   productDetailsReducer,
   productReducer,
   productsReducer,
+  newFAQReducer,
 } from "./reducers/productReducers";
 import {
-  allTicketsReducer,
   ordersTicketReducer,
+  allTicketsReducer,
   ticketActionsReducer,
 } from "./reducers/ticketsReducer";
 import {
   adminReducer,
   allUsersReducer,
-  userDetailsReducer,
   userReducer,
   verifyUserReducer,
+  userDetailsReducer,
+  returningUsersReducer,
 } from "./reducers/userReducer";
 
 const Store = configureStore({
@@ -64,7 +68,12 @@ const Store = configureStore({
     ordersTicket: ordersTicketReducer,
     allCategories: allCategoriesReducer,
     newCategory: newCategoryReducer,
+    categoryUnblock: categoryUnblockReducer,
+    categoryBlock: categoryBlockReducer,
+    // categoryDetails : categoryDetailsReducer,
+    // category : categoryReducer,
     allUsers: allUsersReducer,
+    returningUsers: returningUsersReducer,
     order: orderReducer,
     chart: chartReducer,
     chartSales: chartSalesReducer,
@@ -72,17 +81,15 @@ const Store = configureStore({
     salePerDay: salePerDayReducer,
     userDetails: userDetailsReducer,
     usersOrders: usersOrdersReducer,
+    addCoupon: addCouponReducer,
+    allCoupons: allCouponsReducer,
+    deleteCoupon: deleteCouponReducer,
     addNote: addNoteReducer,
     deleteorderNote: deleteorderNoteReducer,
     allTickets: allTicketsReducer,
     ticketActions: ticketActionsReducer,
     newFAQ: newFAQReducer,
     admin: adminReducer,
-    sendNotification: sendNotificationReducer,
-    allNotifications: allNotificationsReducer,
-
-    // categoryDetails : categoryDetailsReducer,
-    // category : categoryReducer,
     // forgotPassword : forgotPasswordReducer,
     // deleteCart : deleteCartItemReducer,
     // shippingInfo : saveShippingReducer,
@@ -93,7 +100,6 @@ const Store = configureStore({
     // newReview : newReviewReducer,
     // productReviews : productReviewsReducer,
     // reviews : reviewReducer,
-
     // newWishlist :newWishlistReducer,
     // myWishlist : myWishlistReducer,
     // deleteWishlist : deleteWishlistItemReducer,

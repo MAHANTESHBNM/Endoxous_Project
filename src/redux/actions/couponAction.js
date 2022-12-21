@@ -17,7 +17,7 @@ export const addCoupon = (coupon) => async (dispatch) => {
   try {
     dispatch({ type: ADD_COUPON_REQUEST });
 
-    const config = {headers: {"Content-Type": "application/json", },};
+    const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(`/coupon/new`, coupon, config);
 
@@ -29,7 +29,6 @@ export const addCoupon = (coupon) => async (dispatch) => {
     });
   }
 };
-
 
 // GET All Coupons
 export const getAllCoupons = () => async (dispatch) => {
@@ -46,7 +45,6 @@ export const getAllCoupons = () => async (dispatch) => {
     });
   }
 };
-
 
 // Delete Coupon ---Admin
 export const deleteCoupon = (id) => async (dispatch) => {

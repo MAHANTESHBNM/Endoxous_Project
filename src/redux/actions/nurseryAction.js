@@ -34,21 +34,25 @@ export const addBanner = (banner) => async (dispatch) => {
 };
 
 // Assing to Nursery
-export const assignToNursery = (orderId,name) => async (dispatch) => {
-    try {
-      dispatch({ type: ADD_NURSERY_REQUEST });
-  
-      const config = { headers: { "Content-Type": "multipart/form-data" } };
-      const { data } = await axios.post(`/admin/orders/assignToUser/${orderId}`, name, config);
-  
-      dispatch({ type: ADD_NURSERY_SUCCESS, payload: data });
-    } catch (error) {
-      dispatch({
-        type: ADD_NURSERY_FAIL,
-        payload: error.response.data,
-      });
-    }
-  };
+export const assignToNursery = (orderId, name) => async (dispatch) => {
+  try {
+    dispatch({ type: ADD_NURSERY_REQUEST });
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const { data } = await axios.post(
+      `/admin/orders/assignToUser/${orderId}`,
+      name,
+      config
+    );
+
+    dispatch({ type: ADD_NURSERY_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: ADD_NURSERY_FAIL,
+      payload: error.response.data,
+    });
+  }
+};
 
 // GET All banners
 export const getAllNurseries = () => async (dispatch) => {

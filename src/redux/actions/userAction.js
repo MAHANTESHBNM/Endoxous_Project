@@ -58,8 +58,8 @@ export const login = (phone) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axiosWithoutToken.post(`/login`, {phone}, config);
-    if (data&&data.phone) {
+    const { data } = await axiosWithoutToken.post(`/login`, { phone }, config);
+    if (data && data.phone) {
       await localStorage.setItem("Uphone", JSON.stringify(data.phone));
     }
     dispatch({ type: LOGIN_SUCCESS, payload: data });
@@ -69,17 +69,21 @@ export const login = (phone) => async (dispatch) => {
 };
 
 // Verify OTP
-export const verifyOTP = (otp,phone) => async (dispatch) => {
+export const verifyOTP = (otp, phone) => async (dispatch) => {
   try {
     dispatch({ type: VERIFY_PHONE_REQUEST });
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axiosWithoutToken.post(`/verify/phone`, {otp,phone}, config);
-    if (data&&data.token) {
+    const { data } = await axiosWithoutToken.post(
+      `/verify/phone`,
+      { otp, phone },
+      config
+    );
+    if (data && data.token) {
       await localStorage.setItem("token", JSON.stringify(data.token));
     }
-    
+
     dispatch({ type: VERIFY_PHONE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: VERIFY_PHONE_FAIL, payload: error.response.data });
@@ -95,7 +99,7 @@ export const register = (userData) => async (dispatch) => {
 
     const { data } = await axios.post(`/register`, userData, { config });
 
-    if (data&&data.user) {
+    if (data && data.user) {
       await localStorage.setItem("Udetails", JSON.stringify(data.user));
     }
 
@@ -265,7 +269,7 @@ export const getReturningUsers = () => async (dispatch) => {
     dispatch({ type: RETURNING_USERS_REQUEST });
 
     const { data } = await axios.get(`/admin/returningusers`);
-    console.log(data&&data,'data');
+    console.log(data && data, "data");
     dispatch({ type: RETURNING_USERS_SUCCESS, payload: data.users });
   } catch (error) {
     dispatch({ type: RETURNING_USERS_FAIL, payload: error.response.data });

@@ -127,7 +127,7 @@ export const updateOrder = (id, order) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-   
+
     const { data } = await axios.put(`/admin/order/${id}`, order);
 
     dispatch({
@@ -163,12 +163,10 @@ export const deleteOrder = (id) => async (dispatch) => {
 
 // Users Order Deatils
 export const getUsersOrders = (id) => async (dispatch) => {
-
   try {
     dispatch({ type: USER_ORDERS_REQUEST });
 
     const { data } = await axios.get(`/admin/user/orders/${id}`);
-    
 
     dispatch({
       type: USER_ORDERS_SUCCESS,
@@ -183,8 +181,7 @@ export const getUsersOrders = (id) => async (dispatch) => {
 };
 
 // Add Note
-export const addOrderNote = (message,id) => async (dispatch) => {
-  
+export const addOrderNote = (message, id) => async (dispatch) => {
   try {
     dispatch({ type: ADD_ORDER_NOTE_REQUEST });
 
@@ -194,7 +191,7 @@ export const addOrderNote = (message,id) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(`/admin/note/add/${id}`,message, config);
+    const { data } = await axios.post(`/admin/note/add/${id}`, message, config);
 
     dispatch({
       type: ADD_ORDER_NOTE_SUCCESS,

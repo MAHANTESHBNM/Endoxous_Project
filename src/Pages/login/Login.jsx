@@ -38,7 +38,7 @@ const Login = (props) => {
     if (error) {
       toast.error(error.message);
     }
-    props.setRestrictSide(true)
+    props.setRestrictSide(true);
     if (isAuthenticated) {
       if (success) {
         toast.success(message);

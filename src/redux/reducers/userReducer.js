@@ -59,7 +59,6 @@ export const userReducer = (state = { user: {} }, action) => {
     case LOGIN_REQUEST:
     case REGISTER_USER_REQUEST:
     case LOAD_USER_REQUEST:
-
       return {
         loading: true,
         isAuthenticated: false,
@@ -131,20 +130,17 @@ export const profileReducer = (state = {}, action) => {
 
     case UPDATE_PROFILE_SUCCESS:
     case UPDATE_PASSWORD_SUCCESS:
-    
       return {
         ...state,
         loading: false,
         isUpdated: action.payload,
-       
       };
-      case UPDATE_USER_SUCCESS:
+    case UPDATE_USER_SUCCESS:
       return {
         ...state,
         loading: false,
         isUpdated: action.payload.success,
-        message : action.payload.message
-       
+        message: action.payload.message,
       };
 
     case DELETE_USER_SUCCESS:
@@ -380,7 +376,7 @@ export const verifyUserReducer = (state = {}, action) => {
   }
 };
 
-export const adminReducer = (state = { }, action) => {
+export const adminReducer = (state = {}, action) => {
   switch (action.type) {
     case ADMIN_REQUEST:
       return {

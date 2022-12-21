@@ -17,6 +17,7 @@ import {
 } from "../../constants/bannerConstants";
 import { getAllOrders } from "../../redux/actions/orderAction";
 import { getAllNurseries } from "../../redux/actions/nurseryAction";
+import { getAllNotifications } from "../../redux/actions/notificationAction";
 
 const HomePage = ({ toggle, setRestrictSide }) => {
   const dispatch = useDispatch();
@@ -46,6 +47,10 @@ const HomePage = ({ toggle, setRestrictSide }) => {
 
   const { error: nurseriesError, nurseries } = useSelector(
     (state) => state.allNurseries
+  );
+
+  const { error: NotificationError, notifications } = useSelector(
+    (state) => state.allNotifications
   );
 
   // ----------------------------------------------------------------//
@@ -102,6 +107,7 @@ const HomePage = ({ toggle, setRestrictSide }) => {
       toast.success(deleteMessge);
       dispatch({ type: DELETE_BANNER_RESET });
     }
+    dispatch(getAllNotifications());
     dispatch(getAllBanners());
     dispatch(getAllOrders());
     dispatch(getAllNurseries());
@@ -144,6 +150,10 @@ const HomePage = ({ toggle, setRestrictSide }) => {
   // Delete Banner
   const bannerDeleteHandler = (id) => {
     dispatch(deleteBanner(id));
+  };
+
+  const notificationHandler = () => {
+    navigate(`/notification/new`);
   };
 
   const [sales, setSales] = useState(orders);
@@ -245,7 +255,7 @@ const HomePage = ({ toggle, setRestrictSide }) => {
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
       {loading ? (
         <Loader />
       ) : (
@@ -474,6 +484,7 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                     type="button"
                     className="btn btn py-0"
                     style={{ fontSize: ".8rem", opacity: ".7" }}
+                    onClick={notificationHandler}
                   >
                     Push new notification
                   </button>
@@ -507,111 +518,35 @@ const HomePage = ({ toggle, setRestrictSide }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="col" style={{ border: "none" }}></th>
-                        <th
-                          scope="row"
-                          className="text-success"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          1
-                        </th>
-                        <td style={{ fontSize: ".8rem", opacity: ".7" }}>
-                          MEGA OFFER
-                        </td>
-                        <td
-                          className="text-wrap w-50"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          Lorem ipsum dolor, sit amet consectetur adipisicing
-                          elit.
-                        </td>
-                        <td
-                          className="text-success"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          Vendor
-                        </td>
-                        <th scope="col" style={{ border: "none" }}></th>
-                      </tr>
-                      <tr>
-                        <th scope="col" style={{ border: "none" }}></th>
-                        <th
-                          scope="row"
-                          className="text-success"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          2
-                        </th>
-                        <td style={{ fontSize: ".8rem", opacity: ".7" }}>
-                          MEGA OFFER
-                        </td>
-                        <td
-                          className="text-wrap w-50"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          Lorem ipsum dolor, sit amet.
-                        </td>
-                        <td
-                          className="text-warning"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          Clients
-                        </td>
-                        <th scope="col" style={{ border: "none" }}></th>
-                      </tr>
-                      <tr>
-                        <th scope="col" style={{ border: "none" }}></th>
-                        <th
-                          scope="row"
-                          className="text-success"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          3
-                        </th>
-                        <td style={{ fontSize: ".8rem", opacity: ".7" }}>
-                          MEGA OFFER
-                        </td>
-                        <td
-                          className="text-wrap w-50"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          Lorem ipsum dolor, sit amet.
-                        </td>
-                        <td
-                          className="text-warning"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          Clients
-                        </td>
-                        <th scope="col" style={{ border: "none" }}></th>
-                      </tr>
-                      <tr>
-                        <th scope="col" style={{ border: "none" }}></th>
-                        <th
-                          scope="row"
-                          className="text-success"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          4
-                        </th>
-                        <td style={{ fontSize: ".8rem", opacity: ".7" }}>
-                          MEGA OFFER
-                        </td>
-                        <td
-                          className="text-wrap w-50"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          Lorem ipsum dolor, sit amet.
-                        </td>
-                        <td
-                          className="text-warning"
-                          style={{ fontSize: ".8rem", opacity: ".7" }}
-                        >
-                          Clients
-                        </td>
-                        <th scope="col" style={{ border: "none" }}></th>
-                      </tr>
+                      {notifications &&
+                        notifications.map((item, index) => (
+                          <tr key={index}>
+                            <th scope="col" style={{ border: "none" }}></th>
+                            <th
+                              scope="row"
+                              className="text-success"
+                              style={{ fontSize: ".8rem", opacity: ".7" }}
+                            >
+                              {index + 1}
+                            </th>
+                            <td style={{ fontSize: ".8rem", opacity: ".7" }}>
+                              {item?.title}
+                            </td>
+                            <td
+                              className="text-wrap w-50"
+                              style={{ fontSize: ".8rem", opacity: ".7" }}
+                            >
+                              {item?.message}
+                            </td>
+                            <td
+                              className="text-success"
+                              style={{ fontSize: ".8rem", opacity: ".7" }}
+                            >
+                              {item?.sendTo}
+                            </td>
+                            <th scope="col" style={{ border: "none" }}></th>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>

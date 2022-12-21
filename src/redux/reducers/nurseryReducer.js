@@ -19,9 +19,7 @@ import {
   ADD_NURSERY_RESET,
   DELETE_NURSERY_RESET,
   CLEAR_ERRORS,
-
 } from "../../constants/nurseryConstants";
-
 
 // Create New Products
 export const newCategoryReducer = (state = {}, action) => {
@@ -83,7 +81,7 @@ export const AssingtoNurseryReducer = (state = {}, action) => {
       return {
         ...state,
         success: false,
-        message:false
+        message: false,
       };
     case CLEAR_ERRORS:
       return {

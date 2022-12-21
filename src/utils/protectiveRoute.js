@@ -11,31 +11,31 @@ const AdminPrivateRoute = (Admin) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const token = JSON.parse(localStorage.getItem("token"));
-  if(!token){
-   return navigate('/')
+  if (!token) {
+    return navigate("/");
   }
 
+  let decodedToken = jwt_decode(token);
+  let currentDate = new Date();
 
+  // // JWT exp is in seconds
+  if (decodedToken.exp * 1000 < currentDate.getTime()) {
+    localStorage.removeItem("token");
+    isValidToken = false;
+    navigate("/");
+  } else {
+    isValidToken = true;
+  }
 
-let decodedToken = jwt_decode(token);
-let currentDate = new Date();
-
-// // JWT exp is in seconds
-if (decodedToken.exp * 1000 < currentDate.getTime()) {
-  localStorage.removeItem("token");
-  isValidToken=false
-  navigate('/');
-
- 
-} else {
-  isValidToken=true
-  
-}
-
-  if (isValidToken===false||isAuthenticated === false ) {
+  if (isValidToken === false || isAuthenticated === false) {
     return <Navigate to="/" replace />;
   }
-  if (isAuthenticated ===true&& isAdmin === true && user.role === "admin"&&isValidToken===true) {
+  if (
+    isAuthenticated === true &&
+    isAdmin === true &&
+    user.role === "admin" &&
+    isValidToken === true
+  ) {
     return <Outlet />;
   }
 };

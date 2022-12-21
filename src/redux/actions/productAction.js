@@ -1,4 +1,3 @@
-
 import axios from "../../axios";
 
 import {
@@ -35,57 +34,50 @@ import {
   ADD_FAQ_FAIL,
 } from "../../constants/productConstants";
 
-export const getProducts = (
-  keyword = "",
-  currentPage = 1,
-  price = [0, 25000],
-  category,
-  ratings = 0
-) => async (dispatch) => {
-  try {
-    dispatch({ type: ALL_PRODUCTS_REQUEST });
+export const getProducts =
+  (keyword = "", currentPage = 1, price = [0, 25000], category, ratings = 0) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: ALL_PRODUCTS_REQUEST });
 
-    let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+      let link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
-    if (category) {
-      link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+      if (category) {
+        link = `/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+      }
+
+      const { data } = await axios.get(link);
+
+      dispatch({
+        type: ALL_PRODUCTS_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ALL_PRODUCTS_FAIL,
+        payload: error.response.data,
+      });
     }
+  };
 
-    const { data } = await axios.get(link);
+// Get All Products for --Admin
+export const getAdminProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: ADMIN_PRODUCTS_REQUEST });
+
+    const { data } = await axios.get(`/admin/products`);
 
     dispatch({
-      type: ALL_PRODUCTS_SUCCESS,
-      payload: data,
+      type: ADMIN_PRODUCTS_SUCCESS,
+      payload: data.products,
     });
   } catch (error) {
     dispatch({
-      type: ALL_PRODUCTS_FAIL,
+      type: ADMIN_PRODUCTS_FAIL,
       payload: error.response.data,
     });
   }
 };
-
-// Get All Products for --Admin 
-export const getAdminProducts = () => async (dispatch) => {
-  try {
-    dispatch({type: ADMIN_PRODUCTS_REQUEST});
-
-    const {data} = await axios.get(`/admin/products`);
-   
-    dispatch({
-      type: ADMIN_PRODUCTS_SUCCESS,
-      payload : data.products,
-    })
-    
-  } catch (error) {
-    dispatch({
-      type:ADMIN_PRODUCTS_FAIL,
-      payload : error.response.data,
-    })
-    
-  }
-
-}
 
 //Create Product --Admin
 export const CreateProduct = (productData) => async (dispatch) => {
@@ -94,7 +86,11 @@ export const CreateProduct = (productData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.post(`/admin/product/new`,productData,config);
+    const { data } = await axios.post(
+      `/admin/product/new`,
+      productData,
+      config
+    );
 
     dispatch({
       type: NEW_PRODUCT_SUCCESS,
@@ -109,13 +105,17 @@ export const CreateProduct = (productData) => async (dispatch) => {
 };
 
 //Update Product --Admin
-export const updateProduct = (id,productData) => async (dispatch) => {
+export const updateProduct = (id, productData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-    const { data } = await axios.put(`/admin/product/${id}`,productData,config);
+    const { data } = await axios.put(
+      `/admin/product/${id}`,
+      productData,
+      config
+    );
 
     dispatch({
       type: UPDATE_PRODUCT_SUCCESS,
@@ -128,7 +128,6 @@ export const updateProduct = (id,productData) => async (dispatch) => {
     });
   }
 };
-
 
 //Delete Product --Admin
 export const deleteProduct = (id) => async (dispatch) => {
@@ -149,8 +148,6 @@ export const deleteProduct = (id) => async (dispatch) => {
   }
 };
 
-
-
 // Get product Details
 export const getProductDetails = (id) => async (dispatch) => {
   try {
@@ -170,17 +167,16 @@ export const getProductDetails = (id) => async (dispatch) => {
   }
 };
 
-
 //New Review
 export const newReview = (reviewData) => async (dispatch) => {
   try {
     dispatch({ type: NEW_REVIEW_REQUEST });
 
     const config = {
-      headers : {"Content-Type" : "application/json"}
-    }
+      headers: { "Content-Type": "application/json" },
+    };
 
-    const { data } = await axios.put(`/review`,reviewData,config);
+    const { data } = await axios.put(`/review`, reviewData, config);
 
     dispatch({
       type: NEW_REVIEW_SUCCESS,
@@ -193,7 +189,6 @@ export const newReview = (reviewData) => async (dispatch) => {
     });
   }
 };
-
 
 //Get All Reviews of Product
 export const getAllReviews = (id) => async (dispatch) => {
@@ -215,11 +210,13 @@ export const getAllReviews = (id) => async (dispatch) => {
 };
 
 //Delete Review of Product
-export const deleteReviews = (reviewId,productId) => async (dispatch) => {
+export const deleteReviews = (reviewId, productId) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_REVIEW_REQUEST });
 
-    const { data } = await axios.delete(`/reviews?id=${reviewId}&productId=${productId}`);
+    const { data } = await axios.delete(
+      `/reviews?id=${reviewId}&productId=${productId}`
+    );
 
     dispatch({
       type: DELETE_REVIEW_SUCCESS,
@@ -234,19 +231,19 @@ export const deleteReviews = (reviewId,productId) => async (dispatch) => {
 };
 
 //New Review
-export const addNewFAQ = (id,faqData) => async (dispatch) => {
+export const addNewFAQ = (id, faqData) => async (dispatch) => {
   try {
     dispatch({ type: ADD_FAQ_REQUEST });
 
     const config = {
-      headers : {"Content-Type" : "application/json"}
-    }
+      headers: { "Content-Type": "application/json" },
+    };
 
-    const { data } = await axios.post(`/admin/faqs/new/${id}`,faqData,config);
+    const { data } = await axios.post(`/admin/faqs/new/${id}`, faqData, config);
 
     dispatch({
       type: ADD_FAQ_SUCCESS,
-      payload: data
+      payload: data,
     });
   } catch (error) {
     dispatch({
@@ -255,7 +252,6 @@ export const addNewFAQ = (id,faqData) => async (dispatch) => {
     });
   }
 };
-
 
 // Clearing Errors
 export const clearErrors = () => async (dispatch) => {

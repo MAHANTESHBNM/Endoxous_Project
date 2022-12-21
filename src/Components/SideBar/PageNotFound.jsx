@@ -2,7 +2,7 @@ import React from "react";
 
 const PageNotFound = () => {
   return (
-    <div >
+    <div>
       <div className="page-wrap d-flex flex-row align-items-center ">
         <div className="container">
           <div className="row justify-content-center">

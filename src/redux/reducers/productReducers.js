@@ -224,7 +224,6 @@ export const newReviewReducer = (state = {}, action) => {
   }
 };
 
-
 export const productReviewsReducer = (state = { reviews: [] }, action) => {
   switch (action.type) {
     case ALL_REVIEW_REQUEST:
@@ -301,7 +300,7 @@ export const newFAQReducer = (state = {}, action) => {
       return {
         loading: false,
         success: action.payload.success,
-        message:action.payload.message
+        message: action.payload.message,
       };
     case ADD_FAQ_FAIL:
       return {
@@ -313,7 +312,7 @@ export const newFAQReducer = (state = {}, action) => {
       return {
         ...state,
         success: false,
-        message:false
+        message: false,
       };
     case CLEAR_ERRORS:
       return {
